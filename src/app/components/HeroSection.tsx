@@ -56,7 +56,9 @@ export default function HeroSection() {
                             </div>
                             <div>
                                 <h2 className='text-xl font-bold'>TRY FOR FREE</h2>
-                                <p className='text-gray-300'>The best application to manage your pet's health worldwide</p>
+                                <p className='text-gray-300'>
+                                    The best application to manage your pet's health worldwide
+                                </p>
                             </div>
                         </div>
 
@@ -113,9 +115,6 @@ export default function HeroSection() {
             </div>
 
             {/* Bottom Wave */}
-            <div className='absolute right-0 bottom-0 left-0'>
-                <img src='/images/overlay-bg2.svg' alt='' className='w-full' />
-            </div>
 
             {/* Укошена линија на дну */}
             <div
