@@ -1,0 +1,162 @@
+---
+description: full stack
+globs: 
+---
+  Full Stack MERN Best Practices
+
+You are an expert in JavaScript, TypeScript, React (Vite), Express 5, Node.js, Zustand, Tailwind CSS, MongoDB, and PostgreSQL.
+
+## General Code Style and Structure
+- Follow **clean code principles**: write maintainable, modular, and scalable code.
+- Use **TypeScript** for type safety in both frontend and backend.
+- Prefer **functional programming** over imperative code.
+- Follow **SOLID** principles and **separation of concerns**.
+- Structure files efficiently: **components, hooks, utils, services, and types**.
+- Ensure **consistent formatting** with ESLint, Prettier, and commit hooks.
+
+## JavaScript & TypeScript Rules
+- Use **ES modules** (`import/export`).
+- Use **strict mode** in TypeScript (`strict: true` in `tsconfig.json`).
+- Prefer **const** over **let**, and avoid **var**.
+- Avoid `any` type in TypeScript; always define interfaces or types.
+- Follow naming conventions:
+  - **camelCase** for variables and functions.
+  - **PascalCase** for React components.
+  - **snake_case** for database fields.
+  - **UPPER_CASE** for constants and environment variables.
+- Always handle **errors properly** using `try/catch` or global error handling.
+
+---
+
+# Frontend - React (Vite)
+
+## Project Structure
+```
+/src
+  /components   # Reusable UI components
+  /hooks        # Custom hooks
+  /pages        # Page components
+  /services     # API calls
+  /store        # Zustand state management
+  /utils        # Utility functions
+  /types        # TypeScript types
+  /config       # Configuration files
+  main.tsx      # Entry point
+  App.tsx       # Root component
+  vite.config.ts # Vite configuration
+```
+
+## React Best Practices
+- Use **Vite** for fast development and optimized builds.
+- Prefer **Server Components** when possible for better performance.
+- Use **Zustand** for global state management instead of Context API.
+- Optimize performance:
+  - Use **React.memo()** to prevent unnecessary re-renders.
+  - Use **useCallback** for stable function references.
+  - Use **useMemo** for expensive computations.
+- Always **lazy load** components with `React.lazy()` and `Suspense`.
+- Use **error boundaries** for better UX.
+
+## Tailwind CSS Best Practices
+- Use **mobile-first** approach.
+- Extract common styles using **@layer components** in `globals.css`.
+- Never use `@apply`, prefer utility classes directly in JSX.
+- Use **clsx** for conditional class merging.
+
+## API Calls
+- Create an `api.ts` file inside `/services` for API requests.
+- Use `fetch` with async/await, wrapped in a **useFetch custom hook**.
+- Use **React Query** for caching and background revalidation.
+
+---
+
+# Backend - Express 5 (Node.js)
+
+## Project Structure
+```
+/server
+  /controllers  # Business logic
+  /middlewares  # Auth, error handling, logging
+  /models       # Database schemas
+  /routes       # API endpoints
+  /services     # External services (e.g., email, payments)
+  /utils        # Helper functions
+  app.ts        # Main Express server
+  config.ts     # Environment variables & configuration
+```
+
+## Express Best Practices
+- Use **ES modules** instead of CommonJS.
+- Separate logic:
+  - **Routes** → Only handle request and response.
+  - **Controllers** → Contain business logic.
+  - **Services** → Handle database queries.
+- Implement **middleware** for authentication, logging, and error handling.
+- Use **Zod** or **Joi** for request validation.
+- Centralize **error handling** in a single middleware.
+- Implement **rate limiting** and **CORS** for security.
+
+## Authentication
+- Use **JWT** (JSON Web Tokens) for authentication.
+- Store tokens in **HTTP-only cookies** to prevent XSS attacks.
+- Implement **refresh tokens** for better security.
+
+## Logging and Monitoring
+- Use **Winston** or **Pino** for logging.
+- Implement a **request logger** middleware.
+- Monitor application health with **PM2** or **New Relic**.
+
+---
+
+# Database - MongoDB or PostgreSQL
+
+## MongoDB Best Practices
+- Use **Mongoose** for schema validation and ORM.
+- Normalize data where needed but leverage **embedded documents** for performance.
+- Use **indexes** to optimize queries.
+- Implement **pagination** instead of fetching large datasets.
+- Store **large files** (images, PDFs) in **Cloud Storage** instead of the database.
+
+## PostgreSQL Best Practices
+- Use **Knex.js** or **Prisma** for database interactions.
+- Prefer **UUIDs** over auto-incremented IDs for security.
+- Use **indexes** on frequently queried fields.
+- Use **transactions** for multi-step operations.
+- Encrypt sensitive data using **bcrypt** or **Argon2**.
+
+---
+
+# Deployment & DevOps
+
+## CI/CD & Version Control
+- Use **GitHub Actions** for automated testing and deployment.
+- Use **.env files** for environment variables (never commit them).
+- Lint and format code before committing (`husky` + `lint-staged`).
+- Use **semantic versioning** for releases.
+
+## Security Best Practices
+- Use **Helmet** to secure HTTP headers.
+- Validate and sanitize all user input to prevent SQL/NoSQL injection.
+- Implement **rate limiting** and **firewall rules**.
+- Enforce HTTPS and secure cookies.
+
+## Deployment
+- Use **Docker** for containerized deployment.
+- Deploy frontend to **Vercel** or **Netlify**.
+- Deploy backend to **Railway**, **Render**, or **AWS EC2**.
+- Use **NGINX** as a reverse proxy for improved security.
+- Automate database migrations using **Knex.js (PostgreSQL)** or **Mongoose (MongoDB)**.
+
+---
+
+# Conclusion
+
+This guide ensures:
+✅ **Scalability** - Modular and maintainable architecture.  
+✅ **Performance** - Optimized rendering and database queries.  
+✅ **Security** - Best practices for authentication, validation, and API security.  
+✅ **Developer Experience** - Clear folder structure, TypeScript usage, and automated workflows.
+
+ 
+
+Let me know if you need any tweaks! 🚀

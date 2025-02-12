@@ -18,8 +18,10 @@ export default function Footer() {
 
                                 {/* Newsletter */}
                                 <div className='space-y-4'>
-                                    <h2 className='text-2xl font-bold'>Subscribe newsletter</h2>
-                                    <p>Be the first to receive all latest post in your inbox</p>
+                                    <h2 className='text-2xl font-bold text-white'>Subscribe to our newsletter</h2>
+                                    <p className='text-gray-300'>
+                                        Get the latest updates and news directly in your inbox
+                                    </p>
                                     <form className='space-y-4'>
                                         <div className='relative'>
                                             <label htmlFor='newsletter-email' className='sr-only'>
@@ -27,20 +29,20 @@ export default function Footer() {
                                             </label>
                                             <input
                                                 id='newsletter-email'
-                                                className='w-full rounded-lg bg-white px-4 py-2 text-black'
-                                                placeholder='Enter your email'
+                                                className='w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-black placeholder-gray-400 focus:border-cyan-300 focus:ring-2 focus:ring-cyan-300 focus:outline-none'
+                                                placeholder='Enter your email address'
                                                 type='email'
                                                 required
                                             />
                                             <button
                                                 type='submit'
-                                                className='absolute top-1/2 right-2 -translate-y-1/2 rounded-full bg-[#0C4C55] p-2 text-white'
+                                                className='absolute top-1/2 right-2 -translate-y-1/2 transform rounded-lg bg-cyan-500 px-4 py-2 text-white transition-colors hover:bg-cyan-600 focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:outline-none'
                                                 aria-label='Subscribe to newsletter'>
-                                                →
+                                                Subscribe
                                             </button>
                                         </div>
                                         <p className='text-sm text-gray-400'>
-                                            By clicking send link you agree to receive message.
+                                            We respect your privacy. Unsubscribe at any time.
                                         </p>
                                     </form>
                                 </div>
