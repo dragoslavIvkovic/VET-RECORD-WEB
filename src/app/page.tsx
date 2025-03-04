@@ -1,5 +1,6 @@
 'use client';
 
+import { FeatureSection } from './components/FeatureSection';
 import Footer from './components/Footer';
 import HeroSection from './components/HeroSection';
 import KeyFeatureSection from './components/KeyFeatureSection';
@@ -25,8 +26,13 @@ export default function Home() {
                 <KeyFeatureSection />
             </div>
 
-            {/* Video Section sa kontrastnom pozadinom */}
+            {/* Feature Section sa kontrastnom pozadinom */}
             <div style={{ backgroundColor: theme.colors.white }}>
+                <FeatureSection />
+            </div>
+
+            {/* Video Section sa kontrastnom pozadinom */}
+            <div style={{ backgroundColor: theme.colors.background }}>
                 <VideoSection />
             </div>
 
