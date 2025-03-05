@@ -70,19 +70,10 @@ export default function Footer() {
         <footer className='bg-[#0C4C55] text-white'>
             <div className='relative'>
                 <div className='container mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8'>
-                    <div className='grid gap-12 md:grid-cols-2'>
-                        {/* Left Column - Contact Form */}
-                        <div className='relative'>
-                            <img
-                                src='/images/contact-illustration.svg'
-                                alt='Contact Illustration'
-                                className='w-full max-w-md'
-                            />
-                        </div>
-
-                        {/* Right Column - Contact Form */}
-                        <div className='space-y-6'>
-                            <div>
+                    <div className='flex justify-center'>
+                        {/* Contact Form Section - Now centered and with adjusted width */}
+                        <div className='w-full max-w-2xl space-y-6'>
+                            <div className='text-center'>
                                 <p className='text-sm tracking-[0.20em] text-red-500 uppercase'>CONTACT US</p>
                                 <h2 className='mt-2 text-3xl font-bold'>Get in touch !</h2>
                             </div>
@@ -99,20 +90,20 @@ export default function Footer() {
                                 }}
                                 onMouseDown={(e) => e.stopPropagation()}>
                                 {formStatus.success && (
-                                    <div className='mb-4 rounded-lg bg-green-100 p-4 text-sm text-green-800'>
+                                    <div className='mb-4 rounded-lg bg-green-100 p-4 text-center text-sm text-green-800'>
                                         Thank you! Your message has been sent successfully.
                                     </div>
                                 )}
 
                                 {formStatus.error && (
-                                    <div className='mb-4 rounded-lg bg-red-100 p-4 text-sm text-red-800'>
+                                    <div className='mb-4 rounded-lg bg-red-100 p-4 text-center text-sm text-red-800'>
                                         {formStatus.error}
                                     </div>
                                 )}
 
                                 <div className='grid gap-4 md:grid-cols-2'>
                                     <div>
-                                        <label htmlFor='name' className='mb-2 block text-sm'>
+                                        <label htmlFor='name' className='mb-2 block text-center text-sm'>
                                             Your Name:
                                         </label>
                                         <input
@@ -121,11 +112,11 @@ export default function Footer() {
                                             name='name'
                                             placeholder='Name :'
                                             required
-                                            className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                                            className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-center text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor='email' className='mb-2 block text-sm'>
+                                        <label htmlFor='email' className='mb-2 block text-center text-sm'>
                                             Your Email:
                                         </label>
                                         <input
@@ -134,13 +125,13 @@ export default function Footer() {
                                             name='email'
                                             placeholder='Email :'
                                             required
-                                            className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                                            className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-center text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
                                         />
                                     </div>
                                 </div>
 
                                 <div>
-                                    <label htmlFor='subject' className='mb-2 block text-sm'>
+                                    <label htmlFor='subject' className='mb-2 block text-center text-sm'>
                                         Your Question:
                                     </label>
                                     <input
@@ -148,12 +139,12 @@ export default function Footer() {
                                         id='subject'
                                         name='subject'
                                         placeholder='Subject :'
-                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-center text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
                                     />
                                 </div>
 
                                 <div>
-                                    <label htmlFor='message' className='mb-2 block text-sm'>
+                                    <label htmlFor='message' className='mb-2 block text-center text-sm'>
                                         Your Comment:
                                     </label>
                                     <textarea
@@ -162,47 +153,34 @@ export default function Footer() {
                                         rows={4}
                                         placeholder='Message :'
                                         required
-                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-center text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
                                     />
                                 </div>
 
-                                <button
-                                    type='submit'
-                                    disabled={formStatus.loading}
-                                    className={`rounded-lg bg-red-500 px-8 py-3 text-white transition-colors hover:bg-red-600 ${formStatus.loading ? 'cursor-not-allowed opacity-70' : ''}`}>
-                                    {formStatus.loading ? 'Sending...' : 'Send Message'}
-                                </button>
+                                <div className='flex justify-center'>
+                                    <button
+                                        type='submit'
+                                        disabled={formStatus.loading}
+                                        className={`rounded-lg bg-red-500 px-8 py-3 text-white transition-colors hover:bg-red-600 ${
+                                            formStatus.loading ? 'cursor-not-allowed opacity-70' : ''
+                                        }`}>
+                                        {formStatus.loading ? 'Sending...' : 'Send Message'}
+                                    </button>
+                                </div>
                             </form>
                         </div>
-                    </div>
-
-                    {/* Download App Section */}
-                    <div className='mt-16 text-center'>
-                        <h2 className='mb-6 text-2xl font-bold'>Download app</h2>
-                        <a
-                            href='https://play.google.com/store/apps/details?id=vetrecord.app'
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='inline-block rounded-full bg-white p-4 shadow-md transition-colors hover:bg-gray-100'>
-                            <img
-                                alt='Download on Google Play'
-                                className='h-14'
-                                src='/images/googleplay_dark.png'
-                                loading='lazy'
-                            />
-                        </a>
                     </div>
                 </div>
             </div>
 
-            {/* Footer Bottom */}
+            {/* Footer Bottom - Now fully centered */}
             <div className='bg-black py-4'>
                 <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-                    <div className='flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0'>
-                        <div>
+                    <div className='flex flex-col items-center space-y-4'>
+                        <div className='text-center'>
                             <p>© Copyrights 2024. All rights reserved.</p>
                         </div>
-                        <ul className='flex flex-wrap gap-6'>
+                        <ul className='flex flex-wrap justify-center gap-6'>
                             <li>
                                 <a href='/' className='hover:text-[#FF5733]'>
                                     Home

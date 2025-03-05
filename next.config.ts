@@ -7,7 +7,12 @@ const nextConfig = {
         }
     },
     images: {
-        domains: ['vetrecord.app']
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'vetrecord.app'
+            }
+        ]
     },
     async headers() {
         return [
