@@ -46,7 +46,7 @@ export default function NavigationBar() {
         <nav
             className='fixed top-0 right-0 left-0 z-50 border-b border-white'
             style={{ backgroundColor: theme.colors.primary }}>
-            <div className='container mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8'>
+            <div className='container mx-auto   max-w-7xl px-4 sm:px-6 lg:px-8'>
                 <div className='flex h-16 items-center justify-between'>
                     <div className='w-[200px]'>
                         <Link href='/' className='flex items-center' onClick={closeMenu}>

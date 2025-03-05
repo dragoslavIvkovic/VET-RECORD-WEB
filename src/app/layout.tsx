@@ -104,7 +104,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                     }}
                 />
             </head>
-            <body className='min-h-screen bg-[#F3F5FF]'>
+            <body className='min-h-screen bg-[#F3F5FF]' suppressHydrationWarning>
                 <ThemeProvider>
                     <NavigationBar />
                     <div className='pt-16'>{children}</div>
