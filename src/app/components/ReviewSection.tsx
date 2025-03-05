@@ -38,7 +38,7 @@ export default function ReviewSection() {
 
     return (
         <section id='reviews' className='bg-white py-20'>
-            <div className='container mx-auto px-4'>
+            <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
                 <div className='grid gap-12 md:grid-cols-2'>
                     {/* Left Column */}
                     <div className='space-y-6'>

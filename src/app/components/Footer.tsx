@@ -4,7 +4,7 @@ export default function Footer() {
     return (
         <footer className='bg-[#0C4C55] text-white'>
             <div className='relative'>
-                <div className='container mx-auto px-4 py-16'>
+                <div className='container mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8'>
                     <div className='grid gap-12 md:grid-cols-2'>
                         {/* Left Column */}
                         <div>
@@ -119,7 +119,7 @@ export default function Footer() {
 
             {/* Footer Bottom */}
             <div className='bg-black py-4'>
-                <div className='container mx-auto px-4'>
+                <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
                     <div className='flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0'>
                         <div>
                             <p>© Copyrights 2024. All rights reserved.</p>
