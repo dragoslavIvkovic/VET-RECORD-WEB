@@ -7,7 +7,7 @@ import { Eye, Feather, Heart, Monitor, Smartphone, UserCheck } from 'lucide-reac
 export function FeatureSection() {
     return (
         <div className='relative'>
-            <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+            <div className='container mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8'>
                 <div className='grid grid-cols-1 pb-6 text-center'>
                     <h6 className='mb-3 text-sm font-bold tracking-wider text-red-500 uppercase'>Features</h6>
                     <h4 className='mb-6 text-2xl leading-normal font-bold md:text-3xl md:leading-normal'>

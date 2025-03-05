@@ -71,8 +71,8 @@ export default function Footer() {
             <div className='relative'>
                 <div className='container mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8'>
                     <div className='flex justify-center'>
-                        {/* Contact Form Section - Now centered and with adjusted width */}
-                        <div className='w-full max-w-2xl space-y-6'>
+                        {/* Contact Form Section - Now with better mobile responsiveness */}
+                        <div className='w-full max-w-md space-y-6 sm:max-w-lg md:max-w-2xl'>
                             <div className='text-center'>
                                 <p className='text-sm tracking-[0.20em] text-red-500 uppercase'>CONTACT US</p>
                                 <h2 className='mt-2 text-3xl font-bold'>Get in touch !</h2>
@@ -80,7 +80,7 @@ export default function Footer() {
 
                             <form
                                 onSubmit={handleSubmit}
-                                className='space-y-4'
+                                className='mx-auto space-y-4'
                                 action='javascript:void(0);'
                                 onClick={(e) => e.stopPropagation()}
                                 onKeyDown={(e) => {
@@ -101,8 +101,8 @@ export default function Footer() {
                                     </div>
                                 )}
 
-                                <div className='grid gap-4 md:grid-cols-2'>
-                                    <div>
+                                <div className='grid gap-4 sm:grid-cols-2'>
+                                    <div className='w-full'>
                                         <label htmlFor='name' className='mb-2 block text-center text-sm'>
                                             Your Name:
                                         </label>
@@ -112,10 +112,10 @@ export default function Footer() {
                                             name='name'
                                             placeholder='Name :'
                                             required
-                                            className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-center text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                                            className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-center text-white placeholder-white/50 focus:border-white/40 focus:outline-none sm:py-3'
                                         />
                                     </div>
-                                    <div>
+                                    <div className='w-full'>
                                         <label htmlFor='email' className='mb-2 block text-center text-sm'>
                                             Your Email:
                                         </label>
@@ -125,7 +125,7 @@ export default function Footer() {
                                             name='email'
                                             placeholder='Email :'
                                             required
-                                            className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-center text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                                            className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-center text-white placeholder-white/50 focus:border-white/40 focus:outline-none sm:py-3'
                                         />
                                     </div>
                                 </div>
@@ -139,7 +139,7 @@ export default function Footer() {
                                         id='subject'
                                         name='subject'
                                         placeholder='Subject :'
-                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-center text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-center text-white placeholder-white/50 focus:border-white/40 focus:outline-none sm:py-3'
                                     />
                                 </div>
 
@@ -153,15 +153,15 @@ export default function Footer() {
                                         rows={4}
                                         placeholder='Message :'
                                         required
-                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-center text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-center text-white placeholder-white/50 focus:border-white/40 focus:outline-none sm:py-3'
                                     />
                                 </div>
 
-                                <div className='flex justify-center'>
+                                <div className='flex justify-center pt-2'>
                                     <button
                                         type='submit'
                                         disabled={formStatus.loading}
-                                        className={`rounded-lg bg-red-500 px-8 py-3 text-white transition-colors hover:bg-red-600 ${
+                                        className={`w-full rounded-lg bg-red-500 px-6 py-2.5 text-white transition-colors hover:bg-red-600 sm:w-auto sm:px-8 sm:py-3 ${
                                             formStatus.loading ? 'cursor-not-allowed opacity-70' : ''
                                         }`}>
                                         {formStatus.loading ? 'Sending...' : 'Send Message'}
@@ -173,14 +173,14 @@ export default function Footer() {
                 </div>
             </div>
 
-            {/* Footer Bottom - Now fully centered */}
+            {/* Footer Bottom - Improved mobile spacing */}
             <div className='bg-black py-4'>
-                <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+                <div className='container mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8'>
                     <div className='flex flex-col items-center space-y-4'>
                         <div className='text-center'>
-                            <p>© Copyrights 2024. All rights reserved.</p>
+                            <p className='text-sm sm:text-base'>© Copyrights 2024. All rights reserved.</p>
                         </div>
-                        <ul className='flex flex-wrap justify-center gap-6'>
+                        <ul className='flex flex-wrap justify-center gap-4 text-sm sm:gap-6 sm:text-base'>
                             <li>
                                 <a href='/' className='hover:text-[#FF5733]'>
                                     Home

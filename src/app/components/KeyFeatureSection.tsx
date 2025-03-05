@@ -61,7 +61,7 @@ export default function KeyFeatureSection() {
 
     return (
         <section className='py-20'>
-            <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+            <div className='container mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8'>
                 {/* Section Header */}
                 <div className='mb-12 text-center'>
                     <span className='rounded-full bg-[#0C4C55] px-4 py-1 text-sm text-white'>Key Feature</span>

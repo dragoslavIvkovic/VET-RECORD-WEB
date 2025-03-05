@@ -16,7 +16,7 @@ export default function HeroSection() {
 
     return (
         <section className='relative bg-[#0C4C55] p-20'>
-            <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+            <div className='container mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8'>
                 <div className='grid gap-12 md:grid-cols-2 md:items-center'>
                     {/* Left Column - Text Content */}
                     <div className='z-10 space-y-6 pt-12 text-white'>

@@ -105,7 +105,7 @@ export default function ReviewSection() {
 
     return (
         <section className='bg-white py-20'>
-            <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+            <div className='container mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8'>
                 {/* Header */}
                 <div className='text-center'>
                     <span className='text-sm font-semibold tracking-wider text-red-500 uppercase'>REVIEWS</span>
