@@ -1,9 +1,108 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import { useTheme } from '../providers/ThemeProvider';
+
+interface FormStatus {
+    loading: boolean;
+    message: string;
+    error: boolean;
+    details?: {
+        success?: boolean;
+        messageId?: string;
+        error?: string;
+    };
+}
 
 export default function Contact() {
     const theme = useTheme();
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+        newsletter: false
+    });
+    const [status, setStatus] = useState<FormStatus>({
+        loading: false,
+        message: '',
+        error: false
+    });
+
+    // Dodaj klasu na body element kada smo na kontakt stranici
+    useEffect(() => {
+        document.body.classList.add('contact-page');
+
+        return () => {
+            document.body.classList.remove('contact-page');
+        };
+    }, []);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value, type } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+        }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Sačuvaj trenutnu poziciju skrola
+        const scrollPosition = window.scrollY;
+
+        try {
+            setStatus({ loading: true, message: 'Sending message...', error: false });
+
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.error || 'Failed to send message');
+            }
+
+            setFormData({
+                name: '',
+                email: '',
+                subject: '',
+                message: '',
+                newsletter: false
+            });
+
+            setStatus({
+                loading: false,
+                message: 'Message sent successfully! We will contact you soon.',
+                error: false
+            });
+
+            // Return to saved scroll position instead of scrolling to element
+            setTimeout(() => {
+                window.scrollTo(0, scrollPosition);
+            }, 100);
+        } catch (error) {
+            console.error('Error sending message:', error);
+            setStatus({
+                loading: false,
+                message: 'Failed to send message. Please try again or contact us directly at ivkemilioner2@gmail.com',
+                error: true
+            });
+
+            // Return to saved scroll position
+            setTimeout(() => {
+                window.scrollTo(0, scrollPosition);
+            }, 100);
+        }
+    };
 
     return (
         <main className='flex min-h-screen flex-col items-center'>
@@ -14,19 +113,26 @@ export default function Contact() {
                     background: `linear-gradient(to bottom, ${theme.colors.primary}, ${theme.colors.primaryHover})`
                 }}>
                 <div className='container mx-auto px-4 text-center'>
-                    <span className='mb-4 inline-block rounded-full bg-white/20 px-4 py-1 text-sm'>Contact us</span>
+                    <span className='mb-4 inline-block rounded-full bg-white/20 px-4 py-1 text-sm'>Contact Us</span>
                     <h1 className='mb-6 text-4xl font-bold text-white md:text-5xl'>
-                        Any query? <span className='text-cyan-300'>Let's talk</span>
+                        Have a Question? <span className='text-cyan-300'>Let's Talk</span>
                     </h1>
                     <p className='mx-auto mb-12 max-w-2xl text-lg text-gray-300'>
-                        We're here to help with any questions about the VET RECORD app
+                        We're here to help with any questions about VET RECORD. Get in touch with us!
                     </p>
 
                     <div className='mx-auto grid max-w-4xl gap-8 md:grid-cols-2 lg:grid-cols-3'>
                         {/* Email Card */}
                         <div className='rounded-xl bg-white/10 p-6 backdrop-blur-sm'>
                             <div className='mb-4 text-cyan-300'>
-                                <svg className='mx-auto h-8 w-8' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                                <svg
+                                    className='mx-auto h-8 w-8'
+                                    fill='none'
+                                    stroke='currentColor'
+                                    viewBox='0 0 24 24'
+                                    role='img'
+                                    aria-label='Email'>
+                                    <title>Email</title>
                                     <path
                                         strokeLinecap='round'
                                         strokeLinejoin='round'
@@ -35,7 +141,7 @@ export default function Contact() {
                                     />
                                 </svg>
                             </div>
-                            <h3 className='mb-2 text-xl font-semibold text-white'>Email us</h3>
+                            <h3 className='mb-2 text-xl font-semibold text-white'>Email Us</h3>
                             <a href='mailto:ivkemilioner2@gmail.com' className='text-gray-300 hover:text-cyan-300'>
                                 ivkemilioner2@gmail.com
                             </a>
@@ -44,7 +150,14 @@ export default function Contact() {
                         {/* Location Card */}
                         <div className='rounded-xl bg-white/10 p-6 backdrop-blur-sm'>
                             <div className='mb-4 text-cyan-300'>
-                                <svg className='mx-auto h-8 w-8' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                                <svg
+                                    className='mx-auto h-8 w-8'
+                                    fill='none'
+                                    stroke='currentColor'
+                                    viewBox='0 0 24 24'
+                                    role='img'
+                                    aria-label='Location'>
+                                    <title>Location</title>
                                     <path
                                         strokeLinecap='round'
                                         strokeLinejoin='round'
@@ -66,7 +179,14 @@ export default function Contact() {
                         {/* Support Card */}
                         <div className='rounded-xl bg-white/10 p-6 backdrop-blur-sm'>
                             <div className='mb-4 text-cyan-300'>
-                                <svg className='mx-auto h-8 w-8' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                                <svg
+                                    className='mx-auto h-8 w-8'
+                                    fill='none'
+                                    stroke='currentColor'
+                                    viewBox='0 0 24 24'
+                                    role='img'
+                                    aria-label='Support'>
+                                    <title>Support</title>
                                     <path
                                         strokeLinecap='round'
                                         strokeLinejoin='round'
@@ -87,14 +207,17 @@ export default function Contact() {
                 <div className='container mx-auto px-4'>
                     <div className='mx-auto max-w-2xl rounded-xl bg-white p-8 shadow-xl'>
                         <h2 className='mb-8 text-center text-3xl font-bold' style={{ color: theme.colors.primary }}>
-                            Drop us a message
+                            Send Us a Message
                         </h2>
-                        <form className='space-y-6'>
+                        <form onSubmit={handleSubmit} className='space-y-6' action='javascript:void(0);'>
                             <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
                                 <div>
                                     <input
                                         type='text'
-                                        placeholder='Your name'
+                                        name='name'
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        placeholder='Your Name'
                                         className='w-full rounded-lg border border-gray-200 px-4 py-3 focus:border-cyan-300 focus:outline-none'
                                         required
                                     />
@@ -102,7 +225,10 @@ export default function Contact() {
                                 <div>
                                     <input
                                         type='email'
-                                        placeholder='Your email'
+                                        name='email'
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        placeholder='Your Email'
                                         className='w-full rounded-lg border border-gray-200 px-4 py-3 focus:border-cyan-300 focus:outline-none'
                                         required
                                     />
@@ -112,33 +238,61 @@ export default function Contact() {
                             <div>
                                 <input
                                     type='text'
-                                    placeholder='Subject'
+                                    name='subject'
+                                    value={formData.subject}
+                                    onChange={handleChange}
+                                    placeholder='Subject (Optional)'
                                     className='w-full rounded-lg border border-gray-200 px-4 py-3 focus:border-cyan-300 focus:outline-none'
                                 />
                             </div>
 
                             <div>
                                 <textarea
+                                    name='message'
+                                    value={formData.message}
+                                    onChange={handleChange}
                                     rows={6}
-                                    placeholder='Your message'
+                                    placeholder='Your Message'
                                     className='w-full rounded-lg border border-gray-200 px-4 py-3 focus:border-cyan-300 focus:outline-none'
                                     required
                                 />
                             </div>
 
                             <div className='flex items-center'>
-                                <input type='checkbox' id='newsletter' className='mr-2' />
+                                <input
+                                    type='checkbox'
+                                    id='newsletter'
+                                    name='newsletter'
+                                    checked={formData.newsletter}
+                                    onChange={handleChange}
+                                    className='mr-2'
+                                />
                                 <label htmlFor='newsletter' className='text-sm text-gray-600'>
-                                    I agree to receive emails, newsletters and promotional messages
+                                    I would like to receive updates and news about VET RECORD
                                 </label>
                             </div>
 
+                            {/* Status Message */}
+                            {status.message && (
+                                <div
+                                    id='status-message'
+                                    className={`rounded-lg p-4 text-center ${
+                                        status.error ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
+                                    }`}>
+                                    <p className='text-lg font-medium'>{status.message}</p>
+                                </div>
+                            )}
+
+                            {/* Submit Button */}
                             <div className='text-center'>
                                 <button
                                     type='submit'
-                                    className='rounded-full px-8 py-3 text-white transition-colors hover:opacity-90'
+                                    disabled={status.loading}
+                                    className={`rounded-full px-8 py-3 text-white transition-colors ${
+                                        status.loading ? 'cursor-not-allowed opacity-50' : 'hover:opacity-90'
+                                    }`}
                                     style={{ backgroundColor: theme.colors.primary }}>
-                                    Send Message
+                                    {status.loading ? 'Sending...' : 'Send Message'}
                                 </button>
                             </div>
                         </form>
