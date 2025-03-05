@@ -1,5 +1,32 @@
 @import 'tailwindcss';
 
+@theme {
+    /* Colors */
+    --color-primary: #0c4c55;
+    --color-primary-hover: #0A3F47;
+
+    --color-secondary: #FF5733;
+    --color-secondary-hover: #E64A2E;
+
+    --color-accent-cyan: #22D3EE;
+
+    --color-surface: #F3F5FF;
+    --color-surface-white: #FFFFFF;
+    --color-surface-light: #F8FAFC;
+
+    --color-text-primary: #0F172A; /* #0F172A */
+    --color-text-secondary: #64748B; /* #64748B */
+
+    /* Fonts */
+    --font-sans: var(--font-inter);
+    --font-display: var(--font-bebas);
+
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @custom-variant dark (&:is(.dark *));
 
 /* Уклањам све CSS везан за звездице */

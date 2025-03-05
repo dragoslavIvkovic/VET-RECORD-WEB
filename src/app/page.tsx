@@ -6,57 +6,42 @@ import HeroSection from './components/HeroSection';
 import KeyFeatureSection from './components/KeyFeatureSection';
 import ReviewSection from './components/ReviewSection';
 import VideoSection from './components/VideoSection';
-import { useTheme } from './providers/ThemeProvider';
 
 export default function Home() {
-    const theme = useTheme();
-
     return (
         <main className='flex min-h-screen flex-col'>
-            {/* Hero Section sa gradijentom */}
-            <div
-                style={{
-                    background: `linear-gradient(to bottom, ${theme.colors.primary}, ${theme.colors.primaryHover})`
-                }}>
+            {/* Hero Section */}
+            <div className='from-primary to-primary/90 bg-gradient-to-b'>
                 <HeroSection />
             </div>
 
-            {/* Key Features sa svetlom pozadinom */}
-            <div style={{ backgroundColor: theme.colors.background }}>
+            {/* Key Features */}
+            <div className='bg-surface'>
                 <KeyFeatureSection />
             </div>
 
-            {/* Feature Section sa kontrastnom pozadinom */}
-            <div style={{ backgroundColor: theme.colors.white }}>
+            {/* Feature Section */}
+            <div className='bg-surface-white'>
                 <FeatureSection />
             </div>
 
-            {/* Video Section sa kontrastnom pozadinom */}
-            <div style={{ backgroundColor: theme.colors.background }}>
+            {/* Video Section */}
+            <div className='bg-surface'>
                 <VideoSection />
             </div>
 
-            {/* Review Section sa blagim gradijentom */}
-            <div
-                style={{
-                    background: `linear-gradient(135deg, ${theme.colors.background}, ${theme.colors.white})`
-                }}>
+            {/* Review Section */}
+            <div className='from-surface to-surface-white bg-gradient-to-br'>
                 <ReviewSection />
             </div>
 
-            {/* Footer sa primary bojom */}
-            <div style={{ backgroundColor: theme.colors.primary }}>
+            {/* Footer */}
+            <div className='bg-primary'>
                 <Footer />
             </div>
 
-            {/* Dodatni prostor za scroll */}
-            <div
-                className='flex-1'
-                style={{
-                    backgroundColor: theme.colors.background,
-                    backgroundImage: `linear-gradient(120deg, ${theme.colors.overlay.light}, transparent)`
-                }}
-            />
+            {/* Additional scroll space */}
+            <div className='bg-surface from-surface-light/50 flex-1 bg-gradient-to-br to-transparent' />
         </main>
     );
 }

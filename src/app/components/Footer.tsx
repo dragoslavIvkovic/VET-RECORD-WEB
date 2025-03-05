@@ -67,14 +67,14 @@ export default function Footer() {
     };
 
     return (
-        <footer className='bg-[#0C4C55] text-white'>
+        <footer className='bg-primary text-white'>
             <div className='relative'>
                 <div className='container mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8'>
                     <div className='flex justify-center'>
                         {/* Contact Form Section - Now with better mobile responsiveness */}
                         <div className='w-full max-w-md space-y-6 sm:max-w-lg md:max-w-2xl'>
                             <div className='text-center'>
-                                <p className='text-sm tracking-[0.20em] text-red-500 uppercase'>CONTACT US</p>
+                                <p className='text-secondary text-sm tracking-[0.20em] uppercase'>CONTACT US</p>
                                 <h2 className='mt-2 text-3xl font-bold'>Get in touch !</h2>
                             </div>
 
@@ -161,7 +161,7 @@ export default function Footer() {
                                     <button
                                         type='submit'
                                         disabled={formStatus.loading}
-                                        className={`w-full rounded-lg bg-red-500 px-6 py-2.5 text-white transition-colors hover:bg-red-600 sm:w-auto sm:px-8 sm:py-3 ${
+                                        className={`bg-secondary hover:bg-secondary-hover w-full rounded-lg px-6 py-2.5 text-white transition-colors sm:w-auto sm:px-8 sm:py-3 ${
                                             formStatus.loading ? 'cursor-not-allowed opacity-70' : ''
                                         }`}>
                                         {formStatus.loading ? 'Sending...' : 'Send Message'}
@@ -182,22 +182,22 @@ export default function Footer() {
                         </div>
                         <ul className='flex flex-wrap justify-center gap-4 text-sm sm:gap-6 sm:text-base'>
                             <li>
-                                <a href='/' className='hover:text-[#FF5733]'>
+                                <a href='/' className='hover:text-secondary'>
                                     Home
                                 </a>
                             </li>
                             <li>
-                                <a href='/about' className='hover:text-[#FF5733]'>
+                                <a href='/about' className='hover:text-secondary'>
                                     About us
                                 </a>
                             </li>
                             <li>
-                                <a href='/privacy-policy' className='hover:text-[#FF5733]'>
+                                <a href='/privacy-policy' className='hover:text-secondary'>
                                     Privacy Policy
                                 </a>
                             </li>
                             <li>
-                                <a href='/contact' className='hover:text-[#FF5733]'>
+                                <a href='/contact' className='hover:text-secondary'>
                                     Contact us
                                 </a>
                             </li>

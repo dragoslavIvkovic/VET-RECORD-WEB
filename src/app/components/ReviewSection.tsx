@@ -109,7 +109,7 @@ export default function ReviewSection() {
                 {/* Header */}
                 <div className='text-center'>
                     <span className='text-sm font-semibold tracking-wider text-red-500 uppercase'>REVIEWS</span>
-                    <h2 className='mt-2 text-4xl font-bold text-gray-900'>10k+ Customers Trust Us</h2>
+                    <h2 className='font-bebas mt-2 text-4xl font-bold text-gray-900'>10k+ Customers Trust Us</h2>
                     <p className='mx-auto mt-4 max-w-2xl text-lg text-gray-500'>
                         Unleash the power of our platform with a multitude of powerful features, empowering you to
                         achieve your goals.

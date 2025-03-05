@@ -15,15 +15,15 @@ export default function HeroSection() {
     }, []);
 
     return (
-        <section className='relative bg-[#0C4C55] p-20'>
+        <section className='bg-primary relative p-20'>
             <div className='container mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8'>
                 <div className='grid gap-12 md:grid-cols-2 md:items-center'>
                     {/* Left Column - Text Content */}
                     <div className='z-10 space-y-6 pt-12 text-white'>
                         <span className='inline-block text-lg'>Download</span>
-                        <h1 className='text-4xl leading-tight font-bold md:text-5xl lg:text-6xl'>
+                        <h1 className='font-bebas text-4xl leading-tight font-bold md:text-5xl lg:text-6xl'>
                             Manage Your Pet's <br />
-                            <span className='text-cyan-300'>Health with Vet Record</span>
+                            <span className='text-accent-cyan'>Health with Vet Record</span>
                         </h1>
                         <p className='text-lg text-gray-300'>
                             Track your pet's vaccinations, medical treatments, and more – all in one place. Download the
@@ -68,7 +68,7 @@ export default function HeroSection() {
                                 href='https://play.google.com/store/apps/details?id=vetrecord.app'
                                 target='_blank'
                                 rel='noopener noreferrer'
-                                className='inline-block rounded-lg bg-white p-4'>
+                                className='bg-surface-white inline-block rounded-lg p-4'>
                                 <img src='/images/googleplay_dark.png' alt='Get it on Google Play' className='h-14' />
                             </a>
                         </div>
@@ -103,7 +103,7 @@ export default function HeroSection() {
                                         key={`slide-${index + 1}`}
                                         onClick={() => setCurrentSlide(index)}
                                         className={`h-2 w-2 rounded-full transition-colors ${
-                                            currentSlide === index ? 'bg-white' : 'bg-white/100'
+                                            currentSlide === index ? 'bg-surface-white' : 'bg-white/50'
                                         }`}
                                         aria-label={`Go to slide ${index + 1}`}
                                     />
@@ -115,10 +115,8 @@ export default function HeroSection() {
             </div>
 
             {/* Bottom Wave */}
-
-            {/* Укошена линија на дну */}
             <div
-                className='absolute right-0 bottom-0 left-0 h-16 bg-[#0C4C55]'
+                className='bg-primary absolute right-0 bottom-0 left-0 h-16'
                 style={{
                     clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 0)'
                 }}

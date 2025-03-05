@@ -1,16 +1,27 @@
 import type { ReactNode } from 'react';
 
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Bebas_Neue, Inter } from 'next/font/google';
 import Script from 'next/script';
 
 import '@/app/globals.css';
 
 import NavigationBar from './components/NavigationBar';
 import ScrollToTop from './components/ScrollToTop';
-import { ThemeProvider } from './providers/ThemeProvider';
 
-const inter = Inter({ subsets: ['latin'] });
+const bebasNeue = Bebas_Neue({
+    weight: '400',
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-bebas'
+});
+
+const inter = Inter({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-inter',
+    weight: ['400', '500', '600', '700']
+});
 
 export const metadata: Metadata = {
     title: 'Vet Record - Pet Health Tracking App for Dogs & Cats',
@@ -57,7 +68,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang='en'>
             <head>
-                <Script strategy='afterInteractive' src={`https://www.googletagmanager.com/gtag/js?id=G-9PGSFLM2FM`} />
+                <Script strategy='afterInteractive' src='https://www.googletagmanager.com/gtag/js?id=G-9PGSFLM2FM' />
                 <Script id='google-analytics' strategy='afterInteractive'>
                     {`
                         window.dataLayer = window.dataLayer || [];
@@ -104,12 +115,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                     }}
                 />
             </head>
-            <body className='min-h-screen bg-[#F3F5FF]' suppressHydrationWarning>
-                <ThemeProvider>
-                    <NavigationBar />
-                    <div className='pt-16'>{children}</div>
-                    <ScrollToTop />
-                </ThemeProvider>
+            <body
+                className={`${bebasNeue.variable} ${inter.variable} bg-surface text-primary min-h-screen font-sans`}
+                suppressHydrationWarning>
+                <NavigationBar />
+                <div className='pt-16'>{children}</div>
+                <ScrollToTop />
             </body>
         </html>
     );

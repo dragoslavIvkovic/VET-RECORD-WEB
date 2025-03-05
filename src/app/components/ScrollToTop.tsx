@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { usePathname } from 'next/navigation';
 
+import { ArrowUp } from 'lucide-react';
+
 export default function ScrollToTop() {
     const [isVisible, setIsVisible] = useState(false);
     const pathname = usePathname();
@@ -64,23 +66,10 @@ export default function ScrollToTop() {
                 <button
                     onClick={scrollToTop}
                     type='button'
-                    className='fixed right-8 bottom-8 z-50 rounded-full bg-[#0C4C55] p-4 text-white shadow-lg transition-all hover:bg-[#0a3d44]'
+                    className='bg-primary hover:bg-primary/90 focus:ring-primary dark:bg-primary/90 dark:hover:bg-primary fixed right-8 bottom-8 z-50 rounded-full p-4 text-white shadow-lg transition-all duration-300 hover:scale-110 focus:ring-2 focus:ring-offset-2 focus:outline-none'
                     aria-label='Scroll to top'>
-                    <svg
-                        className='h-6 w-6'
-                        fill='none'
-                        stroke='currentColor'
-                        viewBox='0 0 24 24'
-                        xmlns='http://www.w3.org/2000/svg'
-                        aria-labelledby='scrollTopTitle'>
-                        <title id='scrollTopTitle'>Scroll to top</title>
-                        <path
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                            strokeWidth={2}
-                            d='M5 10l7-7m0 0l7 7m-7-7v18'
-                        />
-                    </svg>
+                    <ArrowUp className='size-6' aria-hidden='true' />
+                    <span className='sr-only'>Scroll to top of the page</span>
                 </button>
             )}
         </>

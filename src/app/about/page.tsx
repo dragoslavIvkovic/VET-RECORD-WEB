@@ -1,23 +1,15 @@
 'use client';
 
-import { useTheme } from '../providers/ThemeProvider';
-
 export default function About() {
-    const theme = useTheme();
-
     return (
         <main className='flex min-h-screen flex-col items-center'>
             {/* Hero Section */}
-            <section
-                className='w-full py-16'
-                style={{
-                    background: `linear-gradient(to bottom, ${theme.colors.primary}, ${theme.colors.primaryHover})`
-                }}>
+            <section className='from-primary to-primary/90 w-full bg-gradient-to-b py-16'>
                 <div className='container mx-auto px-4 text-center'>
                     <span className='mb-4 inline-block rounded-full bg-white/20 px-4 py-1 text-sm'>About us</span>
-                    <h1 className='mb-6 text-4xl font-bold text-white md:text-5xl'>
+                    <h1 className='font-bebas mb-6 text-4xl font-bold text-white md:text-5xl'>
                         Managing Pet Health Records <br />
-                        <span className='text-cyan-300'>Made Simple and Smart</span>
+                        <span className='text-accent-cyan'>Made Simple and Smart</span>
                     </h1>
                     <p className='mx-auto mb-8 max-w-2xl text-lg text-gray-300'>
                         VET RECORD is dedicated to revolutionizing how pet owners manage their pets' health information,
@@ -27,21 +19,19 @@ export default function About() {
             </section>
 
             {/* Statistics Section */}
-            <section className='w-full py-16' style={{ backgroundColor: theme.colors.background }}>
+            <section className='bg-surface w-full py-16'>
                 <div className='container mx-auto px-4'>
                     <div className='grid grid-cols-1 gap-8 md:grid-cols-3'>
                         {[
-                            { number: '150+', label: 'Countries' },
-                            { number: '2300+', label: 'Reviews' },
-                            { number: '8M+', label: 'Followers' }
-                        ].map((stat, index) => (
+                            { id: 'countries', number: '150+', label: 'Countries' },
+                            { id: 'reviews', number: '2300+', label: 'Reviews' },
+                            { id: 'followers', number: '8M+', label: 'Followers' }
+                        ].map((stat) => (
                             <div
-                                key={index}
+                                key={stat.id}
                                 className='rounded-xl bg-white p-8 text-center shadow-lg transition-transform hover:scale-105'>
-                                <p className='mb-2 text-3xl font-bold' style={{ color: theme.colors.primary }}>
-                                    {stat.number}
-                                </p>
-                                <p className='text-gray-600'>{stat.label}</p>
+                                <p className='text-primary mb-2 text-3xl font-bold'>{stat.number}</p>
+                                <p className='text-text-secondary'>{stat.label}</p>
                             </div>
                         ))}
                     </div>
@@ -49,37 +39,33 @@ export default function About() {
             </section>
 
             {/* Features Section */}
-            <section className='w-full py-16' style={{ backgroundColor: 'white' }}>
+            <section className='bg-surface-white w-full py-16'>
                 <div className='container mx-auto px-4'>
-                    <h2
-                        className='mb-12 text-center text-3xl font-bold'
-                        style={{ color: theme.colors.primary }}>
-                        Why Choose VET RECORD
-                    </h2>
+                    <h2 className='text-primary mb-12 text-center text-3xl font-bold'>Why Choose VET RECORD</h2>
                     <div className='grid grid-cols-1 gap-8 md:grid-cols-3'>
                         {[
                             {
+                                id: 'user-friendly',
                                 title: 'User Friendly',
                                 description: 'Intuitive interface designed for easy navigation and quick data entry'
                             },
                             {
+                                id: 'comprehensive',
                                 title: 'Comprehensive Tracking',
                                 description: 'Track vaccinations, medications, weight, and all important health records'
                             },
                             {
+                                id: 'secure',
                                 title: 'Secure Storage',
-                                description: "Your pet's health data is securely stored and easily accessible when needed"
+                                description:
+                                    "Your pet's health data is securely stored and easily accessible when needed"
                             }
-                        ].map((feature, index) => (
+                        ].map((feature) => (
                             <div
-                                key={index}
+                                key={feature.id}
                                 className='rounded-xl bg-gray-50 p-8 shadow-lg transition-transform hover:scale-105'>
-                                <h3
-                                    className='mb-4 text-xl font-semibold'
-                                    style={{ color: theme.colors.primary }}>
-                                    {feature.title}
-                                </h3>
-                                <p className='text-gray-600'>{feature.description}</p>
+                                <h3 className='text-primary mb-4 text-xl font-semibold'>{feature.title}</h3>
+                                <p className='text-text-secondary'>{feature.description}</p>
                             </div>
                         ))}
                     </div>
@@ -87,11 +73,7 @@ export default function About() {
             </section>
 
             {/* CTA Section */}
-            <section
-                className='w-full py-16'
-                style={{
-                    background: `linear-gradient(to top, ${theme.colors.primary}, ${theme.colors.primaryHover})`
-                }}>
+            <section className='from-primary to-primary/90 w-full bg-gradient-to-t py-16'>
                 <div className='container mx-auto px-4 text-center'>
                     <h2 className='mb-6 text-3xl font-bold text-white'>Ready to Get Started?</h2>
                     <p className='mb-8 text-gray-300'>
@@ -99,8 +81,7 @@ export default function About() {
                     </p>
                     <a
                         href='https://play.google.com/store/apps/details?id=vetrecord.app'
-                        className='rounded-full bg-white px-8 py-3 font-semibold transition-colors hover:bg-gray-100'
-                        style={{ color: theme.colors.primary }}
+                        className='text-primary rounded-full bg-white px-8 py-3 font-semibold transition-colors hover:bg-gray-100'
                         target='_blank'
                         rel='noopener noreferrer'>
                         Download Now

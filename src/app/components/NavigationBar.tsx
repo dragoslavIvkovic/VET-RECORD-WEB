@@ -5,30 +5,20 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { useTheme } from '../providers/ThemeProvider';
-
 export default function NavigationBar() {
-    const theme = useTheme();
     const router = useRouter();
     const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const scrollToReviews = () => {
         setIsMenuOpen(false);
-
         if (pathname !== '/') {
             router.push('/', { scroll: false });
             setTimeout(() => {
-                const reviewsSection = document.querySelector('#reviews');
-                if (reviewsSection) {
-                    reviewsSection.scrollIntoView({ behavior: 'smooth' });
-                }
+                document.querySelector('#reviews')?.scrollIntoView({ behavior: 'smooth' });
             }, 100);
         } else {
-            const reviewsSection = document.querySelector('#reviews');
-            if (reviewsSection) {
-                reviewsSection.scrollIntoView({ behavior: 'smooth' });
-            }
+            document.querySelector('#reviews')?.scrollIntoView({ behavior: 'smooth' });
         }
     };
 
@@ -43,10 +33,8 @@ export default function NavigationBar() {
     };
 
     return (
-        <nav
-            className='fixed top-0 right-0 left-0 z-50 border-b border-white'
-            style={{ backgroundColor: theme.colors.primary }}>
-            <div className='container mx-auto   max-w-7xl px-4 sm:px-6 lg:px-8'>
+        <nav className='bg-primary fixed inset-x-0 top-0 z-50 border-b border-white'>
+            <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
                 <div className='flex h-16 items-center justify-between'>
                     <div className='w-[200px]'>
                         <Link href='/' className='flex items-center' onClick={closeMenu}>
@@ -56,33 +44,29 @@ export default function NavigationBar() {
 
                     {/* Desktop Navigation */}
                     <div className='hidden items-center space-x-8 md:flex'>
-                        <Link href='/' className='text-white hover:text-cyan-300'>
+                        <Link href='/' className='hover:text-accent-cyan text-white'>
                             Home
                         </Link>
-                        <button type='button' onClick={scrollToReviews} className='text-white hover:text-cyan-300'>
+                        <button type='button' onClick={scrollToReviews} className='hover:text-accent-cyan text-white'>
                             Reviews
                         </button>
-                        <Link href='/contact' className='text-white hover:text-cyan-300'>
+                        <Link href='/contact' className='hover:text-accent-cyan text-white'>
                             Contact
                         </Link>
-                        <Link href='/about' className='text-white hover:text-cyan-300'>
+                        <Link href='/about' className='hover:text-accent-cyan text-white'>
                             About us
                         </Link>
-                        <Link href='/privacy-policy' className='text-white hover:text-cyan-300'>
+                        <Link href='/privacy-policy' className='hover:text-accent-cyan text-white'>
                             Privacy Policy
                         </Link>
-                        <Link href='/delete-data' className='text-white hover:text-cyan-300'>
+                        <Link href='/delete-data' className='hover:text-accent-cyan text-white'>
                             Delete Data
                         </Link>
                         <a
                             href='https://play.google.com/store/apps/details?id=vetrecord.app'
                             target='_blank'
                             rel='noopener noreferrer'
-                            className='rounded-full px-6 py-2 hover:opacity-90'
-                            style={{
-                                backgroundColor: theme.colors.white,
-                                color: theme.colors.primary
-                            }}>
+                            className='bg-surface-white text-primary hover:bg-opacity-90 rounded-full px-6 py-2'>
                             Download
                         </a>
                     </div>
@@ -114,26 +98,32 @@ export default function NavigationBar() {
 
                     {/* Mobile Menu */}
                     <div
-                        className={`fixed top-16 right-0 bottom-0 left-0 z-50 mt-20 transform overflow-y-auto bg-[#0C4C55] transition-transform duration-300 ease-in-out md:hidden ${
+                        className={`bg-primary fixed inset-x-0 top-16 bottom-0 z-50 mt-20 transform overflow-y-auto transition-transform duration-300 ease-in-out md:hidden ${
                             isMenuOpen ? 'translate-x-0' : 'translate-x-full'
                         }`}>
                         <div className='flex min-h-[calc(100vh-4rem)] flex-col items-center space-y-6 p-8'>
-                            <Link href='/' className='text-white hover:text-cyan-300' onClick={closeMenu}>
+                            <Link href='/' className='hover:text-accent-cyan text-white' onClick={closeMenu}>
                                 Home
                             </Link>
-                            <button type='button' onClick={scrollToReviews} className='text-white hover:text-cyan-300'>
+                            <button
+                                type='button'
+                                onClick={scrollToReviews}
+                                className='hover:text-accent-cyan text-white'>
                                 Reviews
                             </button>
-                            <Link href='/contact' className='text-white hover:text-cyan-300' onClick={closeMenu}>
+                            <Link href='/contact' className='hover:text-accent-cyan text-white' onClick={closeMenu}>
                                 Contact
                             </Link>
-                            <Link href='/about' className='text-white hover:text-cyan-300' onClick={closeMenu}>
+                            <Link href='/about' className='hover:text-accent-cyan text-white' onClick={closeMenu}>
                                 About us
                             </Link>
-                            <Link href='/privacy-policy' className='text-white hover:text-cyan-300' onClick={closeMenu}>
+                            <Link
+                                href='/privacy-policy'
+                                className='hover:text-accent-cyan text-white'
+                                onClick={closeMenu}>
                                 Privacy Policy
                             </Link>
-                            <Link href='/delete-data' className='text-white hover:text-cyan-300' onClick={closeMenu}>
+                            <Link href='/delete-data' className='hover:text-accent-cyan text-white' onClick={closeMenu}>
                                 Delete Data
                             </Link>
                             <a
@@ -141,11 +131,7 @@ export default function NavigationBar() {
                                 target='_blank'
                                 rel='noopener noreferrer'
                                 onClick={closeMenu}
-                                className='mt-4 rounded-full px-6 py-2 hover:opacity-90'
-                                style={{
-                                    backgroundColor: theme.colors.white,
-                                    color: theme.colors.primary
-                                }}>
+                                className='bg-surface-white text-primary hover:bg-opacity-90 mt-4 rounded-full px-6 py-2'>
                                 Download
                             </a>
                         </div>

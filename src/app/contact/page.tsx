@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from 'react';
 
-import { useTheme } from '../providers/ThemeProvider';
-
 interface FormStatus {
     loading: boolean;
     message: string;
@@ -16,7 +14,6 @@ interface FormStatus {
 }
 
 export default function Contact() {
-    const theme = useTheme();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -30,7 +27,7 @@ export default function Contact() {
         error: false
     });
 
-    // Dodaj klasu na body element kada smo na kontakt stranici
+    // Add class to body element when on contact page
     useEffect(() => {
         document.body.classList.add('contact-page');
 
@@ -51,7 +48,7 @@ export default function Contact() {
         e.preventDefault();
         e.stopPropagation();
 
-        // Sačuvaj trenutnu poziciju skrola
+        // Save current scroll position
         const scrollPosition = window.scrollY;
 
         try {
@@ -85,7 +82,7 @@ export default function Contact() {
                 error: false
             });
 
-            // Return to saved scroll position instead of scrolling to element
+            // Return to saved scroll position
             setTimeout(() => {
                 window.scrollTo(0, scrollPosition);
             }, 100);
@@ -107,15 +104,11 @@ export default function Contact() {
     return (
         <main className='flex min-h-screen flex-col items-center'>
             {/* Hero Section */}
-            <section
-                className='w-full py-16'
-                style={{
-                    background: `linear-gradient(to bottom, ${theme.colors.primary}, ${theme.colors.primaryHover})`
-                }}>
+            <section className='from-primary to-primary/90 w-full bg-gradient-to-b py-16'>
                 <div className='container mx-auto px-4 text-center'>
                     <span className='mb-4 inline-block rounded-full bg-white/20 px-4 py-1 text-sm'>Contact Us</span>
                     <h1 className='mb-6 text-4xl font-bold text-white md:text-5xl'>
-                        Have a Question? <span className='text-cyan-300'>Let's Talk</span>
+                        Have a Question? <span className='text-accent-cyan'>Let's Talk</span>
                     </h1>
                     <p className='mx-auto mb-12 max-w-2xl text-lg text-gray-300'>
                         We're here to help with any questions about VET RECORD. Get in touch with us!
@@ -124,7 +117,7 @@ export default function Contact() {
                     <div className='mx-auto grid max-w-4xl gap-8 md:grid-cols-2 lg:grid-cols-3'>
                         {/* Email Card */}
                         <div className='rounded-xl bg-white/10 p-6 backdrop-blur-sm'>
-                            <div className='mb-4 text-cyan-300'>
+                            <div className='text-accent-cyan mb-4'>
                                 <svg
                                     className='mx-auto h-8 w-8'
                                     fill='none'
@@ -142,14 +135,14 @@ export default function Contact() {
                                 </svg>
                             </div>
                             <h3 className='mb-2 text-xl font-semibold text-white'>Email Us</h3>
-                            <a href='mailto:ivkemilioner2@gmail.com' className='text-gray-300 hover:text-cyan-300'>
+                            <a href='mailto:ivkemilioner2@gmail.com' className='hover:text-accent-cyan text-gray-300'>
                                 ivkemilioner2@gmail.com
                             </a>
                         </div>
 
                         {/* Location Card */}
                         <div className='rounded-xl bg-white/10 p-6 backdrop-blur-sm'>
-                            <div className='mb-4 text-cyan-300'>
+                            <div className='text-accent-cyan mb-4'>
                                 <svg
                                     className='mx-auto h-8 w-8'
                                     fill='none'
@@ -178,7 +171,7 @@ export default function Contact() {
 
                         {/* Support Card */}
                         <div className='rounded-xl bg-white/10 p-6 backdrop-blur-sm'>
-                            <div className='mb-4 text-cyan-300'>
+                            <div className='text-accent-cyan mb-4'>
                                 <svg
                                     className='mx-auto h-8 w-8'
                                     fill='none'
@@ -203,12 +196,10 @@ export default function Contact() {
             </section>
 
             {/* Contact Form Section */}
-            <section className='w-full py-16' style={{ backgroundColor: theme.colors.background }}>
+            <section className='bg-surface w-full py-16'>
                 <div className='container mx-auto px-4'>
                     <div className='mx-auto max-w-2xl rounded-xl bg-white p-8 shadow-xl'>
-                        <h2 className='mb-8 text-center text-3xl font-bold' style={{ color: theme.colors.primary }}>
-                            Send Us a Message
-                        </h2>
+                        <h2 className='text-primary mb-8 text-center text-3xl font-bold'>Send Us a Message</h2>
                         <form onSubmit={handleSubmit} className='space-y-6' action='javascript:void(0);'>
                             <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
                                 <div>
@@ -218,7 +209,7 @@ export default function Contact() {
                                         value={formData.name}
                                         onChange={handleChange}
                                         placeholder='Your Name'
-                                        className='w-full rounded-lg border border-gray-200 px-4 py-3 focus:border-cyan-300 focus:outline-none'
+                                        className='focus:border-accent-cyan w-full rounded-lg border border-gray-200 px-4 py-3 focus:outline-none'
                                         required
                                     />
                                 </div>
@@ -229,7 +220,7 @@ export default function Contact() {
                                         value={formData.email}
                                         onChange={handleChange}
                                         placeholder='Your Email'
-                                        className='w-full rounded-lg border border-gray-200 px-4 py-3 focus:border-cyan-300 focus:outline-none'
+                                        className='focus:border-accent-cyan w-full rounded-lg border border-gray-200 px-4 py-3 focus:outline-none'
                                         required
                                     />
                                 </div>
@@ -242,7 +233,7 @@ export default function Contact() {
                                     value={formData.subject}
                                     onChange={handleChange}
                                     placeholder='Subject (Optional)'
-                                    className='w-full rounded-lg border border-gray-200 px-4 py-3 focus:border-cyan-300 focus:outline-none'
+                                    className='focus:border-accent-cyan w-full rounded-lg border border-gray-200 px-4 py-3 focus:outline-none'
                                 />
                             </div>
 
@@ -253,7 +244,7 @@ export default function Contact() {
                                     onChange={handleChange}
                                     rows={6}
                                     placeholder='Your Message'
-                                    className='w-full rounded-lg border border-gray-200 px-4 py-3 focus:border-cyan-300 focus:outline-none'
+                                    className='focus:border-accent-cyan w-full rounded-lg border border-gray-200 px-4 py-3 focus:outline-none'
                                     required
                                 />
                             </div>
@@ -267,7 +258,7 @@ export default function Contact() {
                                     onChange={handleChange}
                                     className='mr-2'
                                 />
-                                <label htmlFor='newsletter' className='text-sm text-gray-600'>
+                                <label htmlFor='newsletter' className='text-text-secondary text-sm'>
                                     I would like to receive updates and news about VET RECORD
                                 </label>
                             </div>
@@ -288,10 +279,9 @@ export default function Contact() {
                                 <button
                                     type='submit'
                                     disabled={status.loading}
-                                    className={`rounded-full px-8 py-3 text-white transition-colors ${
-                                        status.loading ? 'cursor-not-allowed opacity-50' : 'hover:opacity-90'
-                                    }`}
-                                    style={{ backgroundColor: theme.colors.primary }}>
+                                    className={`bg-primary rounded-full px-8 py-3 text-white transition-colors ${
+                                        status.loading ? 'cursor-not-allowed opacity-50' : 'hover:bg-primary/90'
+                                    }`}>
                                     {status.loading ? 'Sending...' : 'Send Message'}
                                 </button>
                             </div>
