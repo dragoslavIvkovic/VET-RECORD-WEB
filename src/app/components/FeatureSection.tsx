@@ -115,6 +115,14 @@ export function FeatureSection() {
                     </div>
                 </div>
             </div>
+
+            <a
+                href='https://play.google.com/store/apps/details?id=vetrecord.app'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-block rounded-full bg-white p-4 shadow-md transition-colors hover:bg-gray-100'>
+                <img src='/images/googleplay_dark.png' alt='Get it on Google Play' className='h-14' />
+            </a>
         </div>
     );
 }

@@ -6,113 +6,96 @@ export default function Footer() {
             <div className='relative'>
                 <div className='container mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8'>
                     <div className='grid gap-12 md:grid-cols-2'>
-                        {/* Left Column */}
-                        <div>
-                            <div className='space-y-8'>
-                                {/* Logo */}
+                        {/* Left Column - Contact Form */}
+                        <div className='relative'>
+                            <img
+                                src='/images/contact-illustration.svg'
+                                alt='Contact Illustration'
+                                className='w-full max-w-md'
+                            />
+                        </div>
+
+                        {/* Right Column - Contact Form */}
+                        <div className='space-y-6'>
+                            <div>
+                                <p className='text-sm tracking-[0.20em] text-red-500 uppercase'>CONTACT US</p>
+                                <h2 className='mt-2 text-3xl font-bold'>Get in touch !</h2>
+                            </div>
+
+                            <form className='space-y-4'>
+                                <div className='grid gap-4 md:grid-cols-2'>
+                                    <div>
+                                        <label htmlFor='name' className='mb-2 block text-sm'>
+                                            Your Name:
+                                        </label>
+                                        <input
+                                            type='text'
+                                            id='name'
+                                            placeholder='Name :'
+                                            className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                                        />
+                                    </div>
+                                    <div>
+                                        <label htmlFor='email' className='mb-2 block text-sm'>
+                                            Your Email:
+                                        </label>
+                                        <input
+                                            type='email'
+                                            id='email'
+                                            placeholder='Email :'
+                                            className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                                        />
+                                    </div>
+                                </div>
+
                                 <div>
-                                    <a href='/' aria-label='Return to homepage'>
-                                        <img src='/logo.svg' alt='Vet Record Logo' className='h-8 w-auto' />
-                                    </a>
-                                </div>
-
-                                {/* Newsletter */}
-                                <div className='space-y-4'>
-                                    <h2 className='text-2xl font-bold'>Subscribe newsletter</h2>
-                                    <p>Be the first to receive all latest post in your inbox</p>
-                                    <form className='space-y-4'>
-                                        <div className='relative'>
-                                            <label htmlFor='newsletter-email' className='sr-only'>
-                                                Email address
-                                            </label>
-                                            <input
-                                                id='newsletter-email'
-                                                className='w-full rounded-lg bg-white px-4 py-2 text-black'
-                                                placeholder='Enter your email'
-                                                type='email'
-                                                required
-                                            />
-                                            <button
-                                                type='submit'
-                                                className='absolute top-1/2 right-2 -translate-y-1/2 rounded-full bg-[#0C4C55] p-2 text-white'
-                                                aria-label='Subscribe to newsletter'>
-                                                →
-                                            </button>
-                                        </div>
-                                        <p className='text-sm text-gray-400'>
-                                            By clicking send link you agree to receive message.
-                                        </p>
-                                    </form>
-                                </div>
-
-                                {/* Contact Info */}
-                                <ul className='space-y-2'>
-                                    <li>
-                                        <a href='/contact' className='hover:text-[#FF5733]'>
-                                            Kontaktirajte nas
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='tel:+19001234567' className='hover:text-[#FF5733]'>
-                                            +1-900-123 4567
-                                        </a>
-                                    </li>
-                                </ul>
-
-                                {/* Social Media */}
-                                <ul className='flex space-x-4'>
-                                    <li>
-                                        <a
-                                            href='https://x.com/PurrFacts_'
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            className='hover:text-[#FF5733]'
-                                            aria-label='Follow us on X (Twitter)'>
-                                            𝕏
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href='https://www.facebook.com/share/g/15TtxmFQt4/'
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            className='hover:text-[#FF5733]'
-                                            aria-label='Visit our Facebook page'>
-                                            f
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href='https://www.pinterest.com/dragoslavmivkovic/pet/'
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            className='hover:text-[#FF5733]'
-                                            aria-label='Follow us on Pinterest'>
-                                            P
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        {/* Right Column */}
-                        <div className='flex flex-col justify-center'>
-                            <div className='space-y-6'>
-                                <h2 className='text-2xl font-bold'>Download app</h2>
-                                <a
-                                    href='https://play.google.com/store/apps/details?id=vetrecord.app'
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                    className='inline-block'>
-                                    <img
-                                        alt='Download on Google Play'
-                                        className='h-16'
-                                        src='/images/googleplay.png'
-                                        loading='lazy'
+                                    <label htmlFor='subject' className='mb-2 block text-sm'>
+                                        Your Question:
+                                    </label>
+                                    <input
+                                        type='text'
+                                        id='subject'
+                                        placeholder='Subject :'
+                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
                                     />
-                                </a>
-                            </div>
+                                </div>
+
+                                <div>
+                                    <label htmlFor='message' className='mb-2 block text-sm'>
+                                        Your Comment:
+                                    </label>
+                                    <textarea
+                                        id='message'
+                                        rows={4}
+                                        placeholder='Message :'
+                                        className='w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 focus:border-white/40 focus:outline-none'
+                                    />
+                                </div>
+
+                                <button
+                                    type='submit'
+                                    className='rounded-lg bg-red-500 px-8 py-3 text-white transition-colors hover:bg-red-600'>
+                                    Send Message
+                                </button>
+                            </form>
                         </div>
+                    </div>
+
+                    {/* Download App Section */}
+                    <div className='mt-16 text-center'>
+                        <h2 className='mb-6 text-2xl font-bold'>Download app</h2>
+                        <a
+                            href='https://play.google.com/store/apps/details?id=vetrecord.app'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='inline-block rounded-full bg-white p-4 shadow-md transition-colors hover:bg-gray-100'>
+                            <img
+                                alt='Download on Google Play'
+                                className='h-14'
+                                src='/images/googleplay_dark.png'
+                                loading='lazy'
+                            />
+                        </a>
                     </div>
                 </div>
             </div>
