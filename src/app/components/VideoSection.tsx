@@ -13,7 +13,7 @@ export default function VideoSection() {
                     <span className='bg-primary inline-block rounded-full px-4 py-1 text-sm font-medium text-white'>
                         Watch Demo
                     </span>
-                    <h2 className='font-bebas text-text-primary mt-4 text-4xl font-bold'>
+                    <h2 className='font-display text-text-primary mt-4 text-4xl font-bold'>
                         See How <span className='text-secondary'>Vet Record</span> Works
                     </h2>
                 </div>

@@ -7,7 +7,7 @@ export default function About() {
             <section className='from-primary to-primary/90 w-full bg-gradient-to-b py-16'>
                 <div className='container mx-auto px-4 text-center'>
                     <span className='mb-4 inline-block rounded-full bg-white/20 px-4 py-1 text-sm'>About us</span>
-                    <h1 className='font-bebas mb-6 text-4xl font-bold text-white md:text-5xl'>
+                    <h1 className='font-display mb-6 text-4xl font-bold text-white md:text-5xl'>
                         Managing Pet Health Records <br />
                         <span className='text-accent-cyan'>Made Simple and Smart</span>
                     </h1>

@@ -4,7 +4,7 @@ export default function TermsOfService() {
     return (
         <main className='flex min-h-screen flex-col items-center p-8 md:p-24'>
             <div className='bg-surface-white text-primary w-full max-w-4xl rounded-lg p-8 shadow-xl'>
-                <h1 className='font-bebas mb-8 text-4xl font-bold'>Terms of Service - VET RECORD</h1>
+                <h1 className='font-display mb-8 text-4xl font-bold'>Terms of Service - VET RECORD</h1>
                 <p className='text-text-secondary mb-4 text-sm'>Last updated: March 15, 2024</p>
 
                 <section className='mb-12'>

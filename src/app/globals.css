@@ -3,23 +3,24 @@
 @theme {
     /* Colors */
     --color-primary: #0c4c55;
-    --color-primary-hover: #0A3F47;
+    --color-primary-hover: #0a3f47;
 
-    --color-secondary: #FF5733;
-    --color-secondary-hover: #E64A2E;
+    --color-secondary: #ff5733;
+    --color-secondary-hover: #e64a2e;
 
-    --color-accent-cyan: #22D3EE;
+    --color-accent-cyan: #22d3ee;
 
-    --color-surface: #F3F5FF;
-    --color-surface-white: #FFFFFF;
-    --color-surface-light: #F8FAFC;
+    --color-surface: #f3f5ff;
+    --color-surface-white: #ffffff;
+    --color-surface-light: #f8fafc;
 
-    --color-text-primary: #0F172A; /* #0F172A */
-    --color-text-secondary: #64748B; /* #64748B */
+    --color-text-primary: #0f172a; /* #0F172A */
+    --color-text-secondary: #64748b; /* #64748B */
 
     /* Fonts */
-    --font-sans: var(--font-inter);
-    --font-display: var(--font-bebas);
+    --font-sans: 'Lora', serif;
+    --font-display: 'Roboto Condensed', sans-serif;
+    --font-display--font-feature-settings: 'kern', 'liga', 'calt';
 
     /* Transitions */
     --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -27,6 +28,6 @@
     --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@custom-variant dark (&:is(.dark *));
+ 
 
 /* Уклањам све CSS везан за звездице */

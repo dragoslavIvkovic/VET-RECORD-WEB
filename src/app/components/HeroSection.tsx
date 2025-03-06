@@ -21,7 +21,7 @@ export default function HeroSection() {
                     {/* Left Column - Text Content */}
                     <div className='z-10 space-y-6 pt-12 text-white'>
                         <span className='inline-block text-lg'>Download</span>
-                        <h1 className='font-bebas text-4xl leading-tight font-bold md:text-5xl lg:text-6xl'>
+                        <h1 className='font-display text-4xl leading-tight font-bold md:text-5xl lg:text-6xl'>
                             Manage Your Pet's <br />
                             <span className='text-accent-cyan'>Health with Vet Record</span>
                         </h1>

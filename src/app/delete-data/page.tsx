@@ -4,7 +4,7 @@ export default function DeleteData() {
     return (
         <main className='flex min-h-screen flex-col items-center p-8 md:p-24'>
             <div className='bg-surface-white text-primary w-full max-w-4xl rounded-lg p-8 shadow-xl'>
-                <h1 className='font-bebas mb-8 text-4xl font-bold'>Data Deletion Request - VET RECORD</h1>
+                <h1 className='font-display mb-8 text-4xl font-bold'>Data Deletion Request - VET RECORD</h1>
 
                 <section className='mb-12'>
                     <h2 className='mb-6 text-2xl font-semibold'>How to Delete Your Data</h2>

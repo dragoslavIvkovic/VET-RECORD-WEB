@@ -4,7 +4,7 @@ export default function PrivacyPolicy() {
     return (
         <main className='flex min-h-screen flex-col items-center p-8 md:p-24'>
             <div className='bg-surface-white text-primary w-full max-w-4xl rounded-lg p-8 shadow-xl'>
-                <h1 className='font-bebas mb-2 text-4xl font-bold'>Privacy Policy</h1>
+                <h1 className='font-display mb-2 text-4xl font-bold'>Privacy Policy</h1>
                 <p className='text-text-secondary mb-8'>Last updated: February 11, 2025</p>
 
                 <section className='mb-12'>

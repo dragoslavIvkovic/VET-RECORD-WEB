@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 import type { Metadata } from 'next';
-import { Bebas_Neue, Inter } from 'next/font/google';
+import { Lora, Roboto_Condensed } from 'next/font/google';
 import Script from 'next/script';
 
 import '@/app/globals.css';
@@ -9,17 +9,17 @@ import '@/app/globals.css';
 import NavigationBar from './components/NavigationBar';
 import ScrollToTop from './components/ScrollToTop';
 
-const bebasNeue = Bebas_Neue({
-    weight: '400',
+const robotoCondensed = Roboto_Condensed({
     subsets: ['latin'],
     display: 'swap',
-    variable: '--font-bebas'
+    variable: '--font-roboto-condensed',
+    weight: ['300', '400', '700']
 });
 
-const inter = Inter({
+const lora = Lora({
     subsets: ['latin'],
     display: 'swap',
-    variable: '--font-inter',
+    variable: '--font-lora',
     weight: ['400', '500', '600', '700']
 });
 
@@ -114,9 +114,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                         })
                     }}
                 />
+                <link
+                    href='https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Lora:wght@400;500;600;700&display=swap'
+                    rel='stylesheet'
+                />
             </head>
             <body
-                className={`${bebasNeue.variable} ${inter.variable} bg-surface text-primary min-h-screen font-sans`}
+                className={`${robotoCondensed.variable} ${lora.variable} bg-surface text-primary min-h-screen font-sans`}
                 suppressHydrationWarning>
                 <NavigationBar />
                 <div className='pt-16'>{children}</div>

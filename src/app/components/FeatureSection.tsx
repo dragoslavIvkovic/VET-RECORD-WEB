@@ -10,7 +10,7 @@ export function FeatureSection() {
             <div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
                 <div className='grid grid-cols-1 pb-6 text-center'>
                     <h6 className='mb-3 text-sm font-bold tracking-wider text-red-500 uppercase'>Features</h6>
-                    <h4 className='font-bebas mb-6 text-2xl leading-normal font-bold md:text-3xl md:leading-normal'>
+                    <h4 className='font-display mb-6 text-2xl leading-normal font-bold md:text-3xl md:leading-normal'>
                         Your Ultimate Pet Care Companion
                     </h4>
                     <p className='mx-auto max-w-xl text-slate-400'>

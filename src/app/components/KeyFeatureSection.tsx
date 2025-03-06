@@ -72,7 +72,7 @@ export default function KeyFeatureSection() {
                     <span className='bg-primary inline-block rounded-full px-4 py-1 text-sm font-medium text-white'>
                         Key Features
                     </span>
-                    <h2 className='font-bebas text-text-primary mt-4 text-4xl font-bold'>
+                    <h2 className='font-display text-text-primary mt-4 text-4xl font-bold'>
                         See How <span className='text-secondary'>Vet Record</span> Works
                     </h2>
                     <p className='text-text-primary mx-auto mt-4 max-w-2xl font-medium'>
@@ -120,7 +120,7 @@ export default function KeyFeatureSection() {
                                         <div className='bg-primary/10 mb-6 inline-block rounded-full p-3 text-4xl'>
                                             {feature.icon}
                                         </div>
-                                        <h3 className='font-bebas text-primary mb-4 text-2xl font-bold'>
+                                        <h3 className='font-display text-primary mb-4 text-2xl font-bold'>
                                             {feature.title}
                                         </h3>
                                         <p className='text-text-secondary mb-8'>{feature.description}</p>
@@ -136,8 +136,6 @@ export default function KeyFeatureSection() {
                             ))}
                         </div>
                     </div>
-
-                   
                 </div>
             </div>
         </section>
