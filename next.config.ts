@@ -1,13 +1,22 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
     output: 'standalone',
-    experimental: {
-        turbo: {
-            rules: {} // prazan objekat za pravila
-        }
-    },
     images: {
-        domains: ['vetrecord.app']
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'vetrecord.app',
+            },
+            {
+                protocol: 'https',
+                hostname: 'play.google.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'tools.applemediaservices.com',
+            }
+        ]
     },
     async headers() {
         return [
@@ -24,4 +33,4 @@ const nextConfig = {
     }
 };
 
-module.exports = nextConfig;
+export default nextConfig;

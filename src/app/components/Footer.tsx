@@ -45,22 +45,10 @@ export default function Footer() {
                                     </form>
                                 </div>
 
-                                {/* Contact Info */}
-                                <ul className='space-y-2'>
-                                    <li>
-                                        <a href='/contact' className='hover:text-[#FF5733]'>
-                                            Kontaktirajte nas
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='tel:+19001234567' className='hover:text-[#FF5733]'>
-                                            +1-900-123 4567
-                                        </a>
-                                    </li>
-                                </ul>
+
 
                                 {/* Social Media */}
-                                <ul className='flex space-x-4'>
+                                {/* <ul className='flex space-x-4'>
                                     <li>
                                         <a
                                             href='https://x.com/PurrFacts_'
@@ -91,7 +79,7 @@ export default function Footer() {
                                             P
                                         </a>
                                     </li>
-                                </ul>
+                                </ul> */}
                             </div>
                         </div>
 

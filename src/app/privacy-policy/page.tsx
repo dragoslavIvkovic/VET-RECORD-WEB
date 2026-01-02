@@ -1,15 +1,9 @@
 'use client';
 
-import { useTheme } from '../providers/ThemeProvider';
-
 export default function PrivacyPolicy() {
-    const theme = useTheme();
-
     return (
         <main className='flex min-h-screen flex-col items-center p-8 md:p-24'>
-            <div
-                className='w-full max-w-4xl rounded-lg p-8 shadow-xl'
-                style={{ backgroundColor: theme.colors.white, color: theme.colors.primary }}>
+            <div className='w-full max-w-4xl rounded-lg bg-white p-8 text-[#0C4C55] shadow-xl'>
                 <h1 className='mb-2 text-4xl font-bold'>Privacy Policy</h1>
                 <p className='mb-8 text-gray-500'>Last updated: February 11, 2025</p>
 

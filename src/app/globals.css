@@ -1,5 +1,1 @@
 @import 'tailwindcss';
-
-@custom-variant dark (&:is(.dark *));
-
-/* Уклањам све CSS везан за звездице */

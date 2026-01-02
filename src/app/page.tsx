@@ -5,52 +5,37 @@ import HeroSection from './components/HeroSection';
 import KeyFeatureSection from './components/KeyFeatureSection';
 import ReviewSection from './components/ReviewSection';
 import VideoSection from './components/VideoSection';
-import { useTheme } from './providers/ThemeProvider';
 
 export default function Home() {
-    const theme = useTheme();
-
     return (
         <main className='flex min-h-screen flex-col'>
             {/* Hero Section sa gradijentom */}
-            <div
-                style={{
-                    background: `linear-gradient(to bottom, ${theme.colors.primary}, ${theme.colors.primaryHover})`
-                }}>
+            <div className='bg-linear-to-b from-[#0C4C55] to-[#0a3d44]'>
                 <HeroSection />
             </div>
 
             {/* Key Features sa svetlom pozadinom */}
-            <div style={{ backgroundColor: theme.colors.background }}>
+            <div className='bg-[#F3F5FF]'>
                 <KeyFeatureSection />
             </div>
 
             {/* Video Section sa kontrastnom pozadinom */}
-            <div style={{ backgroundColor: theme.colors.white }}>
+            <div className='bg-white'>
                 <VideoSection />
             </div>
 
             {/* Review Section sa blagim gradijentom */}
-            <div
-                style={{
-                    background: `linear-gradient(135deg, ${theme.colors.background}, ${theme.colors.white})`
-                }}>
+            <div className='bg-linear-to-br from-[#F3F5FF] to-white'>
                 <ReviewSection />
             </div>
 
             {/* Footer sa primary bojom */}
-            <div style={{ backgroundColor: theme.colors.primary }}>
+            <div className='bg-[#0C4C55]'>
                 <Footer />
             </div>
 
             {/* Dodatni prostor za scroll */}
-            <div
-                className='flex-1'
-                style={{
-                    backgroundColor: theme.colors.background,
-                    backgroundImage: `linear-gradient(120deg, ${theme.colors.overlay.light}, transparent)`
-                }}
-            />
+            <div className='flex-1 bg-[#F3F5FF]' />
         </main>
     );
 }

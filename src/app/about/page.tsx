@@ -1,18 +1,10 @@
 'use client';
 
-import { useTheme } from '../providers/ThemeProvider';
-
 export default function About() {
-    const theme = useTheme();
-
     return (
         <main className='flex min-h-screen flex-col items-center'>
             {/* Hero Section */}
-            <section
-                className='w-full py-16'
-                style={{
-                    background: `linear-gradient(to bottom, ${theme.colors.primary}, ${theme.colors.primaryHover})`
-                }}>
+            <section className='w-full py-16 bg-linear-to-b from-[#0C4C55] to-[#0a3d44]'>
                 <div className='container mx-auto px-4 text-center'>
                     <span className='mb-4 inline-block rounded-full bg-white/20 px-4 py-1 text-sm'>About us</span>
                     <h1 className='mb-6 text-4xl font-bold text-white md:text-5xl'>
@@ -27,7 +19,7 @@ export default function About() {
             </section>
 
             {/* Statistics Section */}
-            <section className='w-full py-16' style={{ backgroundColor: theme.colors.background }}>
+            <section className='w-full py-16 bg-[#F3F5FF]'>
                 <div className='container mx-auto px-4'>
                     <div className='grid grid-cols-1 gap-8 md:grid-cols-3'>
                         {[
@@ -38,7 +30,7 @@ export default function About() {
                             <div
                                 key={index}
                                 className='rounded-xl bg-white p-8 text-center shadow-lg transition-transform hover:scale-105'>
-                                <p className='mb-2 text-3xl font-bold' style={{ color: theme.colors.primary }}>
+                                <p className='mb-2 text-3xl font-bold text-[#0C4C55]'>
                                     {stat.number}
                                 </p>
                                 <p className='text-gray-600'>{stat.label}</p>
@@ -49,11 +41,9 @@ export default function About() {
             </section>
 
             {/* Features Section */}
-            <section className='w-full py-16' style={{ backgroundColor: 'white' }}>
+            <section className='w-full py-16 bg-white'>
                 <div className='container mx-auto px-4'>
-                    <h2
-                        className='mb-12 text-center text-3xl font-bold'
-                        style={{ color: theme.colors.primary }}>
+                    <h2 className='mb-12 text-center text-3xl font-bold text-[#0C4C55]'>
                         Why Choose VET RECORD
                     </h2>
                     <div className='grid grid-cols-1 gap-8 md:grid-cols-3'>
@@ -74,9 +64,7 @@ export default function About() {
                             <div
                                 key={index}
                                 className='rounded-xl bg-gray-50 p-8 shadow-lg transition-transform hover:scale-105'>
-                                <h3
-                                    className='mb-4 text-xl font-semibold'
-                                    style={{ color: theme.colors.primary }}>
+                                <h3 className='mb-4 text-xl font-semibold text-[#0C4C55]'>
                                     {feature.title}
                                 </h3>
                                 <p className='text-gray-600'>{feature.description}</p>
@@ -87,11 +75,7 @@ export default function About() {
             </section>
 
             {/* CTA Section */}
-            <section
-                className='w-full py-16'
-                style={{
-                    background: `linear-gradient(to top, ${theme.colors.primary}, ${theme.colors.primaryHover})`
-                }}>
+            <section className='w-full py-16 bg-linear-to-t from-[#0C4C55] to-[#0a3d44]'>
                 <div className='container mx-auto px-4 text-center'>
                     <h2 className='mb-6 text-3xl font-bold text-white'>Ready to Get Started?</h2>
                     <p className='mb-8 text-gray-300'>
@@ -99,8 +83,7 @@ export default function About() {
                     </p>
                     <a
                         href='https://play.google.com/store/apps/details?id=vetrecord.app'
-                        className='rounded-full bg-white px-8 py-3 font-semibold transition-colors hover:bg-gray-100'
-                        style={{ color: theme.colors.primary }}
+                        className='rounded-full bg-white px-8 py-3 font-semibold text-[#0C4C55] transition-colors hover:bg-gray-100'
                         target='_blank'
                         rel='noopener noreferrer'>
                         Download Now

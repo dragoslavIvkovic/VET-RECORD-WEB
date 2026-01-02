@@ -1,18 +1,10 @@
 'use client';
 
-import { useTheme } from '../providers/ThemeProvider';
-
 export default function Contact() {
-    const theme = useTheme();
-
     return (
         <main className='flex min-h-screen flex-col items-center'>
             {/* Hero Section */}
-            <section
-                className='w-full py-16'
-                style={{
-                    background: `linear-gradient(to bottom, ${theme.colors.primary}, ${theme.colors.primaryHover})`
-                }}>
+            <section className='w-full py-16 bg-linear-to-b from-[#0C4C55] to-[#0a3d44]'>
                 <div className='container mx-auto px-4 text-center'>
                     <span className='mb-4 inline-block rounded-full bg-white/20 px-4 py-1 text-sm'>Contact us</span>
                     <h1 className='mb-6 text-4xl font-bold text-white md:text-5xl'>
@@ -83,10 +75,10 @@ export default function Contact() {
             </section>
 
             {/* Contact Form Section */}
-            <section className='w-full py-16' style={{ backgroundColor: theme.colors.background }}>
+            <section className='w-full py-16 bg-[#F3F5FF]'>
                 <div className='container mx-auto px-4'>
                     <div className='mx-auto max-w-2xl rounded-xl bg-white p-8 shadow-xl'>
-                        <h2 className='mb-8 text-center text-3xl font-bold' style={{ color: theme.colors.primary }}>
+                        <h2 className='mb-8 text-center text-3xl font-bold text-[#0C4C55]'>
                             Drop us a message
                         </h2>
                         <form className='space-y-6'>
@@ -136,8 +128,7 @@ export default function Contact() {
                             <div className='text-center'>
                                 <button
                                     type='submit'
-                                    className='rounded-full px-8 py-3 text-white transition-colors hover:opacity-90'
-                                    style={{ backgroundColor: theme.colors.primary }}>
+                                    className='rounded-full bg-[#0C4C55] px-8 py-3 text-white transition-colors hover:opacity-90'>
                                     Send Message
                                 </button>
                             </div>

@@ -1,15 +1,9 @@
 'use client';
 
-import { useTheme } from '../providers/ThemeProvider';
-
 export default function DeleteData() {
-    const theme = useTheme();
-
     return (
         <main className='flex min-h-screen flex-col items-center p-8 md:p-24'>
-            <div
-                className='w-full max-w-4xl rounded-lg p-8 shadow-xl'
-                style={{ backgroundColor: theme.colors.white, color: theme.colors.primary }}>
+            <div className='w-full max-w-4xl rounded-lg bg-white p-8 text-[#0C4C55] shadow-xl'>
                 <h1 className='mb-8 text-4xl font-bold'>Data Deletion Request - VET RECORD</h1>
 
                 <section className='mb-12'>

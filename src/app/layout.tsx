@@ -8,7 +8,6 @@ import '@/app/globals.css';
 
 import NavigationBar from './components/NavigationBar';
 import ScrollToTop from './components/ScrollToTop';
-import { ThemeProvider } from './providers/ThemeProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -105,11 +104,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 />
             </head>
             <body className='min-h-screen bg-[#F3F5FF]'>
-                <ThemeProvider>
-                    <NavigationBar />
-                    <div className='pt-16'>{children}</div>
-                    <ScrollToTop />
-                </ThemeProvider>
+                <NavigationBar />
+                <div className='pt-16'>{children}</div>
+                <ScrollToTop />
             </body>
         </html>
     );
