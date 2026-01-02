@@ -1,4 +1,9 @@
-'use client';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Contact Us - Vet Record',
+    description: 'Get in touch with the Vet Record team. We are here to help with any questions about our pet health tracking app.',
+};
 
 export default function Contact() {
     return (

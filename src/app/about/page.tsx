@@ -1,4 +1,9 @@
-'use client';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'About Us - Vet Record',
+    description: 'Learn about Vet Record, the app dedicated to revolutionizing how pet owners manage their pets health information.',
+};
 
 export default function About() {
     return (

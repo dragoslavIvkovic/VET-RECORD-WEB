@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import Script from 'next/script';
 
 import '@/app/globals.css';
@@ -9,7 +9,10 @@ import '@/app/globals.css';
 import NavigationBar from './components/NavigationBar';
 import ScrollToTop from './components/ScrollToTop';
 
-const inter = Inter({ subsets: ['latin'] });
+const poppins = Poppins({ 
+    subsets: ['latin'],
+    weight: ['400', '500', '600', '700']
+});
 
 export const metadata: Metadata = {
     title: 'Vet Record - Pet Health Tracking App for Dogs & Cats',
@@ -24,7 +27,7 @@ export const metadata: Metadata = {
         siteName: 'Vet Record',
         images: [
             {
-                url: 'https://vetrecord.app/public/images/appscreen.png',
+                url: 'https://vetrecord.app/images/slider/slide-01.webp',
                 width: 800,
                 height: 600
             }
@@ -37,7 +40,7 @@ export const metadata: Metadata = {
         title: 'Vet Record - Pet Health Tracking App',
         description:
             "Track your pet's health effortlessly! Monitor diet, exercise, medications, and vet visits with our comprehensive pet health app.",
-        images: ['https://vetrecord.app/public/images/appscreen.png']
+        images: ['https://vetrecord.app/images/slider/slide-01.webp']
     },
     alternates: {
         canonical: 'https://vetrecord.app'
@@ -90,20 +93,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                                 priceCurrency: 'USD'
                             },
                             url: 'https://vetrecord.app',
-                            image: 'https://vetrecord.app/public/images/appscreen.png',
+                            image: 'https://vetrecord.app/images/slider/slide-01.webp',
                             publisher: {
                                 '@type': 'Organization',
                                 name: 'VetRecord',
                                 logo: {
                                     '@type': 'ImageObject',
-                                    url: 'https://vetrecord.app/public/images/logo.svg'
+                                    url: 'https://vetrecord.app/logo.svg'
                                 }
                             }
                         })
                     }}
                 />
             </head>
-            <body className='min-h-screen bg-[#F3F5FF]'>
+            <body className={`min-h-screen bg-[#F3F5FF] ${poppins.className}`}>
                 <NavigationBar />
                 <div className='pt-16'>{children}</div>
                 <ScrollToTop />

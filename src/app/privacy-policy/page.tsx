@@ -1,4 +1,9 @@
-'use client';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Privacy Policy - Vet Record',
+    description: 'Read the Vet Record Privacy Policy. Learn how we collect, use, and protect your personal information.',
+};
 
 export default function PrivacyPolicy() {
     return (

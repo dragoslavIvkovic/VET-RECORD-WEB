@@ -1,4 +1,9 @@
-'use client';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Delete Data - Vet Record',
+    description: 'Request deletion of your data from Vet Record. Learn how to delete your account and personal information.',
+};
 
 export default function DeleteData() {
     return (
