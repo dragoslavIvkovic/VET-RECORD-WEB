@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { APP_LINKS } from '../constants/app-links';
+import { APP_LINKS } from '../config/links';
 
 export default function HeroSection() {
     const [currentSlide, setCurrentSlide] = useState(0);

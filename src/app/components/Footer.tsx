@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { APP_LINKS } from '../constants/app-links';
+import { APP_LINKS } from '../config/links';
 
 export default function Footer() {
     return (

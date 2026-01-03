@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { APP_LINKS } from '../constants/app-links';
+import { APP_LINKS } from '../config/links';
 
 export default function NavigationBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -146,7 +146,7 @@ export default function NavigationBar() {
                         </Link>
                         
                         {/* Mobile Store Icons */}
-                        <div className='mt-4 flex justify-center gap-4 pt-4 border-t border-white/10'>
+                        <div className='mt-4 flex justify-center items-center gap-4 pt-4 border-t border-white/10'>
                             <a
                                 href={APP_LINKS.GOOGLE_PLAY}
                                 target='_blank'
