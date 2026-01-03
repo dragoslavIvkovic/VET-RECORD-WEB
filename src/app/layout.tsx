@@ -59,6 +59,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang='en'>
             <head>
+                <meta name="p:domain_verify" content="157b1f4deed124fa6508549e0e363960"/>
                 <Script strategy='afterInteractive' src={`https://www.googletagmanager.com/gtag/js?id=G-9PGSFLM2FM`} />
                 <Script id='google-analytics' strategy='afterInteractive'>
                     {`
