@@ -7,11 +7,11 @@
 export const APP_LINKS = {
     // ===== APP STORE LINKS =====
     GOOGLE_PLAY: 'https://play.google.com/store/apps/details?id=vetrecord.app',
-    APP_STORE: 'https://apps.apple.com',
+    APP_STORE: 'https://apps.apple.com/us/app/vet-record-pet-health-track/id6756975927',
     
     // ===== STORE BADGE IMAGES =====
     GOOGLE_PLAY_BADGE: 'https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png',
-    APP_STORE_BADGE: 'https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83',
+    APP_STORE_BADGE: 'https://apps.apple.com/us/app/vet-record-pet-health-track/id6756975927',
 } as const;
 
 export const SOCIAL_LINKS = {
