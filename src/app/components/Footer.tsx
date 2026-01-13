@@ -72,20 +72,46 @@ export default function Footer() {
                         </svg>
                     </a>
 
-                    {/* Product Hunt Badge */}
-                    <a
-                        href="https://www.producthunt.com/products/vet-record?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-vet-record"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className='transition hover:opacity-80'
-                    >
-                        <img
-                            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=718207&theme=light&t=1768316523730"
-                            alt="Vet Record - Ultimate pet health app - meds, vaccines, reminders & more | Product Hunt"
-                            width="250"
-                            height="54"
-                        />
-                    </a>
+                    {/* Product Hunt Badges */}
+                    <div className='flex items-center gap-4'>
+                        {/* iOS Badge */}
+                        <a
+                            href="https://www.producthunt.com/products/vet-record-pet-health-tracker-ios?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-vet-record-pet-health-tracker-ios"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className='transition hover:opacity-80'
+                        >
+                            <img
+                                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1061325&theme=light&t=1768317449825"
+                                alt="Vet Record – Pet Health Tracker (iOS) - Pets,Health,Mobile Apps | Product Hunt"
+                                width="250"
+                                height="54"
+                            />
+                        </a>
+
+                        {/* Product Hunt Card */}
+                        <div className='rounded-xl border border-gray-200 bg-white p-5 shadow-sm' style={{ maxWidth: '500px' }}>
+                            <div className='flex items-center gap-3 mb-3'>
+                                <img
+                                    alt="Vet Record"
+                                    src="https://ph-files.imgix.net/16784a05-4461-48bd-9a78-222bb6425604.png?auto=format&fit=crop&w=80&h=80"
+                                    className='w-16 h-16 rounded-lg object-cover flex-shrink-0'
+                                />
+                                <div className='flex-1 min-w-0'>
+                                    <h3 className='m-0 text-lg font-semibold text-gray-900 leading-tight truncate'>Vet Record</h3>
+                                    <p className='mt-1 text-sm text-gray-500 leading-snug line-clamp-2'>Ultimate pet health app - meds, vaccines, reminders &amp; more</p>
+                                </div>
+                            </div>
+                            <a
+                                href="https://www.producthunt.com/products/vet-record?embed=true&utm_source=embed&utm_medium=post_embed"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className='inline-flex items-center gap-1 mt-3 px-4 py-2 bg-[#FF6154] text-white no-underline rounded-lg text-sm font-semibold transition hover:opacity-90'
+                            >
+                                Check it out on Product Hunt →
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
