@@ -61,6 +61,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <head>
                 <meta name="p:domain_verify" content="157b1f4deed124fa6508549e0e363960"/>
                 <Script strategy='afterInteractive' src={`https://www.googletagmanager.com/gtag/js?id=G-9PGSFLM2FM`} />
+                <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-940388544" strategy='afterInteractive' />
                 <Script id='google-analytics' strategy='afterInteractive'>
                     {`
                         window.dataLayer = window.dataLayer || [];
@@ -70,6 +71,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                             send_page_view: false,
                             transport_type: 'beacon',
                         });
+                        gtag('config', 'AW-940388544');
                     `}
                 </Script>
                 <Script
