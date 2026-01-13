@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/react';
 
 import '@/app/globals.css';
 
@@ -113,6 +114,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <NavigationBar />
                 <div className='pt-16'>{children}</div>
                 <ScrollToTop />
+                <Analytics />
             </body>
         </html>
     );
