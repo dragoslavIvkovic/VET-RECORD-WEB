@@ -16,19 +16,22 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-    title: 'Vet Record - Pet Health Tracking App for Dogs & Cats',
+    metadataBase: new URL('https://www.vetrecord.app'),
+    title: {
+        default: 'Vet Record – Pet Health Tracking App for Dogs & Cats',
+        template: '%s | Vet Record'
+    },
     description:
-        "Track your pet's health effortlessly! Monitor diet, exercise, medications, and vet visits with our comprehensive pet health app.",
-    metadataBase: new URL('https://vetrecord.app'),
+        "Track vaccinations, medications, vet visits, and health history for your dog or cat. Cloud sync, reminders, and easy sharing.",
     openGraph: {
-        title: 'Vet Record - Pet Health Tracking App',
+        title: 'Vet Record – Pet Health Tracking App for Dogs & Cats',
         description:
-            "Track your pet's health effortlessly! Monitor diet, exercise, medications, and vet visits with our comprehensive pet health app.",
-        url: 'https://vetrecord.app',
+            "Track vaccines, meds, vet visits, and health records for your pets. Download on iOS & Android.",
+        url: 'https://www.vetrecord.app',
         siteName: 'Vet Record',
         images: [
             {
-                url: 'https://vetrecord.app/images/slider/slide-01.webp',
+                url: 'https://www.vetrecord.app/images/slider/slide-01.webp',
                 width: 800,
                 height: 600
             }
@@ -38,13 +41,13 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Vet Record - Pet Health Tracking App',
+        title: 'Vet Record – Pet Health Tracking App',
         description:
             "Track your pet's health effortlessly! Monitor diet, exercise, medications, and vet visits with our comprehensive pet health app.",
-        images: ['https://vetrecord.app/images/slider/slide-01.webp']
+        images: ['https://www.vetrecord.app/images/slider/slide-01.webp']
     },
     alternates: {
-        canonical: 'https://vetrecord.app'
+        canonical: 'https://www.vetrecord.app'
     },
     robots: {
         index: true,
@@ -96,14 +99,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                                 price: '0',
                                 priceCurrency: 'USD'
                             },
-                            url: 'https://vetrecord.app',
-                            image: 'https://vetrecord.app/images/slider/slide-01.webp',
+                            url: 'https://www.vetrecord.app',
+                            image: 'https://www.vetrecord.app/images/slider/slide-01.webp',
                             publisher: {
                                 '@type': 'Organization',
                                 name: 'VetRecord',
                                 logo: {
                                     '@type': 'ImageObject',
-                                    url: 'https://vetrecord.app/logo.svg'
+                                    url: 'https://www.vetrecord.app/logo.svg'
                                 }
                             }
                         })

@@ -78,7 +78,7 @@ export default function ReviewSection() {
                             <div className='flex items-center gap-3'>
                                 <img
                                     src={review.avatar}
-                                    alt={review.name}
+                                    alt={`${review.name} - Vet Record App User Review`}
                                     className='h-10 w-10 rounded-full object-cover'
                                 />
                                 <span className='font-semibold text-gray-900'>{review.name}</span>

@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
-interface Feature {
+    interface Feature {
     icon: string;
     title: string;
     description: string;
     image: string;
+    alt: string;
 }
 
 export default function KeyFeatureSection() {
@@ -18,28 +19,32 @@ export default function KeyFeatureSection() {
             title: 'Cloud-Based Convenience',
             description:
                 "Access your pet's information anytime, anywhere, on any device. Stay connected 24/7 with our cloud-based system.",
-            image: '/images/keyftr1.png'
+            image: '/images/keyftr1.png',
+            alt: 'All pet medical records stored securely in one app'
         },
         {
             icon: '🩺',
             title: 'Comprehensive Health Tracking',
             description:
                 "Maintain detailed records of your pet's health: vaccinations, medications, surgeries, and more. Never miss a crucial health milestone again!",
-            image: '/images/keyftr2.png'
+            image: '/images/keyftr2.png',
+            alt: 'Vet Record pet medical records screen with health history'
         },
         {
             icon: '📅',
             title: 'Intelligent Reminders',
             description:
                 "Get notified about vet appointments, medication schedules, and vaccination dates. We'll even remind you about your pet's birthday!",
-            image: '/images/keyftr3.png'
+            image: '/images/keyftr3.png',
+            alt: 'Vet Record smart reminders for pet vaccinations and medications'
         },
         {
             icon: '🤝',
             title: 'Effortless Data Sharing',
             description:
                 "Share your pet's medical information easily with family, friends, or a new vet. Keep everyone informed for the best care.",
-            image: '/images/keyftr4.png'
+            image: '/images/keyftr4.png',
+            alt: 'Simple pet care management with Vet Record mobile app'
         }
     ];
 
@@ -102,14 +107,14 @@ export default function KeyFeatureSection() {
                             className='flex transition-transform duration-500 ease-in-out'
                             style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
                             {features.map((feature, index) => (
-                                <div key={index} className='w-full flex-shrink-0 px-4'>
+                                <div key={index} className='w-full shrink-0 px-4'>
                                     <div className='rounded-2xl bg-[#F5F5F5] p-8 text-center'>
                                         <h3 className='mb-4 text-2xl font-bold text-[#0C4C55]'>
                                             {feature.icon} {feature.title}
                                         </h3>
                                         <p className='mb-8 text-gray-600'>{feature.description}</p>
                                         <div className='mx-auto max-w-xs'>
-                                            <img src={feature.image} alt={feature.title} className='h-auto w-full' />
+                                            <img src={feature.image} alt={feature.alt} className='h-auto w-full' />
                                         </div>
                                     </div>
                                 </div>

@@ -41,7 +41,7 @@ export default function Footer() {
                         >
                             <img 
                                 src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
-                                alt="Get it on Google Play"
+                                alt="Download Vet Record pet health tracking app on Android"
                                 className="h-14 w-auto"
                             />
                         </a>
@@ -53,7 +53,7 @@ export default function Footer() {
                         >
                             <img 
                                 src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" 
-                                alt="Download on the App Store"
+                                alt="Download Vet Record pet health tracking app on iOS"
                                 className="h-10 w-auto"
                             />
                         </a>

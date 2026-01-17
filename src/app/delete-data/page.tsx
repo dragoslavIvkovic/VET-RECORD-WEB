@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Delete Data - Vet Record',
     description: 'Request deletion of your data from Vet Record. Learn how to delete your account and personal information.',
+    alternates: {
+        canonical: '/delete-data'
+    }
 };
 
 export default function DeleteData() {

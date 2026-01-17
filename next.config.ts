@@ -30,6 +30,23 @@ const nextConfig: NextConfig = {
                 ]
             }
         ];
+    },
+    async redirects() {
+        return [
+            {
+                source: '/:path*',
+                has: [{ type: 'host', value: 'vetrecord.app' }],
+                destination: 'https://www.vetrecord.app/:path*',
+                permanent: true,
+            },
+            {
+                source: '/:path*',
+                has: [{ type: 'host', value: 'www.vetrecord.app' }],
+                missing: [{ type: 'header', key: 'x-forwarded-proto' }],
+                destination: 'https://www.vetrecord.app/:path*',
+                permanent: true,
+            },
+        ];
     }
 };
 

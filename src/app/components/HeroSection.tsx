@@ -8,16 +8,16 @@ export default function HeroSection() {
     const [isLoaded, setIsLoaded] = useState(false);
     
     const slides = [
-        '/images/slider/slide-01.webp',
-        '/images/slider/slide-02.webp',
-        '/images/slider/slide-03.webp',
-        '/images/slider/slide-04.webp',
-        '/images/slider/slide-05.webp',
-        '/images/slider/slide-06.webp',
-        '/images/slider/slide-07.webp',
-        '/images/slider/slide-08.webp',
-        '/images/slider/slide-09.webp',
-        '/images/slider/slide-10.webp'
+        { src: '/images/slider/slide-01.webp', alt: 'Vet Record app vaccination tracker screen for pets' },
+        { src: '/images/slider/slide-02.webp', alt: 'Vet Record medication reminder screen for dogs and cats' },
+        { src: '/images/slider/slide-03.webp', alt: 'Vet Record app showing vet visit history and medical notes' },
+        { src: '/images/slider/slide-04.webp', alt: 'Vet Record pet medical records screen with health history' },
+        { src: '/images/slider/slide-05.webp', alt: 'Vet Record smart reminders for pet vaccinations and medications' },
+        { src: '/images/slider/slide-06.webp', alt: 'Vet Record mobile app interface for managing dog and cat health' },
+        { src: '/images/slider/slide-07.webp', alt: 'Vet Record pet health tracking dashboard' },
+        { src: '/images/slider/slide-08.webp', alt: 'Comprehensive pet health management app' },
+        { src: '/images/slider/slide-09.webp', alt: 'Track vaccinations and vet visits easily' },
+        { src: '/images/slider/slide-10.webp', alt: 'Vet Record - The best pet health app for Android and iOS' }
     ];
 
     useEffect(() => {
@@ -62,7 +62,7 @@ export default function HeroSection() {
                                     <img
                                         key={num}
                                         src={`/images/banavt${num}.png`}
-                                        alt=''
+                                        alt='Vet Record pet health app happy user'
                                         className={`h-12 w-12 rounded-full border-2 border-white transition-all duration-500 hover:scale-110 hover:z-10`}
                                         style={{ transitionDelay: `${800 + idx * 100}ms` }}
                                     />
@@ -88,7 +88,7 @@ export default function HeroSection() {
                                 >
                                     <img 
                                         src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
-                                        alt="Get it on Google Play"
+                                        alt="Download Vet Record pet health tracking app on Android"
                                         className="h-[70px] w-auto"
                                     />
                                 </a>
@@ -101,7 +101,7 @@ export default function HeroSection() {
                                 >
                                     <img 
                                         src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1502323200" 
-                                        alt="Download on the App Store"
+                                        alt="Download Vet Record pet health tracking app on iOS"
                                         className="h-12 w-auto"
                                     />
                                 </a>
@@ -118,9 +118,9 @@ export default function HeroSection() {
                                 <div className='relative aspect-9/19 w-full max-h-200'>
                                     {slides.map((slide, index) => (
                                         <img
-                                            key={slide}
-                                            src={slide}
-                                            alt={`App Screenshot ${index + 1}`}
+                                            key={slide.src}
+                                            src={slide.src}
+                                            alt={slide.alt}
                                             className={`absolute inset-0 z-10 h-full w-full object-contain transition-all duration-700 ${
                                                 currentSlide === index 
                                                     ? 'opacity-100 scale-100' 

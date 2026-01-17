@@ -23,7 +23,7 @@ export default function NavigationBar() {
                     {/* Logo */}
                     <div className='w-[200px] shrink-0'>
                         <Link href='/' className='flex items-center'>
-                            <img src='/logo.svg' alt='Vet Record Logo' className='h-12 w-auto' />
+                            <img src='/logo.svg' alt='Vet Record - Pet Health Tracking App' className='h-12 w-auto' />
                         </Link>
                     </div>
 
@@ -60,7 +60,7 @@ export default function NavigationBar() {
                             >
                                 <img 
                                     src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
-                                    alt="Get it on Google Play"
+                                    alt="Download Vet Record pet health tracking app on Android"
                                     className="h-14 w-auto"
                                 />
                             </a>
@@ -72,7 +72,7 @@ export default function NavigationBar() {
                             >
                                 <img 
                                     src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" 
-                                    alt="Download on the App Store"
+                                    alt="Download Vet Record pet health tracking app on iOS"
                                     className="h-10 w-auto"
                                 />
                             </a>
@@ -154,7 +154,7 @@ export default function NavigationBar() {
                             >
                                 <img 
                                     src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
-                                    alt="Get it on Google Play"
+                                    alt="Download Vet Record pet health tracking app on Android"
                                     className="h-14 w-auto"
                                 />
                             </a>
@@ -165,7 +165,7 @@ export default function NavigationBar() {
                             >
                                 <img 
                                     src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" 
-                                    alt="Download on the App Store"
+                                    alt="Download Vet Record pet health tracking app on iOS"
                                     className="h-10 w-auto"
                                 />
                             </a>
