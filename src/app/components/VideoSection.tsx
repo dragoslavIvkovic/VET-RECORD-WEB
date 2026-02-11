@@ -1,28 +1,22 @@
 'use client';
 
-import { useTranslations } from '@/i18n/translations-context';
-
 export default function VideoSection() {
-    const t = useTranslations();
-
     return (
-        <section className="bg-white py-20">
+        <section className="py-20 bg-white">
             <div className="container mx-auto px-4">
-                <div className="mb-12 text-center">
-                    <span className="rounded-full bg-[#0C4C55] px-4 py-1 text-sm text-white">
-                        {t('video.badge')}
-                    </span>
-                    <h2 className="mt-4 text-4xl font-bold">
-                        {t('video.title')}{' '}
-                        <span className="text-[#FF5733]">{t('video.titleHighlight')}</span>{' '}
-                        {t('video.titleSuffix')}
+                {/* Section Header */}
+                <div className="text-center mb-12">
+                    <span className="bg-[#0C4C55] text-white px-4 py-1 rounded-full text-sm">Watch Demo</span>
+                    <h2 className="text-4xl font-bold mt-4">
+                        See How <span className="text-[#FF5733]">Vet Record</span> Works
                     </h2>
                 </div>
 
-                <div className="mx-auto max-w-4xl">
-                    <div className="relative overflow-hidden rounded-2xl pt-[56.25%]">
+                {/* Video Container */}
+                <div className="max-w-4xl mx-auto">
+                    <div className="relative pt-[56.25%] rounded-2xl overflow-hidden">
                         <iframe
-                            className="absolute inset-0 h-full w-full"
+                            className="absolute inset-0 w-full h-full"
                             src="https://www.youtube.com/embed/25mGPVeiH-w"
                             title="Vet Record App Demo"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -33,4 +27,4 @@ export default function VideoSection() {
             </div>
         </section>
     );
-}
+} 
