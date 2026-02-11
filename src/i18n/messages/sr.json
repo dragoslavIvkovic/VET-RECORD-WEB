@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "title": "Vet Record – Aplikacija za praćenje zdravlja ljubimaca",
+    "description": "Pratite vakcinacije, lekove, posete veterinaru i istoriju zdravlja vašeg psa ili mačke. Sinhronizacija u oblaku, podsetnici i jednostavno deljenje."
+  },
+  "nav": {
+    "home": "Početna",
+    "reviews": "Recenzije",
+    "contact": "Kontakt",
+    "about": "O nama",
+    "privacy": "Politika privatnosti",
+    "deleteData": "Obriši podatke",
+    "toggleMenu": "Meni"
+  },
+  "hero": {
+    "title1": "Upravljajte zdravljem",
+    "title2": "vašeg ljubimca sa Vet Record",
+    "subtitle": "Pratite vakcinacije, medicinske tretmane i više – sve na jednom mestu. Preuzmite Vet Record aplikaciju danas i obezbedite ljubimcima negu koju zaslužuju!",
+    "tryFree": "ISPROBAJTE BESPLATNO",
+    "tryFreeDesc": "Najbolja aplikacija za upravljanje zdravljem vašeg ljubimca u svetu",
+    "download": "Preuzmi"
+  },
+  "slides": {
+    "alt1": "Vet Record ekran za praćenje vakcinacija ljubimaca",
+    "alt2": "Vet Record ekran za podsetnik na lekove za pse i mačke",
+    "alt3": "Vet Record aplikacija sa istorijom poseta veterinaru i medicinskim beleškama",
+    "alt4": "Vet Record ekran sa medicinskim kartonima i istorijom zdravlja ljubimca",
+    "alt5": "Vet Record pametni podsetnici za vakcinacije i lekove ljubimaca",
+    "alt6": "Vet Record mobilna aplikacija za upravljanje zdravljem psa i mačke",
+    "alt7": "Vet Record kontrolna tabla za praćenje zdravlja ljubimaca",
+    "alt8": "Sveobuhvatna aplikacija za upravljanje zdravljem ljubimaca",
+    "alt9": "Lako pratite vakcinacije i posete veterinaru",
+    "alt10": "Vet Record – najbolja aplikacija za zdravlje ljubimaca za Android i iOS"
+  },
+  "features": {
+    "badge": "Ključne funkcije",
+    "title": "Moćne",
+    "titleHighlight": "funkcije",
+    "intro": "Predstavljamo Vet Record: vaša sve-u-jednom aplikacija za upravljanje zdravljem ljubimaca!",
+    "introDesc": "Da li ste posvećeni vlasnik ljubimca koji traži pametniji način da vaši čupavi prijatelji budu zdravi i srećni? Upoznajte Vet Record – vrhunsku aplikaciju za upravljanje zdravljem ljubimaca dizajniranu da pojednostavi vaš život i obezbedi da vaši ljubimci uvek dobiju najbolju moguću negu.",
+    "cloud": {
+      "title": "Pohrana u oblaku",
+      "description": "Pristupite podacima o ljubimcu bilo kada, bilo gde, na bilo kom uređaju. Ostanite povezani 24/7 sa našim sistemom u oblaku.",
+      "alt": "Svi medicinski podaci o ljubimcu bezbedno čuvani u jednoj aplikaciji"
+    },
+    "health": {
+      "title": "Sveobuhvatno praćenje zdravlja",
+      "description": "Vodite detaljne evidencije o zdravlju vašeg ljubimca: vakcinacije, lekovi, operacije i više. Nikada više ne propustite važan zdravstveni milenij!",
+      "alt": "Vet Record ekran sa medicinskim kartonima i istorijom zdravlja"
+    },
+    "reminders": {
+      "title": "Pametni podsetnici",
+      "description": "Budite obavešteni o terminima kod veterinara, rasporedima lekova i datumima vakcinacije. Podsetićemo vas čak i na rođendan vašeg ljubimca!",
+      "alt": "Vet Record pametni podsetnici za vakcinacije i lekove ljubimaca"
+    },
+    "sharing": {
+      "title": "Jednostavno deljenje podataka",
+      "description": "Lako delite medicinske informacije o ljubimcu sa porodicom, prijateljima ili novim veterinarom. Svi su informisani za najbolju negu.",
+      "alt": "Jednostavno upravljanje negom ljubimaca sa Vet Record mobilnom aplikacijom"
+    }
+  },
+  "video": {
+    "badge": "Pogledaj demo",
+    "title": "Pogledajte kako",
+    "titleHighlight": "Vet Record",
+    "titleSuffix": "radi"
+  },
+  "reviews": {
+    "badge": "Recenzije",
+    "title": "Šta kažu",
+    "titleHighlight": "naši korisnici",
+    "rating": "4.5/5.0",
+    "count": "1399 recenzija",
+    "cta": "Pogledajte sve recenzije na Google Play"
+  },
+  "footer": {
+    "newsletter": "Prijavite se na bilten",
+    "newsletterDesc": "Budite prvi koji će primiti novosti",
+    "emailPlaceholder": "Unesite vašu email adresu",
+    "subscribe": "Prijavi se",
+    "followPinterest": "Pratite nas na Pinterestu",
+    "productHunt": "Pogledajte na Product Hunt-u",
+    "copyright": "© {year} Vet Record. Sva prava zadržana.",
+    "home": "Početna",
+    "about": "O nama",
+    "privacy": "Privatnost",
+    "contact": "Kontakt"
+  },
+  "about": {
+    "badge": "O nama",
+    "title": "Upravljanje zdravstvenim evidencijama ljubimaca",
+    "titleHighlight": "jednostavno i pametno",
+    "intro": "VET RECORD je posvećen revoluciji u načinu na koji vlasnici ljubimaca upravljaju zdravstvenim informacijama svojih ljubimaca, olakšavajući praćenje vakcinacija, lekova i medicinske istorije.",
+    "stats": {
+      "countries": "Zemlje",
+      "reviews": "Recenzije",
+      "followers": "Pratilaca"
+    },
+    "whyTitle": "Zašto izabrati VET RECORD",
+    "why1": {
+      "title": "Pogodan za korisnike",
+      "description": "Intuitivan interfejs dizajniran za laku navigaciju i brzi unos podataka"
+    },
+    "why2": {
+      "title": "Sveobuhvatno praćenje",
+      "description": "Pratite vakcinacije, lekove, težinu i sve važne zdravstvene evidencije"
+    },
+    "why3": {
+      "title": "Bezbedno skladištenje",
+      "description": "Zdravstveni podaci vašeg ljubimca se bezbedno čuvaju i lako su dostupni kada su potrebni"
+    },
+    "ctaTitle": "Spremni da počnete?",
+    "ctaDesc": "Preuzmite VET RECORD danas i preuzmite kontrolu nad zdravstvenim evidencijama vašeg ljubimca",
+    "ctaButton": "Preuzmi sada"
+  },
+  "contact": {
+    "badge": "Kontaktirajte nas",
+    "title": "Imate pitanje?",
+    "titleHighlight": "Razgovarajmo",
+    "intro": "Ovde smo da pomognemo sa bilo kojim pitanjima o VET RECORD aplikaciji",
+    "email": "Pošaljite nam email",
+    "location": "Lokacija",
+    "serbia": "Srbija",
+    "support": "Podrška",
+    "support24": "Dostupno 24/7",
+    "formTitle": "Pošaljite nam poruku",
+    "namePlaceholder": "Vaše ime",
+    "emailPlaceholder": "Vaš email",
+    "subjectPlaceholder": "Predmet",
+    "messagePlaceholder": "Vaša poruka",
+    "newsletterCheck": "Slažem se da primam emailove, bilten i promotivne poruke",
+    "sendButton": "Pošalji poruku"
+  },
+  "privacy": {
+    "title": "Politika privatnosti",
+    "lastUpdated": "Poslednje ažuriranje: 11. februar 2025.",
+    "intro": {
+      "title": "Uvod",
+      "text": "VET RECORD („mi“, „naš“, „nas“ ili „Kompanija“) ceni i štiti vašu privatnost. Ova Politika privatnosti objašnjava kako prikupljamo, koristimo i štitimo vaše informacije kada koristite našu mobilnu aplikaciju („Usluga“)."
+    },
+    "contact": {
+      "title": "Kontakt informacije",
+      "text": "Za bilo kakva pitanja o ovoj Politici privatnosti ili našim praksama obrade podataka, kontaktirajte nas:"
+    },
+    "dataCollection": {
+      "title": "Prikupljanje i korišćenje podataka",
+      "weCollect": "Podaci koje prikupljamo",
+      "intro": "Naša aplikacija prikuplja i obrađuje sledeće tipove informacija:",
+      "usage": "Podaci o korišćenju (za poboljšanje aplikacije i analitiku)",
+      "device": "Informacije o uređaju (za funkcionalnost i bezbednost aplikacije)",
+      "petRecords": "Zdravstveni podaci o ljubimcu (kada ih unesete)"
+    },
+    "dataSecurity": {
+      "title": "Bezbednost podataka",
+      "text": "Primenjujemo industrijske standarde bezbednosti za zaštitu vaših podataka:",
+      "encryption": "Šifrovanje podataka u tranzitu i u mirovanju",
+      "assessments": "Redovne procene bezbednosti",
+      "storage": "Bezbedne prakse skladištenja podataka",
+      "access": "Kontrole pristupa i autentifikacija"
+    },
+    "thirdParty": {
+      "title": "Usluge trećih strana",
+      "intro": "Koristimo sledeće usluge trećih strana:",
+      "google": "Google Play usluge",
+      "firebase": "Firebase Analytics",
+      "crash": "Usluge za izveštavanje o padovima",
+      "compliance": "Svi pružaoci trećih strana su obavezni da štite vaše podatke i poštuju zakone o privatnosti."
+    },
+    "rights": {
+      "title": "Vaša prava vezana za privatnost",
+      "text": "Imate pravo da:",
+      "access": "Pristupite svojim podacima",
+      "delete": "Zatražite brisanje svojih podataka",
+      "object": "Uložite prigovor na obradu podataka",
+      "portability": "Prenosivost podataka"
+    },
+    "updates": {
+      "title": "Ažuriranja Politike privatnosti",
+      "text": "Možemo povremeno ažurirati ovu Politiku privatnosti. Datum „Poslednje ažuriranje“ na vrhu ove stranice će odražavati sve promene."
+    },
+    "compliance": {
+      "title": "Usaglašenost",
+      "text": "Usaglašeni smo sa primenjivim zakonima o zaštiti podataka, uključujući Google Play politiku korisničkih podataka i lokalne propise o privatnosti."
+    }
+  },
+  "deleteData": {
+    "title": "Zahtev za brisanje podataka - VET RECORD",
+    "howTo": "Kako obrisati vaše podatke",
+    "option1": {
+      "title": "Opcija 1: Brisanje u aplikaciji (preporučeno)",
+      "step1": "Otvorite VET RECORD aplikaciju",
+      "step2": "Idite na Podešavanja",
+      "step3": "Izaberite \"Obriši podatke\"",
+      "step4": "Potvrdite izbor"
+    },
+    "option2": {
+      "title": "Opcija 2: Email zahtev",
+      "intro": "Ako ne možete pristupiti aplikaciji, pošaljite nam email na",
+      "with": "sa:",
+      "subject": "Predmet: \"Zahtev za brisanje podataka - VET RECORD\"",
+      "deviceId": "ID vašeg uređaja",
+      "startDate": "Približan datum kada ste počeli da koristite aplikaciju"
+    },
+    "whatDeleted": {
+      "title": "Šta se briše",
+      "petRecords": "Svi zdravstveni podaci o ljubimcima",
+      "usage": "Podaci o korišćenju",
+      "device": "Informacije o uređaju"
+    },
+    "retention": {
+      "title": "Period zadržavanja",
+      "process": "Obradićemo vaš zahtev u roku od 30 dana",
+      "legal": "Neki podaci mogu biti zadržani radi usklađenosti sa zakonom",
+      "inactive": "Neaktivni podaci se automatski brišu nakon 90 dana"
+    },
+    "note": "Napomena: Jednom kada se vaši podaci obrišu, ova radnja se ne može poništiti. Molimo osigurajte da ste napravili rezervnu kopiju svih važnih informacija pre nego što nastavite sa zahtevom za brisanje."
+  },
+  "common": {
+    "altLogo": "Vet Record - aplikacija za praćenje zdravlja ljubimaca",
+    "altAndroid": "Preuzmite Vet Record aplikaciju za praćenje zdravlja ljubimaca na Android",
+    "altiOS": "Preuzmite Vet Record aplikaciju za praćenje zdravlja ljubimaca na iOS",
+    "altUser": "Zadovoljan korisnik Vet Record aplikacije za zdravlje ljubimaca"
+  },
+  "notFound": {
+    "title": "404 - Stranica nije pronađena",
+    "description": "Stranica koju tražite ne postoji.",
+    "backHome": "Nazad na početnu"
+  }
+}

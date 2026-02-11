@@ -1,0 +1,229 @@
+{
+  "meta": {
+    "title": "Vet Record – Pet Health Tracking App for Dogs & Cats",
+    "description": "Track vaccinations, medications, vet visits, and health history for your dog or cat. Cloud sync, reminders, and easy sharing."
+  },
+  "nav": {
+    "home": "Home",
+    "reviews": "Reviews",
+    "contact": "Contact",
+    "about": "About us",
+    "privacy": "Privacy Policy",
+    "deleteData": "Delete Data",
+    "toggleMenu": "Toggle menu"
+  },
+  "hero": {
+    "title1": "Manage Your Pet's",
+    "title2": "Health with Vet Record",
+    "subtitle": "Track your pet's vaccinations, medical treatments, and more – all in one place. Download the Vet Record app today to ensure your pets receive the care they deserve!",
+    "tryFree": "TRY FOR FREE",
+    "tryFreeDesc": "The best application to manage your pet's health worldwide",
+    "download": "Download"
+  },
+  "slides": {
+    "alt1": "Vet Record app vaccination tracker screen for pets",
+    "alt2": "Vet Record medication reminder screen for dogs and cats",
+    "alt3": "Vet Record app showing vet visit history and medical notes",
+    "alt4": "Vet Record pet medical records screen with health history",
+    "alt5": "Vet Record smart reminders for pet vaccinations and medications",
+    "alt6": "Vet Record mobile app interface for managing dog and cat health",
+    "alt7": "Vet Record pet health tracking dashboard",
+    "alt8": "Comprehensive pet health management app",
+    "alt9": "Track vaccinations and vet visits easily",
+    "alt10": "Vet Record - The best pet health app for Android and iOS"
+  },
+  "features": {
+    "badge": "Key Feature",
+    "title": "Powerful",
+    "titleHighlight": "features",
+    "intro": "Introducing Vet Record: Your All-In-One Pet Health Management App!",
+    "introDesc": "Are you a dedicated pet owner looking for a smarter way to keep your furry friends healthy and happy? Meet Vet Record - the ultimate pet health management app designed to simplify your life and ensure your pets always receive the best care possible.",
+    "cloud": {
+      "title": "Cloud-Based Convenience",
+      "description": "Access your pet's information anytime, anywhere, on any device. Stay connected 24/7 with our cloud-based system.",
+      "alt": "All pet medical records stored securely in one app"
+    },
+    "health": {
+      "title": "Comprehensive Health Tracking",
+      "description": "Maintain detailed records of your pet's health: vaccinations, medications, surgeries, and more. Never miss a crucial health milestone again!",
+      "alt": "Vet Record pet medical records screen with health history"
+    },
+    "reminders": {
+      "title": "Intelligent Reminders",
+      "description": "Get notified about vet appointments, medication schedules, and vaccination dates. We'll even remind you about your pet's birthday!",
+      "alt": "Vet Record smart reminders for pet vaccinations and medications"
+    },
+    "sharing": {
+      "title": "Effortless Data Sharing",
+      "description": "Share your pet's medical information easily with family, friends, or a new vet. Keep everyone informed for the best care.",
+      "alt": "Simple pet care management with Vet Record mobile app"
+    }
+  },
+  "video": {
+    "badge": "Watch Demo",
+    "title": "See How",
+    "titleHighlight": "Vet Record",
+    "titleSuffix": "Works"
+  },
+  "reviews": {
+    "badge": "Reviews",
+    "title": "What our",
+    "titleHighlight": "customers say",
+    "rating": "4.5/5.0",
+    "count": "1399 reviews",
+    "cta": "See all reviews on Google Play"
+  },
+  "footer": {
+    "newsletter": "Subscribe newsletter",
+    "newsletterDesc": "Be the first to receive updates",
+    "emailPlaceholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "followPinterest": "Follow us on Pinterest",
+    "productHunt": "Check it out on Product Hunt",
+    "copyright": "© {year} Vet Record. All rights reserved.",
+    "home": "Home",
+    "about": "About",
+    "privacy": "Privacy",
+    "contact": "Contact"
+  },
+  "about": {
+    "badge": "About us",
+    "title": "Managing Pet Health Records",
+    "titleHighlight": "Made Simple and Smart",
+    "intro": "VET RECORD is dedicated to revolutionizing how pet owners manage their pets' health information, making it easier to track vaccinations, medications, and medical history.",
+    "stats": {
+      "countries": "Countries",
+      "reviews": "Reviews",
+      "followers": "Followers"
+    },
+    "whyTitle": "Why Choose VET RECORD",
+    "why1": {
+      "title": "User Friendly",
+      "description": "Intuitive interface designed for easy navigation and quick data entry"
+    },
+    "why2": {
+      "title": "Comprehensive Tracking",
+      "description": "Track vaccinations, medications, weight, and all important health records"
+    },
+    "why3": {
+      "title": "Secure Storage",
+      "description": "Your pet's health data is securely stored and easily accessible when needed"
+    },
+    "ctaTitle": "Ready to Get Started?",
+    "ctaDesc": "Download VET RECORD today and take control of your pet's health records",
+    "ctaButton": "Download Now"
+  },
+  "contact": {
+    "badge": "Contact us",
+    "title": "Any query?",
+    "titleHighlight": "Let's talk",
+    "intro": "We're here to help with any questions about the VET RECORD app",
+    "email": "Email us",
+    "location": "Location",
+    "serbia": "Serbia",
+    "support": "Support",
+    "support24": "24/7 Available",
+    "formTitle": "Drop us a message",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "Your email",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Your message",
+    "newsletterCheck": "I agree to receive emails, newsletters and promotional messages",
+    "sendButton": "Send Message"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: February 11, 2025",
+    "intro": {
+      "title": "Introduction",
+      "text": "VET RECORD (\"we,\" \"our,\" \"us,\" or \"the Company\") values and protects your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application (the \"Service\")."
+    },
+    "contact": {
+      "title": "Contact Information",
+      "text": "For any questions about this Privacy Policy or our data practices, please contact us:"
+    },
+    "dataCollection": {
+      "title": "Data Collection and Usage",
+      "weCollect": "Data We Collect",
+      "intro": "Our app collects and processes the following types of information:",
+      "usage": "Usage data (for app improvement and analytics)",
+      "device": "Device information (for app functionality and security)",
+      "petRecords": "Pet health records (when you input them)"
+    },
+    "dataSecurity": {
+      "title": "Data Security",
+      "text": "We implement industry-standard security measures to protect your data:",
+      "encryption": "Encryption of data in transit and at rest",
+      "assessments": "Regular security assessments",
+      "storage": "Secure data storage practices",
+      "access": "Access controls and authentication"
+    },
+    "thirdParty": {
+      "title": "Third-Party Services",
+      "intro": "We use the following third-party services:",
+      "google": "Google Play Services",
+      "firebase": "Firebase Analytics",
+      "crash": "Crash reporting services",
+      "compliance": "All third-party providers are required to protect your data and comply with privacy laws."
+    },
+    "rights": {
+      "title": "Your Privacy Rights",
+      "text": "You have the right to:",
+      "access": "Access your data",
+      "delete": "Request deletion of your data",
+      "object": "Object to data processing",
+      "portability": "Data portability"
+    },
+    "updates": {
+      "title": "Updates to Privacy Policy",
+      "text": "We may update this Privacy Policy periodically. The \"Last updated\" date at the top of this page will reflect any changes."
+    },
+    "compliance": {
+      "title": "Compliance",
+      "text": "We comply with applicable data protection laws, including Google Play's User Data policy and local privacy regulations."
+    }
+  },
+  "deleteData": {
+    "title": "Data Deletion Request - VET RECORD",
+    "howTo": "How to Delete Your Data",
+    "option1": {
+      "title": "Option 1: In-App Deletion (Recommended)",
+      "step1": "Open the VET RECORD app",
+      "step2": "Go to Settings",
+      "step3": "Select \"Delete Data\"",
+      "step4": "Confirm your choice"
+    },
+    "option2": {
+      "title": "Option 2: Email Request",
+      "intro": "If you cannot access the app, email us at",
+      "with": "with:",
+      "subject": "Subject line: \"Data Deletion Request - VET RECORD\"",
+      "deviceId": "Your device ID",
+      "startDate": "The approximate date you started using the app"
+    },
+    "whatDeleted": {
+      "title": "What Gets Deleted",
+      "petRecords": "All pet health records",
+      "usage": "Usage data",
+      "device": "Device information"
+    },
+    "retention": {
+      "title": "Retention Period",
+      "process": "We will process your request within 30 days",
+      "legal": "Some data may be retained for legal compliance",
+      "inactive": "Inactive data is automatically deleted after 90 days"
+    },
+    "note": "Note: Once your data is deleted, this action cannot be undone. Please make sure you have backed up any important information before proceeding with the deletion request."
+  },
+  "common": {
+    "altLogo": "Vet Record - Pet Health Tracking App",
+    "altAndroid": "Download Vet Record pet health tracking app on Android",
+    "altiOS": "Download Vet Record pet health tracking app on iOS",
+    "altUser": "Vet Record pet health app happy user"
+  },
+  "notFound": {
+    "title": "404 - Page Not Found",
+    "description": "The page you requested doesn't exist.",
+    "backHome": "Return Home"
+  }
+}
