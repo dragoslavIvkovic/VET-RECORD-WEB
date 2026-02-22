@@ -18,15 +18,15 @@ const poppins = Poppins({
 export const metadata: Metadata = {
     metadataBase: new URL('https://www.vetrecord.app'),
     title: {
-        default: 'Vet Record – Pet Health Tracking App for Dogs & Cats',
+        default: 'Vet Record – Ultimate Pet Health Organizer for Dogs & Cats',
         template: '%s | Vet Record'
     },
     description:
-        "Track vaccinations, medications, vet visits, and health history for your dog or cat. Cloud sync, reminders, and easy sharing.",
+        "Simplify your pet parenting journey. Track vaccines, set medication reminders, and log medical history effortlessly. Cloud sync for families. Download on iOS & Android.",
     openGraph: {
-        title: 'Vet Record – Pet Health Tracking App for Dogs & Cats',
+        title: 'Vet Record – Ultimate Pet Health Organizer for Dogs & Cats',
         description:
-            "Track vaccines, meds, vet visits, and health records for your pets. Download on iOS & Android.",
+            "Simplify your pet parenting journey. Track vaccines, medication reminders, and medical history. Cloud sync for families. Download on iOS & Android.",
         url: 'https://www.vetrecord.app',
         siteName: 'Vet Record',
         images: [
@@ -41,14 +41,24 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Vet Record – Pet Health Tracking App',
+        title: 'Vet Record – Ultimate Pet Health Organizer for Dogs & Cats',
         description:
-            "Track your pet's health effortlessly! Monitor diet, exercise, medications, and vet visits with our comprehensive pet health app.",
+            "Simplify your pet parenting journey. Track vaccines, medication reminders, and medical history. Cloud sync for families.",
         images: ['https://www.vetrecord.app/images/slider/slide-01.webp']
     },
     alternates: {
         canonical: 'https://www.vetrecord.app'
     },
+    keywords: [
+        'pet health app',
+        'pet medical records',
+        'vaccination tracker',
+        'medication reminders',
+        'dog health',
+        'cat health',
+        'pet health organizer',
+        'vet record'
+    ],
     robots: {
         index: true,
         follow: true,
@@ -86,7 +96,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                             '@context': 'https://schema.org',
                             '@type': 'WebApplication',
                             name: 'Vet Record',
-                            description: 'Comprehensive pet health tracking app for dogs and cats',
+                            description: 'Simplify your pet parenting journey. Track vaccines, medication reminders, and medical history for dogs and cats. Cloud sync for families.',
                             applicationCategory: 'HealthApplication',
                             operatingSystem: 'Android',
                             aggregateRating: {

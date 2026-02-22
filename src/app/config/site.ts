@@ -8,8 +8,8 @@
 export const SITE_CONFIG = {
     // ===== BASIC INFO =====
     name: 'Vet Record',
-    tagline: 'Pet Health Tracking App for Dogs & Cats',
-    description: "Track your pet's health effortlessly! Monitor diet, exercise, medications, and vet visits with our comprehensive pet health app.",
+    tagline: 'Ultimate Health Organizer for Dogs & Cats',
+    description: "Simplify your pet parenting journey with Vet Record. Track vaccines, set medication reminders, and log medical history effortlessly. Cloud sync for families.",
     
     // ===== URLs =====
     url: 'https://vetrecord.app',
