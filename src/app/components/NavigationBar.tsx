@@ -33,6 +33,9 @@ export default function NavigationBar() {
                             <Link href='/' className='whitespace-nowrap hover:text-cyan-300 transition-colors'>
                                 Home
                             </Link>
+                            <Link href='/blog' className='whitespace-nowrap hover:text-cyan-300 transition-colors'>
+                                Blog
+                            </Link>
                             <a href='#reviews' onClick={scrollToReviews} className='whitespace-nowrap hover:text-cyan-300 transition-colors cursor-pointer'>
                                 Reviews
                             </a>
@@ -108,6 +111,13 @@ export default function NavigationBar() {
                             onClick={() => setIsMenuOpen(false)}
                         >
                             Home
+                        </Link>
+                        <Link 
+                            href='/blog' 
+                            className='py-2 hover:bg-white/10 hover:text-cyan-300 rounded-lg'
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Blog
                         </Link>
                         <a 
                             href='#reviews' 

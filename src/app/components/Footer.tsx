@@ -122,6 +122,7 @@ export default function Footer() {
                         <p>© {new Date().getFullYear()} Vet Record. All rights reserved.</p>
                         <ul className='flex flex-wrap gap-4'>
                             <li><Link href='/' className='hover:text-white'>Home</Link></li>
+                            <li><Link href='/blog' className='hover:text-white'>Blog</Link></li>
                             <li><Link href='/about' className='hover:text-white'>About</Link></li>
                             <li><Link href='/privacy-policy' className='hover:text-white'>Privacy</Link></li>
                             <li><Link href='/contact' className='hover:text-white'>Contact</Link></li>

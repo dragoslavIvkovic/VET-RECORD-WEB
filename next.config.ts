@@ -2,6 +2,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
     output: 'standalone',
+    transpilePackages: ['next-mdx-remote'],
     images: {
         remotePatterns: [
             {
@@ -15,6 +16,10 @@ const nextConfig: NextConfig = {
             {
                 protocol: 'https',
                 hostname: 'tools.applemediaservices.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'raw.githubusercontent.com',
             }
         ]
     },

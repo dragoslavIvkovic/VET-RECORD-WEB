@@ -13,6 +13,7 @@ export type NavItem = {
 
 export const NAV_ITEMS: NavItem[] = [
     { label: 'Home', href: '/' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Reviews', href: '#reviews', isAnchor: true, anchorId: 'reviews' },
     { label: 'Contact', href: '/contact' },
     { label: 'About us', href: '/about' },
@@ -22,6 +23,7 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const FOOTER_NAV_ITEMS: NavItem[] = [
     { label: 'Home', href: '/' },
+    { label: 'Blog', href: '/blog' },
     { label: 'About', href: '/about' },
     { label: 'Privacy', href: '/privacy-policy' },
     { label: 'Contact', href: '/contact' },

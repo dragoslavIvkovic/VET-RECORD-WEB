@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Privacy Policy - Vet Record',
-    description: 'Read the Vet Record Privacy Policy. Learn how we collect, use, and protect your personal information.',
+    description:
+        'Read the Vet Record Privacy Policy. Learn how we collect, use, and protect your personal information.',
     alternates: {
         canonical: '/privacy-policy'
     }
@@ -32,7 +33,7 @@ export default function PrivacyPolicy() {
                     <ul className='space-y-2 rounded-lg bg-gray-50 p-4 text-gray-700'>
                         <li className='flex items-center'>
                             <span className='mr-2'>📧</span>
-                            Email: ivkemilioner2@gmail.com
+                            Email: support@vetrecord.app
                         </li>
                         <li className='flex items-center'>
                             <span className='mr-2'>🏢</span>

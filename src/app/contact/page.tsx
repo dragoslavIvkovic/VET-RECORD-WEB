@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Contact Us - Vet Record',
-    description: 'Get in touch with the Vet Record team. We are here to help with any questions about our pet health tracking app.',
+    description:
+        'Get in touch with the Vet Record team. We are here to help with any questions about our pet health tracking app.',
     alternates: {
         canonical: '/contact'
     }
@@ -12,7 +13,7 @@ export default function Contact() {
     return (
         <main className='flex min-h-screen flex-col items-center'>
             {/* Hero Section */}
-            <section className='w-full py-16 bg-linear-to-b from-[#0C4C55] to-[#0a3d44]'>
+            <section className='w-full bg-linear-to-b from-[#0C4C55] to-[#0a3d44] py-16'>
                 <div className='container mx-auto px-4 text-center'>
                     <span className='mb-4 inline-block rounded-full bg-white/20 px-4 py-1 text-sm'>Contact us</span>
                     <h1 className='mb-6 text-4xl font-bold text-white md:text-5xl'>
@@ -36,8 +37,8 @@ export default function Contact() {
                                 </svg>
                             </div>
                             <h3 className='mb-2 text-xl font-semibold text-white'>Email us</h3>
-                            <a href='mailto:ivkemilioner2@gmail.com' className='text-gray-300 hover:text-cyan-300'>
-                                ivkemilioner2@gmail.com
+                            <a href='mailto:support@vetrecord.app' className='text-gray-300 hover:text-cyan-300'>
+                                support@vetrecord.app
                             </a>
                         </div>
 
@@ -83,12 +84,10 @@ export default function Contact() {
             </section>
 
             {/* Contact Form Section */}
-            <section className='w-full py-16 bg-[#F3F5FF]'>
+            <section className='w-full bg-[#F3F5FF] py-16'>
                 <div className='container mx-auto px-4'>
                     <div className='mx-auto max-w-2xl rounded-xl bg-white p-8 shadow-xl'>
-                        <h2 className='mb-8 text-center text-3xl font-bold text-[#0C4C55]'>
-                            Drop us a message
-                        </h2>
+                        <h2 className='mb-8 text-center text-3xl font-bold text-[#0C4C55]'>Drop us a message</h2>
                         <form className='space-y-6'>
                             <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
                                 <div>

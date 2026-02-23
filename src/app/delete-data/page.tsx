@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Delete Data - Vet Record',
-    description: 'Request deletion of your data from Vet Record. Learn how to delete your account and personal information.',
+    description:
+        'Request deletion of your data from Vet Record. Learn how to delete your account and personal information.',
     alternates: {
         canonical: '/delete-data'
     }
@@ -31,7 +32,7 @@ export default function DeleteData() {
                         <h3 className='mb-4 text-xl font-semibold'>Option 2: Email Request</h3>
                         <p className='mb-4 text-gray-700'>
                             If you cannot access the app, email us at{' '}
-                            <span className='font-medium text-cyan-600'>ivkemilioner2@gmail.com</span> with:
+                            <span className='font-medium text-cyan-600'>support@vetrecord.app</span> with:
                         </p>
                         <ul className='list-disc space-y-3 pl-6 text-gray-700'>
                             <li className='leading-relaxed'>Subject line: "Data Deletion Request - VET RECORD"</li>

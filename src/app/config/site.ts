@@ -38,7 +38,7 @@ export const SITE_CONFIG = {
     company: {
         name: 'VetRecord',
         // Add more company details as needed
-        // email: 'contact@vetrecord.app',
+        // email: 'support@vetrecord.app',
         // phone: '+1-XXX-XXX-XXXX',
     },
     
