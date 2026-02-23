@@ -22,9 +22,10 @@ function parseRepoUrl(url: string): { owner: string; repo: string } {
     return { owner: match[1], repo: match[2].replace(/\.git$/, '') };
 }
 
+const DEFAULT_BLOG_REPO = 'https://github.com/dragoslavIvkovic/blogpost.git';
+
 function getBaseUrl(): { owner: string; repo: string; branch: string; path: string } {
-    const url = process.env.BLOG_GITHUB_REPO_URL;
-    if (!url) throw new Error('BLOG_GITHUB_REPO_URL is not set');
+    const url = process.env.BLOG_GITHUB_REPO_URL || DEFAULT_BLOG_REPO;
     const { owner, repo } = parseRepoUrl(url);
     const branch = process.env.BLOG_GITHUB_BRANCH || 'main';
     const path = process.env.BLOG_GITHUB_POSTS_PATH || 'posts';
@@ -83,7 +84,6 @@ function parseFrontmatter(content: string): { frontmatter: Record<string, string
  * Fetch list of blog posts from GitHub
  */
 export async function getBlogPosts(): Promise<BlogPostMeta[]> {
-    if (!process.env.BLOG_GITHUB_REPO_URL) return [];
 
     const apiUrl = getApiBaseUrl();
     const rawBase = getRawBaseUrl();
@@ -137,7 +137,6 @@ export async function getBlogPosts(): Promise<BlogPostMeta[]> {
  * Fetch single blog post by slug
  */
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {
-    if (!process.env.BLOG_GITHUB_REPO_URL) return null;
 
     const rawBase = getRawBaseUrl();
 
