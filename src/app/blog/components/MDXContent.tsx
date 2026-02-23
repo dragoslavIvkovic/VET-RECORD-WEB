@@ -4,11 +4,11 @@ import { MDXRemote, type MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 const components = {
     img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-        <span className='my-6 block overflow-hidden rounded-xl'>
+        <span className='my-4 flex justify-center overflow-hidden rounded-lg'>
             <img
                 {...props}
                 alt={props.alt || ''}
-                className='w-full object-cover'
+                className='max-h-40 max-w-full object-contain sm:max-h-48 md:max-h-56 md:max-w-md'
                 loading='lazy'
             />
         </span>

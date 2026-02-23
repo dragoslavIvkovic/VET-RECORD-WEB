@@ -89,23 +89,13 @@ export default function Contact() {
                     <div className='mx-auto max-w-2xl rounded-xl bg-white p-8 shadow-xl'>
                         <h2 className='mb-8 text-center text-3xl font-bold text-[#0C4C55]'>Drop us a message</h2>
                         <form className='space-y-6'>
-                            <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
-                                <div>
-                                    <input
-                                        type='text'
-                                        placeholder='Your name'
-                                        className='w-full rounded-lg border border-gray-200 px-4 py-3 focus:border-cyan-300 focus:outline-none'
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <input
-                                        type='email'
-                                        placeholder='Your email'
-                                        className='w-full rounded-lg border border-gray-200 px-4 py-3 focus:border-cyan-300 focus:outline-none'
-                                        required
-                                    />
-                                </div>
+                            <div>
+                                <input
+                                    type='text'
+                                    placeholder='Your name'
+                                    className='w-full rounded-lg border border-gray-200 px-4 py-3 focus:border-cyan-300 focus:outline-none'
+                                    required
+                                />
                             </div>
 
                             <div>
@@ -123,13 +113,6 @@ export default function Contact() {
                                     className='w-full rounded-lg border border-gray-200 px-4 py-3 focus:border-cyan-300 focus:outline-none'
                                     required
                                 />
-                            </div>
-
-                            <div className='flex items-center'>
-                                <input type='checkbox' id='newsletter' className='mr-2' />
-                                <label htmlFor='newsletter' className='text-sm text-gray-600'>
-                                    I agree to receive emails, newsletters and promotional messages
-                                </label>
                             </div>
 
                             <div className='text-center'>

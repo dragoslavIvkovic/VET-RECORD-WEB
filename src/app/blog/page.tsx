@@ -76,15 +76,15 @@ export default async function BlogPage() {
                             >
                                 <Link href={`/blog/${post.slug}`} className='block flex-1'>
                                     {post.image ? (
-                                        <div className='relative aspect-[16/10] overflow-hidden bg-gray-100'>
+                                        <div className='relative h-32 overflow-hidden bg-gray-100 sm:h-36 md:h-40'>
                                             <img
                                                 src={post.image}
                                                 alt={post.title}
-                                                className='h-full w-full object-cover transition-transform duration-300 group-hover:scale-105'
+                                                className='h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105'
                                             />
                                         </div>
                                     ) : (
-                                        <div className='flex aspect-[16/10] items-center justify-center bg-gradient-to-br from-[#0C4C55]/10 to-[#0a3d44]/10'>
+                                        <div className='flex h-32 items-center justify-center bg-gradient-to-br from-[#0C4C55]/10 to-[#0a3d44]/10 sm:h-36 md:h-40'>
                                             <span className='text-5xl'>🐾</span>
                                         </div>
                                     )}

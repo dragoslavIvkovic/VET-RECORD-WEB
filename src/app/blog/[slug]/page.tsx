@@ -124,11 +124,11 @@ export default async function BlogPostPage({ params }: Props) {
                 <div className='container mx-auto px-4 py-12'>
                     <div className='mx-auto max-w-3xl'>
                         {post.image && (
-                            <div className='mb-10 overflow-hidden rounded-2xl'>
+                            <div className='mb-8 flex justify-center overflow-hidden rounded-xl'>
                                 <img
                                     src={post.image}
                                     alt={post.title}
-                                    className='w-full object-cover'
+                                    className='max-h-48 w-full max-w-md object-contain sm:max-h-56 md:max-h-64'
                                 />
                             </div>
                         )}
