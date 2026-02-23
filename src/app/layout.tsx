@@ -125,7 +125,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </head>
             <body className={`min-h-screen bg-[#F3F5FF] ${poppins.className}`}>
                 <NavigationBar />
-                <div className='pt-16'>{children}</div>
+                <div className='pt-20'>{children}</div>
                 <ScrollToTop />
                 <Analytics />
             </body>

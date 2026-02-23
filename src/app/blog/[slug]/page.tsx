@@ -81,18 +81,22 @@ export default async function BlogPostPage({ params }: Props) {
         <main className='min-h-screen'>
             <article>
                 {/* Breadcrumb */}
-                <nav className='border-b border-gray-200 bg-white py-3' aria-label='Breadcrumb'>
+                <nav className='border-b border-gray-200 bg-white py-4' aria-label='Breadcrumb'>
                     <div className='container mx-auto px-4'>
-                        <ol className='flex items-center gap-2 text-sm text-gray-600'>
-                            <li>
+                        <ol className='flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-600'>
+                            <li className='shrink-0'>
                                 <Link href='/' className='hover:text-[#0C4C55]'>Home</Link>
                             </li>
-                            <li>/</li>
-                            <li>
+                            <li className='shrink-0'>/</li>
+                            <li className='shrink-0'>
                                 <Link href='/blog' className='hover:text-[#0C4C55]'>Blog</Link>
                             </li>
-                            <li>/</li>
-                            <li className='font-medium text-gray-900'>{post.title}</li>
+                            <li className='shrink-0'>/</li>
+                            <li className='min-w-0 font-medium text-gray-900'>
+                                <span className='break-words' title={post.title}>
+                                    {post.title}
+                                </span>
+                            </li>
                         </ol>
                     </div>
                 </nav>
