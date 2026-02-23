@@ -17,19 +17,19 @@ export default function NavigationBar() {
     };
 
     return (
-        <nav className='fixed top-0 right-0 left-0 z-50 border-b border-white/20 bg-[#0C4C55]'>
+        <nav className='fixed top-0 right-0 left-0 z-50 overflow-x-hidden border-b border-white/20 bg-[#0C4C55]'>
             <div className='container mx-auto px-4'>
-                <div className='flex h-20 items-center justify-between'>
+                <div className='flex h-20 min-w-0 items-center justify-between gap-4'>
                     {/* Logo */}
-                    <div className='w-[200px] shrink-0'>
+                    <div className='shrink-0'>
                         <Link href='/' className='flex items-center'>
-                            <img src='/logo.svg' alt='Vet Record - Pet Health Tracking App' className='h-12 w-auto' />
+                            <img src='/logo.svg' alt='Vet Record - Pet Health Tracking App' className='h-10 w-auto lg:h-12' />
                         </Link>
                     </div>
 
-                    {/* Desktop Navigation */}
-                    <div className='hidden items-center gap-8 md:flex'>
-                        <div className='flex items-center gap-6 text-lg font-medium text-white'>
+                    {/* Desktop Navigation - lg breakpoint (1024px) to avoid cramped layout at 768-1024px */}
+                    <div className='hidden min-w-0 flex-1 items-center justify-end gap-4 xl:gap-6 2xl:gap-8 lg:flex'>
+                        <div className='flex shrink-0 items-center gap-3 text-base font-medium text-white xl:gap-4 xl:text-lg'>
                             <Link href='/' className='whitespace-nowrap hover:text-cyan-300 transition-colors'>
                                 Home
                             </Link>
@@ -54,7 +54,7 @@ export default function NavigationBar() {
                         </div>
                         
                         {/* Desktop Store Icons */}
-                        <div className='flex items-center gap-2'>
+                        <div className='flex shrink-0 items-center gap-1 xl:gap-2'>
                             <a
                                 href={APP_LINKS.GOOGLE_PLAY}
                                 target='_blank'
@@ -64,7 +64,7 @@ export default function NavigationBar() {
                                 <img 
                                     src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
                                     alt="Download Vet Record pet health tracking app on Android"
-                                    className="h-14 w-auto"
+                                    className="h-10 w-auto xl:h-12 2xl:h-14"
                                 />
                             </a>
                             <a
@@ -76,15 +76,15 @@ export default function NavigationBar() {
                                 <img 
                                     src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" 
                                     alt="Download Vet Record pet health tracking app on iOS"
-                                    className="h-10 w-auto"
+                                    className="h-8 w-auto xl:h-10"
                                 />
                             </a>
                         </div>
                     </div>
 
-                    {/* Mobile Menu Button */}
+                    {/* Mobile Menu Button - shown below lg (1024px) */}
                     <button
-                        className='p-2 text-white md:hidden'
+                        className='shrink-0 p-2 text-white lg:hidden'
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         aria-label='Toggle menu'
                     >
@@ -103,7 +103,7 @@ export default function NavigationBar() {
 
             {/* Mobile Menu Overlay */}
             {isMenuOpen && (
-                <div className='absolute top-20 right-0 left-0 border-t border-white/10 bg-[#0C4C55] p-4 shadow-xl md:hidden'>
+                <div className='absolute top-20 right-0 left-0 max-h-[calc(100vh-5rem)] overflow-y-auto border-t border-white/10 bg-[#0C4C55] p-4 shadow-xl lg:hidden'>
                     <div className='flex flex-col space-y-4 text-center text-lg font-medium text-white'>
                         <Link 
                             href='/' 
