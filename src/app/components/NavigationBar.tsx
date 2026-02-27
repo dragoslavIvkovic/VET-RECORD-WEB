@@ -49,6 +49,7 @@ export default function NavigationBar() {
                         <div className='flex items-center gap-1 text-[15px] font-medium text-white'>
                             <Link href='/' className={`${linkBase} rounded-lg px-3 py-2`}>Home</Link>
                             <Link href='/blog' className={`${linkBase} rounded-lg px-3 py-2`}>Blog</Link>
+                            <Link href='/calculator' className={`${linkBase} rounded-lg px-3 py-2`}>Calculator</Link>
                             <a href='#reviews' onClick={scrollToReviews} className={`${linkBase} cursor-pointer rounded-lg px-3 py-2`}>Reviews</a>
                             <Link href='/contact' className={`${linkBase} rounded-lg px-3 py-2`}>Contact</Link>
 
@@ -142,6 +143,7 @@ export default function NavigationBar() {
                             <p className='px-4 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-widest text-white/40'>Menu</p>
                             <Link href='/' className='rounded-lg px-4 py-3 text-base font-medium text-white hover:bg-white/10 hover:text-cyan-300' onClick={() => setIsMenuOpen(false)}>Home</Link>
                             <Link href='/blog' className='rounded-lg px-4 py-3 text-base font-medium text-white hover:bg-white/10 hover:text-cyan-300' onClick={() => setIsMenuOpen(false)}>Blog</Link>
+                            <Link href='/calculator' className='rounded-lg px-4 py-3 text-base font-medium text-white hover:bg-white/10 hover:text-cyan-300' onClick={() => setIsMenuOpen(false)}>Calculator</Link>
                             <a href='#reviews' onClick={scrollToReviews} className='cursor-pointer rounded-lg px-4 py-3 text-base font-medium text-white hover:bg-white/10 hover:text-cyan-300'>Reviews</a>
                             <Link href='/contact' className='rounded-lg px-4 py-3 text-base font-medium text-white hover:bg-white/10 hover:text-cyan-300' onClick={() => setIsMenuOpen(false)}>Contact</Link>
 

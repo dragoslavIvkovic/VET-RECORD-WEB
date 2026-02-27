@@ -90,16 +90,18 @@ export default async function BlogPage() {
                     <Link href={`/blog/${featured.slug}`} className='group mb-10 block'>
                         <article className='overflow-hidden rounded-3xl bg-white shadow ring-1 ring-gray-200 transition-shadow hover:shadow-lg'>
                             
-                            {/* Image area: teal gradient bg, image centred, natural size, no crop */}
-                            <div className='flex min-h-[220px] w-full items-center justify-center bg-gradient-to-b from-[#d6eef1] to-[#bde1e6] px-8 py-10 sm:min-h-[260px]'>
+                            {/* Image area: full cover image */}
+                            <div className='relative w-full aspect-2/1 overflow-hidden bg-gray-100 sm:aspect-[2.5/1]'>
                                 {featured.image ? (
                                     <img
                                         src={featured.image}
                                         alt={featured.title}
-                                        className='h-auto max-h-[200px] w-auto max-w-full object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-[1.03] sm:max-h-[240px]'
+                                        className='absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]'
                                     />
                                 ) : (
-                                    <span className='text-7xl opacity-20'>🐾</span>
+                                    <div className='flex h-full w-full items-center justify-center bg-linear-to-b from-[#d6eef1] to-[#bde1e6]'>
+                                        <span className='text-7xl opacity-20'>🐾</span>
+                                    </div>
                                 )}
                             </div>
 
@@ -161,16 +163,18 @@ export default async function BlogPage() {
                                 <Link key={post.slug} href={`/blog/${post.slug}`} className='group flex'>
                                     <article className='flex w-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200 transition-all duration-200 hover:-translate-y-1 hover:shadow-md'>
 
-                                        {/* Image — natural ratio, never cut */}
-                                        <div className='flex min-h-[160px] w-full items-center justify-center bg-gradient-to-b from-[#d6eef1] to-[#bde1e6] px-6 py-6'>
+                                        {/* Image — cover */}
+                                        <div className='relative w-full aspect-video overflow-hidden bg-gray-100'>
                                             {post.image ? (
                                                 <img
                                                     src={post.image}
                                                     alt={post.title}
-                                                    className='h-auto max-h-[140px] w-auto max-w-full object-contain drop-shadow-lg transition-transform duration-300 group-hover:scale-[1.04]'
+                                                    className='absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]'
                                                 />
                                             ) : (
-                                                <span className='text-5xl opacity-20'>🐾</span>
+                                                <div className='flex h-full w-full items-center justify-center bg-linear-to-b from-[#d6eef1] to-[#bde1e6]'>
+                                                    <span className='text-5xl opacity-20'>🐾</span>
+                                                </div>
                                             )}
                                         </div>
 

@@ -130,14 +130,14 @@ export default async function BlogPostPage({ params }: Props) {
             <article itemScope itemType='https://schema.org/BlogPosting'>
                 {/* ── Header / Hero ───────────────────────────────────── */}
                 <header className='bg-[#0C4C55]'>
-                    {/* Cover image — natural size, never cropped */}
+                    {/* Cover image */}
                     {post.image && (
-                        <div className='flex w-full items-center justify-center bg-gradient-to-b from-[#d6eef1] to-[#bde1e6] px-8 py-10'>
+                        <div className='relative w-full aspect-21/9 overflow-hidden bg-[#0C4C55] sm:aspect-3/1 lg:aspect-4/1'>
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src={post.image}
                                 alt={post.title}
-                                className='h-auto max-h-64 w-auto max-w-xs object-contain drop-shadow-2xl md:max-h-72 md:max-w-sm'
+                                className='absolute inset-0 h-full w-full object-cover'
                                 itemProp='image'
                             />
                         </div>
