@@ -35,10 +35,10 @@ export default function Footer() {
                     {/* Download Icons */}
                     <div className='flex items-center gap-3'>
                         <a href={APP_LINKS.GOOGLE_PLAY} target='_blank' rel='noopener noreferrer' className='transition hover:opacity-80'>
-                            <img src='/images/download/googleplay-light.png' alt='Get it on Google Play' className='h-11' />
+                            <img src='/images/download/googleplay.png' alt='Get it on Google Play' className='h-11' />
                         </a>
                         <a href={APP_LINKS.APP_STORE} target='_blank' rel='noopener noreferrer' className='transition hover:opacity-80'>
-                            <img src='/images/download/appstore-light.png' alt='Download on the App Store' className='h-11' />
+                            <img src='/images/download/appstore.png' alt='Download on the App Store' className='h-11' />
                         </a>
                     </div>
 

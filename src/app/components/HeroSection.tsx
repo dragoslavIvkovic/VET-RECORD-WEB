@@ -64,7 +64,7 @@ export default function HeroSection() {
                                     rel='noopener noreferrer'
                                     className='transition hover:scale-105'
                                 >
-                                    <img src='/images/download/googleplay-dark.png' alt='Get it on Google Play' className='h-14' />
+                                    <img src='/images/download/googleplay.png' alt='Get it on Google Play' className='h-14' />
                                 </a>
                                 <a
                                     href={APP_LINKS.APP_STORE}
@@ -72,7 +72,7 @@ export default function HeroSection() {
                                     rel='noopener noreferrer'
                                     className='transition hover:scale-105'
                                 >
-                                    <img src='/images/download/appstore-dark.png' alt='Download on the App Store' className='h-14' />
+                                    <img src='/images/download/appstore.png' alt='Download on the App Store' className='h-14' />
                                 </a>
                             </div>
                         </div>

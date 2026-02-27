@@ -101,10 +101,10 @@ export default function NavigationBar() {
                         {/* Store badges */}
                         <div className='flex shrink-0 items-center gap-3'>
                             <a href={APP_LINKS.GOOGLE_PLAY} target='_blank' rel='noopener noreferrer' className='transition hover:scale-105'>
-                                <img src='/images/download/googleplay-dark.png' alt='Get it on Google Play' className='h-9' />
+                                <img src='/images/download/googleplay.png' alt='Get it on Google Play' className='h-9' />
                             </a>
                             <a href={APP_LINKS.APP_STORE} target='_blank' rel='noopener noreferrer' className='transition hover:scale-105'>
-                                <img src='/images/download/appstore-dark.png' alt='Download on the App Store' className='h-9' />
+                                <img src='/images/download/appstore.png' alt='Download on the App Store' className='h-9' />
                             </a>
                         </div>
                     </div>
@@ -158,10 +158,10 @@ export default function NavigationBar() {
                             <div className='mx-4 my-2 border-t border-white/10' />
                             <div className='flex items-center justify-center gap-3 px-4 py-3'>
                                 <a href={APP_LINKS.GOOGLE_PLAY} target='_blank' rel='noopener noreferrer'>
-                                    <img src='/images/download/googleplay-dark.png' alt='Get it on Google Play' className='h-10' />
+                                    <img src='/images/download/googleplay.png' alt='Get it on Google Play' className='h-10' />
                                 </a>
                                 <a href={APP_LINKS.APP_STORE} target='_blank' rel='noopener noreferrer'>
-                                    <img src='/images/download/appstore-dark.png' alt='Download on the App Store' className='h-10' />
+                                    <img src='/images/download/appstore.png' alt='Download on the App Store' className='h-10' />
                                 </a>
                             </div>
                         </div>
