@@ -9,6 +9,7 @@ export type BlogPostMeta = {
     date: string;
     image?: string;
     author?: string;
+    tldr?: string;
 };
 
 export type BlogPost = BlogPostMeta & {
@@ -124,7 +125,8 @@ export async function getBlogPosts(): Promise<BlogPostMeta[]> {
             description: frontmatter.description || '',
             date: frontmatter.date || '',
             image: imageUrl || frontmatter.image,
-            author: frontmatter.author
+            author: frontmatter.author,
+            tldr: frontmatter.tldr || frontmatter.summary || undefined
         });
     }
 
@@ -162,6 +164,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
             date: frontmatter.date || '',
             image: imageUrl || frontmatter.image,
             author: frontmatter.author,
+            tldr: frontmatter.tldr || frontmatter.summary || undefined,
             content
         };
     }

@@ -23,11 +23,12 @@ export default function Contact() {
                         We're here to help with any questions about the VET RECORD app
                     </p>
 
-                    <div className='mx-auto grid max-w-4xl gap-8 md:grid-cols-2 lg:grid-cols-3'>
-                        {/* Email Card */}
-                        <div className='rounded-xl bg-white/10 p-6 backdrop-blur-sm'>
+                    <div className='flex justify-center'>
+                        <a
+                            href='mailto:support@vetrecord.app'
+                            className='flex flex-col items-center rounded-xl bg-white/10 p-8 backdrop-blur-sm transition hover:bg-white/15'>
                             <div className='mb-4 text-cyan-300'>
-                                <svg className='mx-auto h-8 w-8' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                                <svg className='h-12 w-12' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                                     <path
                                         strokeLinecap='round'
                                         strokeLinejoin='round'
@@ -37,48 +38,8 @@ export default function Contact() {
                                 </svg>
                             </div>
                             <h3 className='mb-2 text-xl font-semibold text-white'>Email us</h3>
-                            <a href='mailto:support@vetrecord.app' className='text-gray-300 hover:text-cyan-300'>
-                                support@vetrecord.app
-                            </a>
-                        </div>
-
-                        {/* Location Card */}
-                        <div className='rounded-xl bg-white/10 p-6 backdrop-blur-sm'>
-                            <div className='mb-4 text-cyan-300'>
-                                <svg className='mx-auto h-8 w-8' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                                    <path
-                                        strokeLinecap='round'
-                                        strokeLinejoin='round'
-                                        strokeWidth={2}
-                                        d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
-                                    />
-                                    <path
-                                        strokeLinecap='round'
-                                        strokeLinejoin='round'
-                                        strokeWidth={2}
-                                        d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'
-                                    />
-                                </svg>
-                            </div>
-                            <h3 className='mb-2 text-xl font-semibold text-white'>Location</h3>
-                            <p className='text-gray-300'>Serbia</p>
-                        </div>
-
-                        {/* Support Card */}
-                        <div className='rounded-xl bg-white/10 p-6 backdrop-blur-sm'>
-                            <div className='mb-4 text-cyan-300'>
-                                <svg className='mx-auto h-8 w-8' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                                    <path
-                                        strokeLinecap='round'
-                                        strokeLinejoin='round'
-                                        strokeWidth={2}
-                                        d='M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z'
-                                    />
-                                </svg>
-                            </div>
-                            <h3 className='mb-2 text-xl font-semibold text-white'>Support</h3>
-                            <p className='text-gray-300'>24/7 Available</p>
-                        </div>
+                            <span className='text-lg text-gray-300 hover:text-cyan-300'>support@vetrecord.app</span>
+                        </a>
                     </div>
                 </div>
             </section>
