@@ -14,7 +14,9 @@ export default function Contact() {
         <main className='flex min-h-screen flex-col items-center'>
             <section className='w-full bg-linear-to-b from-[#0C4C55] to-[#0a3d44] py-16'>
                 <div className='container mx-auto px-4 text-center'>
-                    <span className='mb-4 inline-block rounded-full bg-white/20 px-4 py-1 text-sm text-white'>Contact us</span>
+                    <span className='mb-4 inline-block rounded-full bg-white/20 px-4 py-1 text-sm text-white'>
+                        Contact us
+                    </span>
                     <h1 className='mb-6 text-4xl font-bold text-white md:text-5xl'>
                         Any query? <span className='text-cyan-300'>Let&apos;s talk</span>
                     </h1>
