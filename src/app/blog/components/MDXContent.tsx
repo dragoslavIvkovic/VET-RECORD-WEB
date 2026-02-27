@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import Image from 'next/image';
 import { MDXRemote, type MDXRemoteSerializeResult } from 'next-mdx-remote';
 
@@ -55,9 +56,19 @@ const components = {
             {...props}
         />
     ),
-    p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
-        <p className='mb-5 text-base leading-8 text-gray-700' {...props} />
-    ),
+    p: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => {
+        // MDX wraps standalone images in <p>. Detect this and avoid invalid
+        // block-in-inline nesting (<figure> inside <p>).
+        const arr = React.Children.toArray(children);
+        if (
+            arr.length === 1 &&
+            React.isValidElement(arr[0]) &&
+            (arr[0] as React.ReactElement<{ src?: string }>).props?.src !== undefined
+        ) {
+            return <>{children}</>;
+        }
+        return <p className='mb-5 text-base leading-8 text-gray-700' {...props}>{children}</p>;
+    },
     ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
         <ul className='mb-6 space-y-2 pl-0 text-gray-700' {...props} />
     ),

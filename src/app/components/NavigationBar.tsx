@@ -1,99 +1,126 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { APP_LINKS } from '../config/links';
 
 export default function NavigationBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMoreOpen, setIsMoreOpen] = useState(false);
+    const moreRef = useRef<HTMLDivElement>(null);
 
     const scrollToReviews = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        const reviewsSection = document.getElementById('reviews');
-        if (reviewsSection) {
-            reviewsSection.scrollIntoView({ behavior: 'smooth' });
-            setIsMenuOpen(false);
+        setIsMenuOpen(false);
+        const el = document.getElementById('reviews');
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            window.location.href = '/#reviews';
         }
     };
 
+    useEffect(() => {
+        function handleClickOutside(e: MouseEvent) {
+            if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+                setIsMoreOpen(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const linkBase = 'whitespace-nowrap transition-colors hover:text-cyan-300';
+
     return (
-        <nav className='fixed top-0 right-0 left-0 z-50 border-b border-white/20 bg-[#0C4C55]'>
+        <nav className='fixed top-0 right-0 left-0 z-50 border-b border-white/10 bg-[#0C4C55]/95 backdrop-blur-md'>
             <div className='container mx-auto px-4'>
-                <div className='flex h-20 min-w-0 items-center justify-between gap-4'>
-                    {/* Logo */}
-                    <div className='shrink-0'>
-                        <Link href='/' className='flex items-center'>
-                            <img src='/logo.svg' alt='Vet Record - Pet Health Tracking App' className='h-10 w-auto lg:h-12' />
-                        </Link>
+                <div className='flex h-16 items-center justify-between gap-3 lg:h-[72px]'>
+
+                    {/* ── Logo ────────────────────────────────── */}
+                    <Link href='/' className='shrink-0'>
+                        <img src='/logo.svg' alt='Vet Record' className='h-9 w-auto lg:h-10' />
+                    </Link>
+
+                    {/* ── Desktop nav (lg+) ───────────────────── */}
+                    <div className='hidden flex-1 items-center justify-end gap-5 lg:flex xl:gap-7'>
+
+                        {/* Primary links */}
+                        <div className='flex items-center gap-1 text-[15px] font-medium text-white'>
+                            <Link href='/' className={`${linkBase} rounded-lg px-3 py-2`}>Home</Link>
+                            <Link href='/blog' className={`${linkBase} rounded-lg px-3 py-2`}>Blog</Link>
+                            <a href='#reviews' onClick={scrollToReviews} className={`${linkBase} cursor-pointer rounded-lg px-3 py-2`}>Reviews</a>
+                            <Link href='/contact' className={`${linkBase} rounded-lg px-3 py-2`}>Contact</Link>
+
+                            {/* "More" dropdown for secondary links */}
+                            <div className='relative' ref={moreRef}>
+                                <button
+                                    onClick={() => setIsMoreOpen(!isMoreOpen)}
+                                    className={`${linkBase} flex cursor-pointer items-center gap-1 rounded-lg px-3 py-2`}
+                                >
+                                    More
+                                    <svg
+                                        className={`h-3.5 w-3.5 transition-transform duration-200 ${isMoreOpen ? 'rotate-180' : ''}`}
+                                        fill='none' viewBox='0 0 24 24' stroke='currentColor'
+                                    >
+                                        <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2.5} d='M19 9l-7 7-7-7' />
+                                    </svg>
+                                </button>
+
+                                {isMoreOpen && (
+                                    <div className='absolute right-0 top-full mt-2 w-48 overflow-hidden rounded-xl border border-white/10 bg-[#0C4C55] shadow-xl ring-1 ring-black/10'>
+                                        <Link
+                                            href='/about'
+                                            className='block px-4 py-2.5 text-sm text-white/90 transition-colors hover:bg-white/10 hover:text-cyan-300'
+                                            onClick={() => setIsMoreOpen(false)}
+                                        >
+                                            About Us
+                                        </Link>
+                                        <Link
+                                            href='/privacy-policy'
+                                            className='block px-4 py-2.5 text-sm text-white/90 transition-colors hover:bg-white/10 hover:text-cyan-300'
+                                            onClick={() => setIsMoreOpen(false)}
+                                        >
+                                            Privacy Policy
+                                        </Link>
+                                        <Link
+                                            href='/delete-data'
+                                            className='block px-4 py-2.5 text-sm text-white/90 transition-colors hover:bg-white/10 hover:text-cyan-300'
+                                            onClick={() => setIsMoreOpen(false)}
+                                        >
+                                            Delete Data
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Divider */}
+                        <div className='h-6 w-px bg-white/20' />
+
+                        {/* Store badges */}
+                        <div className='flex shrink-0 items-center gap-3'>
+                            <a href={APP_LINKS.GOOGLE_PLAY} target='_blank' rel='noopener noreferrer' className='transition hover:scale-105'>
+                                <img src='/images/download/googleplay-dark.png' alt='Get it on Google Play' className='h-9' />
+                            </a>
+                            <a href={APP_LINKS.APP_STORE} target='_blank' rel='noopener noreferrer' className='transition hover:scale-105'>
+                                <img src='/images/download/appstore-dark.png' alt='Download on the App Store' className='h-9' />
+                            </a>
+                        </div>
                     </div>
 
-                    {/* Desktop Navigation - lg breakpoint (1024px) to avoid cramped layout at 768-1024px */}
-                    <div className='hidden min-w-0 flex-1 items-center justify-end gap-4 xl:gap-6 2xl:gap-8 lg:flex'>
-                        <div className='flex shrink-0 items-center gap-3 text-base font-medium text-white xl:gap-4 xl:text-lg'>
-                            <Link href='/' className='whitespace-nowrap hover:text-cyan-300 transition-colors'>
-                                Home
-                            </Link>
-                            <Link href='/blog' className='whitespace-nowrap hover:text-cyan-300 transition-colors'>
-                                Blog
-                            </Link>
-                            <a href='#reviews' onClick={scrollToReviews} className='whitespace-nowrap hover:text-cyan-300 transition-colors cursor-pointer'>
-                                Reviews
-                            </a>
-                            <Link href='/contact' className='whitespace-nowrap hover:text-cyan-300 transition-colors'>
-                                Contact
-                            </Link>
-                            <Link href='/about' className='whitespace-nowrap hover:text-cyan-300 transition-colors'>
-                                About us
-                            </Link>
-                            <Link href='/privacy-policy' className='whitespace-nowrap hover:text-cyan-300 transition-colors'>
-                                Privacy Policy
-                            </Link>
-                            <Link href='/delete-data' className='whitespace-nowrap hover:text-cyan-300 transition-colors'>
-                                Delete Data
-                            </Link>
-                        </div>
-                        
-                        {/* Desktop Store Icons */}
-                        <div className='flex shrink-0 items-center gap-1 xl:gap-2'>
-                            <a
-                                href={APP_LINKS.GOOGLE_PLAY}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                className='transition hover:scale-105'
-                            >
-                                <img 
-                                    src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
-                                    alt="Download Vet Record pet health tracking app on Android"
-                                    className="h-10 w-auto xl:h-12 2xl:h-14"
-                                />
-                            </a>
-                            <a
-                                href={APP_LINKS.APP_STORE}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                className='transition hover:scale-105'
-                            >
-                                <img 
-                                    src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" 
-                                    alt="Download Vet Record pet health tracking app on iOS"
-                                    className="h-8 w-auto xl:h-10"
-                                />
-                            </a>
-                        </div>
-                    </div>
-
-                    {/* Mobile Menu Button - shown below lg (1024px) */}
+                    {/* ── Mobile hamburger (< lg) ────────────── */}
                     <button
                         className='shrink-0 p-2 text-white lg:hidden'
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         aria-label='Toggle menu'
                     >
                         {isMenuOpen ? (
-                            <svg className='h-8 w-8' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <svg className='h-7 w-7' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
                             </svg>
                         ) : (
-                            <svg className='h-8 w-8' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <svg className='h-7 w-7' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 6h16M4 12h16M4 18h16' />
                             </svg>
                         )}
@@ -101,95 +128,44 @@ export default function NavigationBar() {
                 </div>
             </div>
 
-            {/* Mobile Menu Overlay - fixed so it's not clipped, high z-index */}
+            {/* ── Mobile Menu ────────────────────────────────── */}
             {isMenuOpen && (
                 <div className='contents'>
                     <div
-                        className='fixed inset-0 top-20 z-[55] bg-black/30 lg:hidden'
+                        className='fixed inset-0 top-16 z-[55] bg-black/40 lg:hidden'
                         aria-hidden
                         onClick={() => setIsMenuOpen(false)}
                     />
-                    <div className='fixed inset-x-0 top-20 z-[60] max-h-[calc(100vh-5rem)] overflow-y-auto border-b border-white/20 bg-[#0C4C55] p-4 shadow-2xl lg:hidden'>
-                        <div className='flex flex-col gap-1 text-left text-lg font-medium text-white'>
-                        <Link 
-                            href='/' 
-                            className='block py-3 px-4 rounded-lg hover:bg-white/10 hover:text-cyan-300 active:bg-white/15'
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Home
-                        </Link>
-                        <Link 
-                            href='/blog' 
-                            className='block py-3 px-4 rounded-lg hover:bg-white/10 hover:text-cyan-300 active:bg-white/15'
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Blog
-                        </Link>
-                        <a 
-                            href='#reviews' 
-                            onClick={scrollToReviews} 
-                            className='block py-3 px-4 rounded-lg hover:bg-white/10 hover:text-cyan-300 active:bg-white/15 cursor-pointer'
-                        >
-                            Reviews
-                        </a>
-                        <Link 
-                            href='/contact' 
-                            className='block py-3 px-4 rounded-lg hover:bg-white/10 hover:text-cyan-300 active:bg-white/15'
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Contact
-                        </Link>
-                        <Link 
-                            href='/about' 
-                            className='block py-3 px-4 rounded-lg hover:bg-white/10 hover:text-cyan-300 active:bg-white/15'
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            About us
-                        </Link>
-                        <Link 
-                            href='/privacy-policy' 
-                            className='block py-3 px-4 rounded-lg hover:bg-white/10 hover:text-cyan-300 active:bg-white/15'
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Privacy Policy
-                        </Link>
-                        <Link 
-                            href='/delete-data' 
-                            className='block py-3 px-4 rounded-lg hover:bg-white/10 hover:text-cyan-300 active:bg-white/15'
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Delete Data
-                        </Link>
-                        
-                        {/* Mobile Store Icons */}
-                        <div className='mt-4 flex flex-wrap justify-center items-center gap-3 pt-4 border-t border-white/20'>
-                            <a
-                                href={APP_LINKS.GOOGLE_PLAY}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                className='shrink-0'
-                            >
-                                <img 
-                                    src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
-                                    alt="Get it on Google Play"
-                                    className="h-10 w-auto max-w-[140px]"
-                                />
-                            </a>
-                            <a
-                                href={APP_LINKS.APP_STORE}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                className='shrink-0'
-                            >
-                                <img 
-                                    src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" 
-                                    alt="Download on the App Store"
-                                    className="h-8 w-auto max-w-[120px]"
-                                />
-                            </a>
+                    <div className='fixed inset-x-0 top-16 z-[60] max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-white/10 bg-[#0C4C55] shadow-2xl lg:hidden'>
+                        <div className='flex flex-col p-3'>
+                            {/* Primary */}
+                            <p className='px-4 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-widest text-white/40'>Menu</p>
+                            <Link href='/' className='rounded-lg px-4 py-3 text-base font-medium text-white hover:bg-white/10 hover:text-cyan-300' onClick={() => setIsMenuOpen(false)}>Home</Link>
+                            <Link href='/blog' className='rounded-lg px-4 py-3 text-base font-medium text-white hover:bg-white/10 hover:text-cyan-300' onClick={() => setIsMenuOpen(false)}>Blog</Link>
+                            <a href='#reviews' onClick={scrollToReviews} className='cursor-pointer rounded-lg px-4 py-3 text-base font-medium text-white hover:bg-white/10 hover:text-cyan-300'>Reviews</a>
+                            <Link href='/contact' className='rounded-lg px-4 py-3 text-base font-medium text-white hover:bg-white/10 hover:text-cyan-300' onClick={() => setIsMenuOpen(false)}>Contact</Link>
+
+                            {/* Divider */}
+                            <div className='mx-4 my-2 border-t border-white/10' />
+
+                            {/* Secondary */}
+                            <p className='px-4 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-widest text-white/40'>More</p>
+                            <Link href='/about' className='rounded-lg px-4 py-3 text-sm text-white/80 hover:bg-white/10 hover:text-cyan-300' onClick={() => setIsMenuOpen(false)}>About Us</Link>
+                            <Link href='/privacy-policy' className='rounded-lg px-4 py-3 text-sm text-white/80 hover:bg-white/10 hover:text-cyan-300' onClick={() => setIsMenuOpen(false)}>Privacy Policy</Link>
+                            <Link href='/delete-data' className='rounded-lg px-4 py-3 text-sm text-white/80 hover:bg-white/10 hover:text-cyan-300' onClick={() => setIsMenuOpen(false)}>Delete Data</Link>
+
+                            {/* Store badges */}
+                            <div className='mx-4 my-2 border-t border-white/10' />
+                            <div className='flex items-center justify-center gap-3 px-4 py-3'>
+                                <a href={APP_LINKS.GOOGLE_PLAY} target='_blank' rel='noopener noreferrer'>
+                                    <img src='/images/download/googleplay-dark.png' alt='Get it on Google Play' className='h-10' />
+                                </a>
+                                <a href={APP_LINKS.APP_STORE} target='_blank' rel='noopener noreferrer'>
+                                    <img src='/images/download/appstore-dark.png' alt='Download on the App Store' className='h-10' />
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
             )}
         </nav>

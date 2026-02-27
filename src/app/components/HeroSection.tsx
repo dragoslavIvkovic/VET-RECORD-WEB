@@ -30,7 +30,7 @@ export default function HeroSection() {
     }, []);
 
     return (
-        <section className='relative px-4 py-4 bg-[#0C4C55] overflow-hidden'>
+        <section className='relative px-4 py-3 bg-[#0C4C55] overflow-hidden md:py-4'>
             {/* Animated background elements */}
             <div className='absolute inset-0 overflow-hidden'>
                 <div className='absolute -top-40 -right-40 w-80 h-80 bg-cyan-400/10 rounded-full blur-3xl animate-pulse' />
@@ -38,84 +38,68 @@ export default function HeroSection() {
             </div>
 
             <div className='container mx-auto px-4 relative z-10'>
-                <div className='grid gap-4 md:grid-cols-2 md:items-center'>
+                <div className='grid gap-3 md:gap-4 md:grid-cols-2 md:items-center'>
                     {/* Left Column - Text Content */}
-                    <div className={`z-10 space-y-3 text-white transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-                        <h1 className='text-4xl leading-tight font-bold md:text-5xl lg:text-6xl'>
+                    <div className={`z-10 space-y-2 md:space-y-3 text-white transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+                        <h1 className='text-3xl leading-tight font-bold md:text-5xl lg:text-6xl'>
                             <span className={`inline-block transition-all duration-700 delay-100 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-                                Manage Your Pet's
+                                Your Pet&apos;s Entire Medical History.
                             </span>
                             <br />
                             <span className={`inline-block text-cyan-300 transition-all duration-700 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-                                Health with Vet Record
+                                In One Secure App.
                             </span>
                         </h1>
-                        <p className={`text-lg text-gray-300 transition-all duration-700 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-                            Track your pet's vaccinations, medical treatments, and more – all in one place. Download the
-                            Vet Record app today to ensure your pets receive the care they deserve!
+                        <p className={`text-base text-gray-300 transition-all duration-700 delay-500 md:text-lg ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+                            Track vaccines, weight, medications, and daily care — without paper records or forgotten appointments.
                         </p>
 
-                        {/* Pet Avatars */}
-                        <div className={`space-y-2 transition-all duration-700 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-                            <div className='flex -space-x-4'>
-                                {[1, 2, 3, 4].map((num, idx) => (
-                                    <img
-                                        key={num}
-                                        src={`/images/banavt${num}.png`}
-                                        alt='Vet Record pet health app happy user'
-                                        className={`h-12 w-12 rounded-full border-2 border-white transition-all duration-500 hover:scale-110 hover:z-10`}
-                                        style={{ transitionDelay: `${800 + idx * 100}ms` }}
-                                    />
-                                ))}
-                            </div>
-                            <div>
-                                <h2 className='text-xl font-bold'>TRY FOR FREE</h2>
-                                <p className='text-gray-300'>
-                                    The best application to manage your pet's health worldwide
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Download Buttons */}
-                        <div className={`space-y-2 transition-all duration-700 delay-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-                            <span className='inline-block text-lg'>Download</span>
-                            <div className='flex flex-col gap-2 sm:flex-row sm:items-center'>
+                        {/* Download CTA */}
+                        <div className={`space-y-2 transition-all duration-700 delay-600 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+                            <p className='text-sm font-semibold uppercase tracking-wider text-cyan-300'>Download Free — No Credit Card Required</p>
+                            <div className='flex items-center gap-4'>
                                 <a
                                     href={APP_LINKS.GOOGLE_PLAY}
                                     target='_blank'
                                     rel='noopener noreferrer'
-                                    className='inline-block transition-all duration-300 hover:scale-105 hover:opacity-90'
+                                    className='transition hover:scale-105'
                                 >
-                                    <img 
-                                        src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
-                                        alt="Download Vet Record pet health tracking app on Android"
-                                        className="h-[70px] w-auto"
-                                    />
+                                    <img src='/images/download/googleplay-dark.png' alt='Get it on Google Play' className='h-14' />
                                 </a>
-
                                 <a
                                     href={APP_LINKS.APP_STORE}
                                     target='_blank'
                                     rel='noopener noreferrer'
-                                    className='inline-block transition-all duration-300 hover:scale-105 hover:opacity-90'
+                                    className='transition hover:scale-105'
                                 >
-                                    <img 
-                                        src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1502323200" 
-                                        alt="Download Vet Record pet health tracking app on iOS"
-                                        className="h-12 w-auto"
-                                    />
+                                    <img src='/images/download/appstore-dark.png' alt='Download on the App Store' className='h-14' />
                                 </a>
+                            </div>
+                        </div>
+
+                        {/* Social proof */}
+                        <div className={`flex items-center gap-3 transition-all duration-700 delay-800 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+                            <div className='flex -space-x-3'>
+                                {[1, 2, 3, 4].map((num) => (
+                                    <img
+                                        key={num}
+                                        src={`/images/banavt${num}.png`}
+                                        alt='Happy pet owner'
+                                        className='h-10 w-10 rounded-full border-2 border-white md:h-11 md:w-11'
+                                    />
+                                ))}
+                            </div>
+                            <div className='text-sm text-gray-300'>
+                                <span className='font-semibold text-white'>4.5 ★</span> 1,399 reviews • Free to start
                             </div>
                         </div>
                     </div>
 
                     {/* Right Column - App Screenshot */}
                     <div className={`relative z-10 block transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-                        <div className='relative mx-auto w-full'>
-                            {/* Floating phone effect */}
+                        <div className='relative mx-auto w-full max-w-xs md:max-w-none'>
                             <div className='animate-float'>
-                                {/* App Screenshots Slider */}
-                                <div className='relative aspect-9/19 w-full max-h-200'>
+                                <div className='relative aspect-9/19 w-full max-h-[400px] md:max-h-200'>
                                     {slides.map((slide, index) => (
                                         <img
                                             key={slide.src}
@@ -131,16 +115,16 @@ export default function HeroSection() {
                                 </div>
                             </div>
                             {/* Slider Dots */}
-                            <div className='absolute -bottom-8 left-1/2 z-30 flex -translate-x-1/2 transform space-x-2'>
+                            <div className='absolute -bottom-4 left-1/2 z-30 flex -translate-x-1/2 transform space-x-1.5 md:-bottom-8 md:space-x-2'>
                                 {slides.map((_, index) => (
                                     <button
                                         type='button'
                                         key={`slide-${index + 1}`}
                                         onClick={() => setCurrentSlide(index)}
-                                        className={`h-2 rounded-full transition-all duration-300 ${
+                                        className={`h-1.5 rounded-full transition-all duration-300 md:h-2 ${
                                             currentSlide === index 
-                                                ? 'bg-white w-6' 
-                                                : 'bg-white/50 w-2 hover:bg-white/70'
+                                                ? 'bg-white w-5 md:w-6' 
+                                                : 'bg-white/50 w-1.5 md:w-2 hover:bg-white/70'
                                         }`}
                                         aria-label={`Go to slide ${index + 1}`}
                                     />

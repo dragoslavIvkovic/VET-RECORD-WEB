@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-    interface Feature {
+interface Feature {
     icon: string;
     title: string;
     description: string;
