@@ -91,7 +91,7 @@ export default async function BlogPage() {
                         <article className='overflow-hidden rounded-3xl bg-white shadow ring-1 ring-gray-200 transition-shadow hover:shadow-lg'>
                             
                             {/* Image area: full cover image */}
-                            <div className='relative w-full aspect-2/1 overflow-hidden bg-gray-100 sm:aspect-[2.5/1]'>
+                            <div className='relative w-full aspect-video overflow-hidden bg-[#0C4C55]/5 sm:aspect-[2.5/1]'>
                                 {featured.image ? (
                                     <img
                                         src={featured.image}
@@ -169,7 +169,7 @@ export default async function BlogPage() {
                                                 <img
                                                     src={post.image}
                                                     alt={post.title}
-                                                    className='absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]'
+                                                    className='absolute inset-0 h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-[1.04]'
                                                 />
                                             ) : (
                                                 <div className='flex h-full w-full items-center justify-center bg-linear-to-b from-[#d6eef1] to-[#bde1e6]'>

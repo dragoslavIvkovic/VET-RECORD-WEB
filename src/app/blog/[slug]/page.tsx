@@ -132,12 +132,12 @@ export default async function BlogPostPage({ params }: Props) {
                 <header className='bg-[#0C4C55]'>
                     {/* Cover image */}
                     {post.image && (
-                        <div className='relative w-full aspect-21/9 overflow-hidden bg-[#0C4C55] sm:aspect-3/1 lg:aspect-4/1'>
+                        <div className='relative w-full aspect-video overflow-hidden bg-[#0C4C55]/5 sm:aspect-[2.5/1] lg:aspect-[3/1]'>
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src={post.image}
                                 alt={post.title}
-                                className='absolute inset-0 h-full w-full object-cover'
+                                className='absolute inset-0 h-full w-full object-contain p-4'
                                 itemProp='image'
                             />
                         </div>
