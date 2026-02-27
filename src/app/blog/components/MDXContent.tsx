@@ -30,7 +30,7 @@ function BlogImage({ src, alt }: { src?: string; alt?: string }) {
 
 const components = {
     img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
-        <BlogImage src={props.src} alt={props.alt} />
+        <BlogImage src={typeof props.src === 'string' ? props.src : undefined} alt={props.alt} />
     ),
     h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h1
