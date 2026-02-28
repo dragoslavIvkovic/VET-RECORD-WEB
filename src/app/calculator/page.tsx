@@ -22,6 +22,7 @@ export default function CalculatorPage() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     
     const [ageGroup, setAgeGroup] = useState<'puppy' | 'adult' | 'senior'>('adult');
+    const [weightUnit, setWeightUnit] = useState<'kg' | 'lbs' | 'oz'>('lbs');
     const [currentWeight, setCurrentWeight] = useState<string>('');
     const [result, setResult] = useState<{ 
         status: string; 
@@ -30,8 +31,26 @@ export default function CalculatorPage() {
         min: number; 
         max: number; 
         weight: number;
+        weightDisplay: string;
         percent: number;
     } | null>(null);
+
+    const toKg = (value: number, unit: 'kg' | 'lbs' | 'oz'): number => {
+        if (unit === 'lbs') return value * 0.453592;
+        if (unit === 'oz') return value * 0.0283495;
+        return value;
+    };
+
+    const fromKg = (kg: number, unit: 'kg' | 'lbs' | 'oz'): number => {
+        if (unit === 'lbs') return kg / 0.453592;
+        if (unit === 'oz') return kg / 0.0283495;
+        return kg;
+    };
+
+    const formatWeight = (kg: number, unit: 'kg' | 'lbs' | 'oz'): string => {
+        const val = fromKg(kg, unit);
+        return `${val.toFixed(1)} ${unit}`;
+    };
 
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -76,9 +95,10 @@ export default function CalculatorPage() {
     const handleCalculate = () => {
         if (!selectedBreed || !currentWeight) return;
         
-        const weight = parseFloat(currentWeight);
-        if (isNaN(weight) || weight <= 0) return;
+        const rawWeight = parseFloat(currentWeight);
+        if (isNaN(rawWeight) || rawWeight <= 0) return;
 
+        const weight = toKg(rawWeight, weightUnit);
         const min = selectedBreed.min_weight_kg;
         const max = selectedBreed.max_weight_kg;
 
@@ -124,7 +144,8 @@ export default function CalculatorPage() {
         }
         percent = Math.max(3, Math.min(97, percent)); // clamp to keep marker visible
 
-        setResult({ status, colorClass, message, min, max, weight, percent });
+        const weightDisplay = `${rawWeight} ${weightUnit}`;
+        setResult({ status, colorClass, message, min, max, weight, weightDisplay, percent });
     };
 
     return (
@@ -192,30 +213,46 @@ export default function CalculatorPage() {
                             )}
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {/* Age/Life Stage */}
-                            <div>
-                                <label className="block text-sm font-semibold mb-2 text-gray-700">Life Stage</label>
-                                <select
-                                    className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl px-4 py-4 focus:ring-2 focus:ring-[#0C4C55]/20 focus:border-[#0C4C55] transition-all outline-none appearance-none"
-                                    value={ageGroup}
-                                    onChange={(e) => setAgeGroup(e.target.value as any)}
-                                >
-                                    <option value="puppy">{petType === 'dog' ? 'Puppy' : 'Kitten'} (&lt; 1 year)</option>
-                                    <option value="adult">Adult (1-8 years)</option>
-                                    <option value="senior">Senior (9+ years)</option>
-                                </select>
-                            </div>
+                        {/* Life Stage */}
+                        <div>
+                            <label className="block text-sm font-semibold mb-2 text-gray-700">Life Stage</label>
+                            <select
+                                className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl px-4 py-4 focus:ring-2 focus:ring-[#0C4C55]/20 focus:border-[#0C4C55] transition-all outline-none appearance-none"
+                                value={ageGroup}
+                                onChange={(e) => setAgeGroup(e.target.value as 'puppy' | 'adult' | 'senior')}
+                            >
+                                <option value="puppy">{petType === 'dog' ? 'Puppy' : 'Kitten'} (&lt; 1 year)</option>
+                                <option value="adult">Adult (1-8 years)</option>
+                                <option value="senior">Senior (9+ years)</option>
+                            </select>
+                        </div>
 
-                            {/* Current Weight */}
-                            <div>
-                                <label className="block text-sm font-semibold mb-2 text-gray-700">Current Weight (kg)</label>
+                        {/* Weight Unit + Current Weight */}
+                        <div>
+                            <label className="block text-sm font-semibold mb-2 text-gray-700">Current Weight</label>
+                            <div className="flex gap-2">
+                                <div className="flex p-1 bg-gray-100 rounded-xl shrink-0">
+                                    {(['lbs', 'kg', 'oz'] as const).map((unit) => (
+                                        <button
+                                            key={unit}
+                                            type="button"
+                                            onClick={() => { setWeightUnit(unit); setResult(null); }}
+                                            className={`px-3 py-3 rounded-lg text-sm font-semibold transition-all ${
+                                                weightUnit === unit
+                                                    ? 'bg-white shadow-sm text-[#0C4C55]'
+                                                    : 'text-gray-500 hover:text-gray-700'
+                                            }`}
+                                        >
+                                            {unit}
+                                        </button>
+                                    ))}
+                                </div>
                                 <input
                                     type="number"
                                     min="0.1"
                                     step="0.1"
-                                    className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl px-4 py-4 focus:ring-2 focus:ring-[#0C4C55]/20 focus:border-[#0C4C55] transition-all outline-none"
-                                    placeholder="e.g. 15.5"
+                                    className="flex-1 bg-gray-50 border border-gray-200 text-gray-900 rounded-xl px-4 py-4 focus:ring-2 focus:ring-[#0C4C55]/20 focus:border-[#0C4C55] transition-all outline-none"
+                                    placeholder={weightUnit === 'kg' ? 'e.g. 7.0' : weightUnit === 'lbs' ? 'e.g. 15.4' : 'e.g. 112'}
                                     value={currentWeight}
                                     onChange={(e) => setCurrentWeight(e.target.value)}
                                 />
@@ -243,7 +280,7 @@ export default function CalculatorPage() {
                                     {result.status}
                                 </span>
                                 <p className="text-gray-600 text-center max-w-md mx-auto">
-                                    {result.weight} kg (Target adult range: {result.min} - {result.max} kg)
+                                    {result.weightDisplay} (Target adult range: {formatWeight(result.min, weightUnit)} – {formatWeight(result.max, weightUnit)})
                                 </p>
                             </div>
 
