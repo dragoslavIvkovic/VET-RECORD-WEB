@@ -150,7 +150,11 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
         const text = await res.text();
         const { frontmatter, body } = parseFrontmatter(text);
 
-        const content = transformImageUrls(body, rawBase);
+        let content = transformImageUrls(body, rawBase);
+
+        // Strip raw <script> tags (like JSON-LD) from the markdown body,
+        // because next-mdx-remote will fail to parse unescaped JSON inside JSX.
+        content = content.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
 
         let imageUrl = frontmatter.image;
         if (imageUrl && !imageUrl.startsWith('http')) {
