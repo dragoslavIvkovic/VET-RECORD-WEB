@@ -71,6 +71,13 @@ export default function NavigationBar() {
                                 {isMoreOpen && (
                                     <div className='absolute right-0 top-full mt-2 w-48 overflow-hidden rounded-xl border border-white/10 bg-[#0C4C55] shadow-xl ring-1 ring-black/10'>
                                         <Link
+                                            href='/faq'
+                                            className='block px-4 py-2.5 text-sm text-white/90 transition-colors hover:bg-white/10 hover:text-cyan-300'
+                                            onClick={() => setIsMoreOpen(false)}
+                                        >
+                                            FAQ
+                                        </Link>
+                                        <Link
                                             href='/about'
                                             className='block px-4 py-2.5 text-sm text-white/90 transition-colors hover:bg-white/10 hover:text-cyan-300'
                                             onClick={() => setIsMoreOpen(false)}
@@ -152,6 +159,7 @@ export default function NavigationBar() {
 
                             {/* Secondary */}
                             <p className='px-4 pt-2 pb-1 text-[11px] font-semibold uppercase tracking-widest text-white/40'>More</p>
+                            <Link href='/faq' className='rounded-lg px-4 py-3 text-sm text-white/80 hover:bg-white/10 hover:text-cyan-300' onClick={() => setIsMenuOpen(false)}>FAQ</Link>
                             <Link href='/about' className='rounded-lg px-4 py-3 text-sm text-white/80 hover:bg-white/10 hover:text-cyan-300' onClick={() => setIsMenuOpen(false)}>About Us</Link>
                             <Link href='/privacy-policy' className='rounded-lg px-4 py-3 text-sm text-white/80 hover:bg-white/10 hover:text-cyan-300' onClick={() => setIsMenuOpen(false)}>Privacy Policy</Link>
                             <Link href='/delete-data' className='rounded-lg px-4 py-3 text-sm text-white/80 hover:bg-white/10 hover:text-cyan-300' onClick={() => setIsMenuOpen(false)}>Delete Data</Link>
