@@ -18,15 +18,15 @@ const poppins = Poppins({
 export const metadata: Metadata = {
     metadataBase: new URL('https://www.vetrecord.app'),
     title: {
-        default: 'Vet Record – Ultimate Pet Health Organizer for Dogs & Cats',
+        default: 'Vet Record | The #1 Pet Medical Records App',
         template: '%s | Vet Record'
     },
     description:
-        "Simplify your pet parenting journey. Track vaccines, set medication reminders, and log medical history effortlessly. Cloud sync for families. Download on iOS & Android.",
+        "Simplify your pet's healthcare with Vet Record. The easiest pet medical record app to safely store, track, and manage vet records for your dogs and cats.",
     openGraph: {
-        title: 'Vet Record – Ultimate Pet Health Organizer for Dogs & Cats',
+        title: 'Vet Record | The #1 Pet Medical Records App',
         description:
-            "Simplify your pet parenting journey. Track vaccines, medication reminders, and medical history. Cloud sync for families. Download on iOS & Android.",
+            "Simplify your pet's healthcare with Vet Record. The easiest pet medical record app to safely store, track, and manage vet records for your dogs and cats.",
         url: 'https://www.vetrecord.app',
         siteName: 'Vet Record',
         images: [
@@ -41,9 +41,9 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Vet Record – Ultimate Pet Health Organizer for Dogs & Cats',
+        title: 'Vet Record | The #1 Pet Medical Records App',
         description:
-            "Simplify your pet parenting journey. Track vaccines, medication reminders, and medical history. Cloud sync for families.",
+            "Simplify your pet's healthcare with Vet Record. The easiest pet medical record app to safely store, track, and manage vet records for your dogs and cats.",
         images: ['https://www.vetrecord.app/images/slider/slide-01.webp']
     },
     alternates: {
