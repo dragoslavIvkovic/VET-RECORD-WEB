@@ -259,7 +259,7 @@ export default function CalculatorPage() {
                         {/* Weight Unit + Current Weight */}
                         <div>
                             <label className='mb-2 block text-sm font-semibold text-gray-700'>Current Weight</label>
-                            <div className='flex gap-2'>
+                            <div className='flex flex-col sm:flex-row gap-3 sm:gap-2'>
                                 <div className='flex shrink-0 rounded-xl bg-gray-100 p-1'>
                                     {(['lbs', 'kg', 'oz'] as const).map((unit) => (
                                         <button
