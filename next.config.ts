@@ -31,6 +31,10 @@ const nextConfig: NextConfig = {
                     {
                         key: 'X-DNS-Prefetch-Control',
                         value: 'on'
+                    },
+                    {
+                        key: 'Content-Security-Policy',
+                        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://eu.i.posthog.com https://eu-assets.i.posthog.com https://*.google.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://eu.i.posthog.com https://raw.githubusercontent.com https://*.google.com; img-src 'self' data: blob: https://raw.githubusercontent.com https://vetrecord.app https://play.google.com https://tools.applemediaservices.com https://api.producthunt.com https://ph-files.imgix.net https://eu-assets.i.posthog.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://www.youtube.com https://api.producthunt.com;"
                     }
                 ]
             }
@@ -58,7 +62,9 @@ const nextConfig: NextConfig = {
             }
         ];
     },
-    skipTrailingSlashRedirect: true
+    skipTrailingSlashRedirect: true,
+    // @ts-ignore - allowedDevOrigins is a new property in Next.js 16.1.1 not yet in types
+    allowedDevOrigins: ['http://localhost:3000', 'http://127.0.0.1:3000']
 };
 
 export default nextConfig;
