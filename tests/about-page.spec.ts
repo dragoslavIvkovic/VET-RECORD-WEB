@@ -11,8 +11,8 @@ test.describe('About Page E2E', () => {
     // Verify Mission section exists
     await expect(page.getByText(/Why Pet Parents Love/i)).toBeVisible();
 
-    // Verify download link exists
-    const downloadLink = page.locator('a[href*="play.google.com"]').first();
+    // Verify download link exists in the page body
+    const downloadLink = page.getByRole('link', { name: /Download Now/i });
     await expect(downloadLink).toBeVisible();
   });
 
