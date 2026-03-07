@@ -176,7 +176,8 @@ export default async function BlogPage() {
                                     href={`/blog/${post.slug}`}
                                     slug={post.slug}
                                     title={post.title}
-                                    className='group flex'>
+                                    className='group flex'
+                                    prefetch={false}>
                                     <article className='flex w-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200 transition-all duration-200 hover:-translate-y-1 hover:shadow-md'>
                                         {/* Image — cover */}
                                         <div className='relative aspect-video w-full overflow-hidden bg-gray-100'>

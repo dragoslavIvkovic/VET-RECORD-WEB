@@ -17,8 +17,9 @@ export default function VideoSection() {
                     <div className="relative pt-[56.25%] rounded-2xl overflow-hidden">
                         <iframe
                             className="absolute inset-0 w-full h-full"
-                            src="https://www.youtube.com/embed/25mGPVeiH-w"
+                            src="https://www.youtube.com/embed/25mGPVeiH-w?rel=0"
                             title="Vet Record App Demo"
+                            loading="lazy"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                         />
