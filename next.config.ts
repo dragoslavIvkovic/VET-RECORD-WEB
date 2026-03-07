@@ -7,19 +7,19 @@ const nextConfig: NextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'vetrecord.app',
+                hostname: 'vetrecord.app'
             },
             {
                 protocol: 'https',
-                hostname: 'play.google.com',
+                hostname: 'play.google.com'
             },
             {
                 protocol: 'https',
-                hostname: 'tools.applemediaservices.com',
+                hostname: 'tools.applemediaservices.com'
             },
             {
                 protocol: 'https',
-                hostname: 'raw.githubusercontent.com',
+                hostname: 'raw.githubusercontent.com'
             }
         ]
     },
@@ -36,16 +36,29 @@ const nextConfig: NextConfig = {
             }
         ];
     },
-   async redirects() {
-    return [
-        {
-            source: '/:path*',
-            has: [{ type: 'host', value: 'www.vetrecord.app' }],
-            destination: 'https://vetrecord.app/:path*',
-            permanent: true,
-        },
-    ];
-}
+    async redirects() {
+        return [
+            {
+                source: '/:path*',
+                has: [{ type: 'host', value: 'www.vetrecord.app' }],
+                destination: 'https://vetrecord.app/:path*',
+                permanent: true
+            }
+        ];
+    },
+    async rewrites() {
+        return [
+            {
+                source: '/ingest/static/:path*',
+                destination: 'https://eu-assets.i.posthog.com/static/:path*'
+            },
+            {
+                source: '/ingest/:path*',
+                destination: 'https://eu.i.posthog.com/:path*'
+            }
+        ];
+    },
+    skipTrailingSlashRedirect: true
 };
 
 export default nextConfig;

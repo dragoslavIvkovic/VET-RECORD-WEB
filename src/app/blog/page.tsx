@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+
 import { getBlogPosts } from '@/lib/blog';
+
+import BlogPostLink from './BlogPostLink';
 
 export const metadata: Metadata = {
     title: 'Blog',
@@ -23,13 +25,13 @@ export const metadata: Metadata = {
 function formatDate(dateStr: string): string {
     if (!dateStr) return '';
     const d = new Date(dateStr);
-    return isNaN(d.getTime())
-        ? ''
-        : d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+    return isNaN(d.getTime()) ? '' : d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
 function readTime(text: string): string {
     const mins = Math.max(1, Math.round(text.trim().split(/\s+/).length / 200));
+
     return `${mins} min read`;
 }
 
@@ -47,12 +49,11 @@ export default async function BlogPage() {
 
     return (
         <main className='min-h-screen bg-gray-50'>
-
             {/* ── PAGE HEADER ───────────────────────────────────────── */}
             <section className='relative overflow-hidden bg-[#0C4C55] py-16'>
-                <div className='pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-white/5' />
-                <div className='pointer-events-none absolute -bottom-24 right-0 h-64 w-64 rounded-full bg-cyan-400/10' />
-                <div className='container relative mx-auto px-4 text-center'>
+                <div className='pointer-events-none absolute -top-20 -left-20 h-72 w-72 rounded-full bg-white/5' />
+                <div className='pointer-events-none absolute right-0 -bottom-24 h-64 w-64 rounded-full bg-cyan-400/10' />
+                <div className='relative container mx-auto px-4 text-center'>
                     <span className='mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-cyan-200'>
                         <span className='h-1.5 w-1.5 rounded-full bg-cyan-400' />
                         Vet Record Blog
@@ -67,7 +68,6 @@ export default async function BlogPage() {
             </section>
 
             <div className='container mx-auto px-4 py-12 sm:px-6 lg:px-8'>
-
                 {/* ── ERROR ─────────────────────────────────────────── */}
                 {error && (
                     <div className='mb-10 rounded-2xl border border-amber-200 bg-amber-50 p-8 text-center'>
@@ -87,11 +87,14 @@ export default async function BlogPage() {
 
                 {/* ── FEATURED ──────────────────────────────────────── */}
                 {!error && featured && (
-                    <Link href={`/blog/${featured.slug}`} className='group mb-10 block'>
+                    <BlogPostLink
+                        href={`/blog/${featured.slug}`}
+                        slug={featured.slug}
+                        title={featured.title}
+                        className='group mb-10 block'>
                         <article className='overflow-hidden rounded-3xl bg-white shadow ring-1 ring-gray-200 transition-shadow hover:shadow-lg'>
-                            
                             {/* Image area: full cover image */}
-                            <div className='relative w-full aspect-video overflow-hidden bg-[#0C4C55]/5 sm:aspect-[2.5/1]'>
+                            <div className='relative aspect-video w-full overflow-hidden bg-[#0C4C55]/5 sm:aspect-[2.5/1]'>
                                 {featured.image ? (
                                     <img
                                         src={featured.image}
@@ -108,7 +111,7 @@ export default async function BlogPage() {
                             {/* Text */}
                             <div className='p-6 sm:p-8'>
                                 <div className='mb-3 flex flex-wrap items-center gap-2'>
-                                    <span className='rounded-full bg-[#0C4C55]/10 px-3 py-0.5 text-xs font-semibold uppercase tracking-wide text-[#0C4C55]'>
+                                    <span className='rounded-full bg-[#0C4C55]/10 px-3 py-0.5 text-xs font-semibold tracking-wide text-[#0C4C55] uppercase'>
                                         Featured
                                     </span>
                                     <span className='text-xs text-gray-400'>
@@ -117,7 +120,7 @@ export default async function BlogPage() {
                                     </span>
                                 </div>
 
-                                <h2 className='mb-3 text-2xl font-bold leading-snug text-gray-900 transition-colors group-hover:text-[#0C4C55] sm:text-3xl'>
+                                <h2 className='mb-3 text-2xl leading-snug font-bold text-gray-900 transition-colors group-hover:text-[#0C4C55] sm:text-3xl'>
                                     {featured.title}
                                 </h2>
 
@@ -135,36 +138,48 @@ export default async function BlogPage() {
                                             </div>
                                             <span className='text-sm font-medium text-gray-600'>{featured.author}</span>
                                         </div>
-                                    ) : <span />}
+                                    ) : (
+                                        <span />
+                                    )}
 
                                     <span className='inline-flex items-center gap-1.5 text-sm font-semibold text-[#0C4C55]'>
                                         Read article
                                         <svg
                                             className='h-4 w-4 transition-transform duration-200 group-hover:translate-x-1'
-                                            fill='none' viewBox='0 0 24 24' stroke='currentColor'
-                                        >
-                                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M17 8l4 4m0 0l-4 4m4-4H3' />
+                                            fill='none'
+                                            viewBox='0 0 24 24'
+                                            stroke='currentColor'>
+                                            <path
+                                                strokeLinecap='round'
+                                                strokeLinejoin='round'
+                                                strokeWidth={2}
+                                                d='M17 8l4 4m0 0l-4 4m4-4H3'
+                                            />
                                         </svg>
                                     </span>
                                 </div>
                             </div>
                         </article>
-                    </Link>
+                    </BlogPostLink>
                 )}
 
                 {/* ── MORE ARTICLES GRID ────────────────────────────── */}
                 {!error && rest.length > 0 && (
                     <>
-                        <h2 className='mb-6 text-xs font-semibold uppercase tracking-widest text-gray-400'>
+                        <h2 className='mb-6 text-xs font-semibold tracking-widest text-gray-400 uppercase'>
                             More articles
                         </h2>
                         <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
                             {rest.map((post) => (
-                                <Link key={post.slug} href={`/blog/${post.slug}`} className='group flex'>
+                                <BlogPostLink
+                                    key={post.slug}
+                                    href={`/blog/${post.slug}`}
+                                    slug={post.slug}
+                                    title={post.title}
+                                    className='group flex'>
                                     <article className='flex w-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200 transition-all duration-200 hover:-translate-y-1 hover:shadow-md'>
-
                                         {/* Image — cover */}
-                                        <div className='relative w-full aspect-video overflow-hidden bg-gray-100'>
+                                        <div className='relative aspect-video w-full overflow-hidden bg-gray-100'>
                                             {post.image ? (
                                                 <img
                                                     src={post.image}
@@ -185,7 +200,7 @@ export default async function BlogPage() {
                                                 {post.description ? ` · ${readTime(post.description)}` : ''}
                                             </p>
 
-                                            <h3 className='mb-2 text-base font-bold leading-snug text-gray-900 transition-colors group-hover:text-[#0C4C55]'>
+                                            <h3 className='mb-2 text-base leading-snug font-bold text-gray-900 transition-colors group-hover:text-[#0C4C55]'>
                                                 {post.title}
                                             </h3>
 
@@ -203,14 +218,16 @@ export default async function BlogPage() {
                                                         </div>
                                                         <span className='text-xs text-gray-500'>{post.author}</span>
                                                     </div>
-                                                ) : <span />}
+                                                ) : (
+                                                    <span />
+                                                )}
                                                 <span className='text-xs font-semibold text-[#0C4C55] transition-all group-hover:underline'>
                                                     Read →
                                                 </span>
                                             </div>
                                         </div>
                                     </article>
-                                </Link>
+                                </BlogPostLink>
                             ))}
                         </div>
                     </>

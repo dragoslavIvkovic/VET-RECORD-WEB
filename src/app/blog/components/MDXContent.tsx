@@ -8,7 +8,7 @@ function BlogImage({ src, alt }: { src?: string; alt?: string }) {
     if (!src) return null;
     return (
         <figure className='my-8'>
-            <span className='flex justify-center rounded-2xl bg-gradient-to-b from-[#d6eef1] to-[#bde1e6] p-6'>
+            <span className='flex justify-center rounded-2xl bg-linear-to-b from-[#d6eef1] to-[#bde1e6] p-6'>
                 <Image
                     src={src}
                     alt={alt || ''}
@@ -87,14 +87,27 @@ const components = {
             {...props}
         />
     ),
-    a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-        <a
-            {...props}
-            className='font-medium text-[#0C4C55] underline decoration-[#0C4C55]/30 underline-offset-2 transition-colors hover:text-[#0a3d44] hover:decoration-[#0C4C55]'
-            target={props.href?.startsWith('http') ? '_blank' : undefined}
-            rel={props.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-        />
-    ),
+    a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+        const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+            import('posthog-js').then((mod) => {
+                mod.default.capture('blog_link_clicked', {
+                    href: props.href,
+                    text: props.children?.toString()
+                });
+            });
+            if (props.onClick) props.onClick(e);
+        };
+
+        return (
+            <a
+                {...props}
+                onClick={handleClick}
+                className='font-medium text-[#0C4C55] underline decoration-[#0C4C55]/30 underline-offset-2 transition-colors hover:text-[#0a3d44] hover:decoration-[#0C4C55]'
+                target={props.href?.startsWith('http') ? '_blank' : undefined}
+                rel={props.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+            />
+        );
+    },
     strong: (props: React.HTMLAttributes<HTMLElement>) => (
         <strong className='font-semibold text-gray-900' {...props} />
     ),

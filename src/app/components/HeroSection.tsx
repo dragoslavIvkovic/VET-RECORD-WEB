@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePostHog } from 'posthog-js/react';
 import { APP_LINKS } from '../config/links';
 
 export default function HeroSection() {
+    const posthog = usePostHog();
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
     
@@ -63,6 +65,10 @@ export default function HeroSection() {
                                     target='_blank'
                                     rel='noopener noreferrer'
                                     className='transition hover:scale-105'
+                                    onClick={() => {
+                                        posthog.capture('app_download_clicked', { platform: 'android', source: 'hero_section' });
+                                        (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
+                                    }}
                                 >
                                     <img src='/images/download/googleplay.png' alt='Get it on Google Play' className='h-14' />
                                 </a>
@@ -71,6 +77,10 @@ export default function HeroSection() {
                                     target='_blank'
                                     rel='noopener noreferrer'
                                     className='transition hover:scale-105'
+                                    onClick={() => {
+                                        posthog.capture('app_download_clicked', { platform: 'ios', source: 'hero_section' });
+                                        (window as any).gtag?.('event', 'click_app_store', { 'page_path': window.location.pathname });
+                                    }}
                                 >
                                     <img src='/images/download/appstore.png' alt='Download on the App Store' className='h-14' />
                                 </a>

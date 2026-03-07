@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
 
+import { APP_LINKS } from '../config/links';
+import ClientLink from '../components/ClientLink';
+
+
 export const metadata: Metadata = {
     title: 'About Us',
     description: 'Simplify your pet parenting journey with Vet Record. Track vaccines, set medication reminders, and log medical history effortlessly for dogs and cats. Organized medical records, smart vaccination tracker, cloud sync for families.',
@@ -167,13 +171,14 @@ export default function About() {
                     <p className='mb-8 text-gray-300'>
                         Download Vet Record today and give your best friend the organized care they deserve!
                     </p>
-                    <a
-                        href='https://play.google.com/store/apps/details?id=vetrecord.app'
+                    <ClientLink
+                        href={APP_LINKS.GOOGLE_PLAY}
                         className='rounded-full bg-white px-8 py-3 font-semibold text-[#0C4C55] transition-colors hover:bg-gray-100'
                         target='_blank'
-                        rel='noopener noreferrer'>
+                        rel='noopener noreferrer'
+                        gtagEvent='click_play_store'>
                         Download Now
-                    </a>
+                    </ClientLink>
                     <p className='mt-8 text-sm text-gray-400'>
                         <a
                             href='https://www.apple.com/legal/internet-services/itunes/dev/stdeula/'

@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Footer from '../components/Footer';
 import { APP_LINKS } from '../config/links';
+import ClientLink from '../components/ClientLink';
+
 
 // ── Metadata ────────────────────────────────────────────────────────────────
 
@@ -242,22 +244,24 @@ export default function FaqPage() {
                                 >
                                     Contact Us
                                 </Link>
-                                <a
+                                <ClientLink
                                     href={APP_LINKS.APP_STORE}
                                     target='_blank'
                                     rel='noopener noreferrer'
                                     className='transition hover:scale-105 active:scale-95'
+                                    gtagEvent='click_app_store'
                                 >
                                     <img src='/images/download/appstore.png' alt='Download on the App Store' className='h-12 w-auto' />
-                                </a>
-                                <a
+                                </ClientLink>
+                                <ClientLink
                                     href={APP_LINKS.GOOGLE_PLAY}
                                     target='_blank'
                                     rel='noopener noreferrer'
                                     className='transition hover:scale-105 active:scale-95'
+                                    gtagEvent='click_play_store'
                                 >
                                     <img src='/images/download/googleplay.png' alt='Get it on Google Play' className='h-12 w-auto' />
-                                </a>
+                                </ClientLink>
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,9 @@
 'use client';
 
+import { usePostHog } from 'posthog-js/react';
+
+import { APP_LINKS } from '../config/links';
+
 interface Review {
     name: string;
     avatar: string;
@@ -8,6 +12,7 @@ interface Review {
 }
 
 export default function ReviewSection() {
+    const posthog = usePostHog();
     const reviews: Review[] = [
         {
             id: 'review1',
@@ -62,8 +67,7 @@ export default function ReviewSection() {
                     {reviews.map((review) => (
                         <div
                             key={review.id}
-                            className='rounded-2xl bg-white p-6 shadow-md transition-all hover:shadow-xl'
-                        >
+                            className='rounded-2xl bg-white p-6 shadow-md transition-all hover:shadow-xl'>
                             {/* Stars */}
                             <div className='mb-4 flex'>
                                 {[...Array(5)].map((_, i) => (
@@ -72,7 +76,7 @@ export default function ReviewSection() {
                             </div>
 
                             {/* Review Text */}
-                            <p className='mb-6 text-gray-700 leading-relaxed'>"{review.text}"</p>
+                            <p className='mb-6 leading-relaxed text-gray-700'>&ldquo;{review.text}&rdquo;</p>
 
                             {/* Author */}
                             <div className='flex items-center gap-3'>
@@ -89,12 +93,15 @@ export default function ReviewSection() {
 
                 {/* CTA */}
                 <div className='mt-10 text-center'>
-                    <a 
-                        href='https://play.google.com/store/apps/details?id=vetrecord.app'
+                    <a
+                        href={APP_LINKS.GOOGLE_PLAY}
                         target='_blank'
                         rel='noopener noreferrer'
                         className='inline-flex items-center gap-2 rounded-full bg-[#0C4C55] px-6 py-3 text-white transition hover:bg-[#0a3d44]'
-                    >
+                        onClick={() => {
+                            posthog.capture('see_all_reviews_clicked');
+                            (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
+                        }}>
                         See all reviews on Google Play
                         <svg className='h-4 w-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                             <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
