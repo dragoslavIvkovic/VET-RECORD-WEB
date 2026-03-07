@@ -101,6 +101,7 @@ export default function ReviewSection() {
                             rel='noopener noreferrer'
                             className='transition hover:scale-105 active:scale-95'
                             onClick={() => {
+                                posthog.capture('app_download_clicked', { platform: 'android', source: 'review_section' });
                                 (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
                             }}>
                             <img
@@ -115,6 +116,7 @@ export default function ReviewSection() {
                             rel='noopener noreferrer'
                             className='transition hover:scale-105 active:scale-95'
                             onClick={() => {
+                                posthog.capture('app_download_clicked', { platform: 'ios', source: 'review_section' });
                                 (window as any).gtag?.('event', 'click_app_store', { 'page_path': window.location.pathname });
                             }}>
                             <img
