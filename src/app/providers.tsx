@@ -14,9 +14,6 @@ if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
         capture_pageleave: false,
         disable_session_recording: true,
         enable_heatmaps: false,
-        session_recording: {
-            maskAllInputs: true,
-        },
         persistence: 'localStorage+cookie',
     });
 }
