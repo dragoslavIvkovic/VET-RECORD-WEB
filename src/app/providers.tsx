@@ -13,7 +13,11 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
                 autocapture: false,
                 capture_pageview: false,
                 capture_pageleave: false,
-                disable_session_recording: true, // Explicitly disable session recording
+                disable_session_recording: true,
+                debug: false,
+                session_recording: {
+                    maskAllInputs: true,
+                },
                 persistence: 'localStorage+cookie'
             });
         }
