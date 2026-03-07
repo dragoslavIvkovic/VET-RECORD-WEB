@@ -6,14 +6,17 @@ test.describe('About Page E2E', () => {
     await page.goto('/about');
     
     // Ensure the main heading exists
-    await expect(page.locator('h1').first()).toContainText(/Simplify Your Pet Parenting/i);
+    await expect(page.locator('h1').first()).toContainText(/Simplify Your Pet Parenting Journey/i);
 
     // Verify Mission section exists
     await expect(page.getByText(/Why Pet Parents Love/i)).toBeVisible();
 
-    // Verify download link exists in the page body
-    const downloadLink = page.getByRole('link', { name: /Download Now/i });
-    await expect(downloadLink).toBeVisible();
+    // Verify download links exist in the page body
+    const googlePlayLink = page.locator('a[href*="play.google.com"]').last();
+    const appStoreLink = page.locator('a[href*="apps.apple.com"]').last();
+    
+    await expect(googlePlayLink).toBeVisible();
+    await expect(appStoreLink).toBeVisible();
   });
 
 });

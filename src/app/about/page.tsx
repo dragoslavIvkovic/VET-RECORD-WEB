@@ -172,34 +172,30 @@ export default function About() {
                         Download Vet Record today and give your best friend the organized care they deserve!
                     </p>
                     <div className='flex flex-col items-center justify-center gap-4 sm:flex-row'>
-                        <a
+                        <ClientLink
                             href={APP_LINKS.GOOGLE_PLAY}
                             target='_blank'
                             rel='noopener noreferrer'
                             className='transition hover:scale-105 active:scale-95'
-                            onClick={() => {
-                                (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
-                            }}>
+                            gtagEvent='click_play_store'>
                             <img
                                 src='/images/download/googleplay.png'
                                 alt='Get it on Google Play'
                                 className='h-12 w-auto'
                             />
-                        </a>
-                        <a
+                        </ClientLink>
+                        <ClientLink
                             href={APP_LINKS.APP_STORE}
                             target='_blank'
                             rel='noopener noreferrer'
                             className='transition hover:scale-105 active:scale-95'
-                            onClick={() => {
-                                (window as any).gtag?.('event', 'click_app_store', { 'page_path': window.location.pathname });
-                            }}>
+                            gtagEvent='click_app_store'>
                             <img
                                 src='/images/download/appstore.png'
                                 alt='Download on the App Store'
                                 className='h-12 w-auto'
                             />
-                        </a>
+                        </ClientLink>
                     </div>
                     <p className='mt-8 text-sm text-gray-400'>
                         <a
