@@ -11,8 +11,10 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
                 api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com',
                 person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
                 autocapture: false,
-                capture_pageview: false, // Turn off automatic pageview capture
-                capture_pageleave: false // Turn off automatic pageleave capture
+                capture_pageview: false,
+                capture_pageleave: false,
+                disable_session_recording: true, // Explicitly disable session recording
+                persistence: 'localStorage+cookie'
             });
         }
     }, []);
