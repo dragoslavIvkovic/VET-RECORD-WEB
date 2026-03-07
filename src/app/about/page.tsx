@@ -171,14 +171,36 @@ export default function About() {
                     <p className='mb-8 text-gray-300'>
                         Download Vet Record today and give your best friend the organized care they deserve!
                     </p>
-                    <ClientLink
-                        href={APP_LINKS.GOOGLE_PLAY}
-                        className='rounded-full bg-white px-8 py-3 font-semibold text-[#0C4C55] transition-colors hover:bg-gray-100'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        gtagEvent='click_play_store'>
-                        Download Now
-                    </ClientLink>
+                    <div className='flex flex-col items-center justify-center gap-4 sm:flex-row'>
+                        <a
+                            href={APP_LINKS.GOOGLE_PLAY}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='transition hover:scale-105 active:scale-95'
+                            onClick={() => {
+                                (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
+                            }}>
+                            <img
+                                src='/images/download/googleplay.png'
+                                alt='Get it on Google Play'
+                                className='h-12 w-auto'
+                            />
+                        </a>
+                        <a
+                            href={APP_LINKS.APP_STORE}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='transition hover:scale-105 active:scale-95'
+                            onClick={() => {
+                                (window as any).gtag?.('event', 'click_app_store', { 'page_path': window.location.pathname });
+                            }}>
+                            <img
+                                src='/images/download/appstore.png'
+                                alt='Download on the App Store'
+                                className='h-12 w-auto'
+                            />
+                        </a>
+                    </div>
                     <p className='mt-8 text-sm text-gray-400'>
                         <a
                             href='https://www.apple.com/legal/internet-services/itunes/dev/stdeula/'

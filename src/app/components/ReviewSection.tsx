@@ -92,21 +92,38 @@ export default function ReviewSection() {
                 </div>
 
                 {/* CTA */}
-                <div className='mt-10 text-center'>
-                    <a
-                        href={APP_LINKS.GOOGLE_PLAY}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='inline-flex items-center gap-2 rounded-full bg-[#0C4C55] px-6 py-3 text-white transition hover:bg-[#0a3d44]'
-                        onClick={() => {
-                            posthog.capture('see_all_reviews_clicked');
-                            (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
-                        }}>
-                        See all reviews on Google Play
-                        <svg className='h-4 w-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
-                        </svg>
-                    </a>
+                <div className='mt-12 text-center'>
+                    <h3 className='mb-6 text-xl font-bold text-[#0C4C55]'>Safe, Secure, and Loved by Pet Parents</h3>
+                    <div className='flex flex-col items-center justify-center gap-4 sm:flex-row'>
+                        <a
+                            href={APP_LINKS.GOOGLE_PLAY}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='transition hover:scale-105 active:scale-95'
+                            onClick={() => {
+                                (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
+                            }}>
+                            <img
+                                src='/images/download/googleplay.png'
+                                alt='Get it on Google Play'
+                                className='h-12 w-auto'
+                            />
+                        </a>
+                        <a
+                            href={APP_LINKS.APP_STORE}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='transition hover:scale-105 active:scale-95'
+                            onClick={() => {
+                                (window as any).gtag?.('event', 'click_app_store', { 'page_path': window.location.pathname });
+                            }}>
+                            <img
+                                src='/images/download/appstore.png'
+                                alt='Download on the App Store'
+                                className='h-12 w-auto'
+                            />
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
