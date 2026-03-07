@@ -77,7 +77,7 @@ export default function CalculatorPage() {
                 setSearchQuery('');
                 setResult(null);
             } catch (error) {
-                console.error('Failed to fetch breeds', error);
+                // Silently omit fetch errors
             } finally {
                 setLoading(false);
             }
