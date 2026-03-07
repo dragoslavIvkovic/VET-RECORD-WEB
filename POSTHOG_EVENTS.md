@@ -11,6 +11,8 @@ PostHog is initialized centrally in `src/app/providers.tsx` using the standard N
 - **Privacy First**: 
   - `disable_session_recording: true` (Screen recording is **FULLY DISABLED**).
   - `autocapture: false` (Only explicit events are tracked).
+  - `capture_pageview: false` (Page navigation is NOT automatically tracked).
+  - `capture_pageleave: false` (Session duration is NOT automatically tracked).
   - `enable_heatmaps: false` (Heatmaps/Toolbar UI disabled by default).
 - **Environment**: Automatically uses `process.env.NEXT_PUBLIC_POSTHOG_KEY`.
 
