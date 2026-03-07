@@ -1,0 +1,24 @@
+# Build artifacts
+.next
+node_modules
+tsconfig.tsbuildinfo
+
+# Tests
+tests/
+playwright.config.ts
+playwright-report/
+test-results/
+
+# Environment and local config
+.env
+.env.local
+.env.example
+.vscode/
+.editorconfig
+
+# Misc
+.DS_Store
+README.md
+posthog-setup-report.md
+walkthrough.md
+task.md
