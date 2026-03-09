@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { serialize } from 'next-mdx-remote/serialize';
 import { getBlogPost, getBlogSlugs } from '@/lib/blog';
-import MDXContent from '../components/MDXContent';
 import ScrollProgressBar from '../components/ScrollProgressBar';
+import BlogAppDownloads from '../components/BlogAppDownloads';
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -71,9 +70,10 @@ export default async function BlogPostPage({ params }: Props) {
 
     if (!post) notFound();
 
-    const mdxSource = await serialize(post.content, { parseFrontmatter: false });
-    const { minutes, label: readTimeLabel } = estimateReadTime(post.content);
-    const wordCount = post.content.trim().split(/\s+/).length;
+    // Strip HTML tags for estimating word count and read time
+    const textContent = post.html.replace(/<[^>]+>/g, '');
+    const { minutes, label: readTimeLabel } = estimateReadTime(textContent);
+    const wordCount = textContent.trim().split(/\s+/).length;
 
     // ── JSON-LD (BlogPosting — more specific than Article for AEO) ───────────
     const jsonLd = {
@@ -223,12 +223,16 @@ export default async function BlogPostPage({ params }: Props) {
                             </p>
                         )}
 
-                        {/* MDX article body */}
+                        {/* HTML article body */}
                         <div
-                            className='rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 sm:p-10'
+                            className='rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 sm:p-10 prose max-w-none'
                             itemProp='articleBody'
-                        >
-                            <MDXContent source={mdxSource} />
+                            dangerouslySetInnerHTML={{ __html: post.html }}
+                        />
+
+                        {/* App Downloads CTA */}
+                        <div className='mt-12'>
+                            <BlogAppDownloads />
                         </div>
 
                         {/* Footer */}

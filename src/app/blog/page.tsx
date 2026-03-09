@@ -71,8 +71,7 @@ export default async function BlogPage() {
                 {/* ── ERROR ─────────────────────────────────────────── */}
                 {error && (
                     <div className='mb-10 rounded-2xl border border-amber-200 bg-amber-50 p-8 text-center'>
-                        <p className='font-semibold text-amber-900'>{error}</p>
-                        <p className='mt-1 text-sm text-amber-700'>Check BLOG_GITHUB_REPO_URL in your environment.</p>
+                        <p className='mt-1 text-sm text-amber-700'>Check GHOST_URL and GHOST_CONTENT_API_KEY in your environment.</p>
                     </div>
                 )}
 
@@ -80,8 +79,7 @@ export default async function BlogPage() {
                 {!error && posts.length === 0 && (
                     <div className='mx-auto max-w-md rounded-2xl border border-gray-200 bg-white p-14 text-center shadow-sm'>
                         <p className='text-4xl'>🐾</p>
-                        <p className='mt-4 text-lg font-semibold text-gray-800'>No posts yet</p>
-                        <p className='mt-1 text-sm text-gray-500'>Add markdown files to your GitHub repo.</p>
+                        <p className='mt-1 text-sm text-gray-500'>Add posts to your Ghost CMS.</p>
                     </div>
                 )}
 

@@ -20,6 +20,14 @@ const nextConfig: NextConfig = {
             {
                 protocol: 'https',
                 hostname: 'raw.githubusercontent.com'
+            },
+            {
+                protocol: 'http',
+                hostname: 'n8n-ghost-310718-77-42-42-63.traefik.me'
+            },
+            {
+                protocol: 'https',
+                hostname: 'static.ghost.org'
             }
         ]
     },
@@ -34,7 +42,7 @@ const nextConfig: NextConfig = {
                     },
                     {
                         key: 'Content-Security-Policy',
-                        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://eu.i.posthog.com https://eu-assets.i.posthog.com https://*.google.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://eu.i.posthog.com https://raw.githubusercontent.com https://*.google.com; img-src 'self' data: blob: https://raw.githubusercontent.com https://vetrecord.app https://play.google.com https://tools.applemediaservices.com https://api.producthunt.com https://ph-files.imgix.net https://eu-assets.i.posthog.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://www.youtube.com https://api.producthunt.com;"
+                        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://eu.i.posthog.com https://eu-assets.i.posthog.com https://*.google.com https://va.vercel-scripts.com https://googleads.g.doubleclick.net; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://eu.i.posthog.com https://raw.githubusercontent.com https://*.google.com https://va.vercel-scripts.com https://googleads.g.doubleclick.net; img-src 'self' data: blob: https://raw.githubusercontent.com https://vetrecord.app https://play.google.com https://tools.applemediaservices.com https://api.producthunt.com https://ph-files.imgix.net https://eu-assets.i.posthog.com http://n8n-ghost-310718-77-42-42-63.traefik.me https://googleads.g.doubleclick.net https://static.ghost.org https://*.google.com https://*.google.rs https://www.google.com https://www.google.rs; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://www.youtube.com https://api.producthunt.com;"
                     }
                 ]
             }
