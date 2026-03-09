@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { usePostHog } from 'posthog-js/react';
 import { APP_LINKS } from '../config/links';
+import AppDownloadButtons from './AppDownloadButtons';
 
 export default function HeroSection() {
     const posthog = usePostHog();
@@ -59,32 +60,7 @@ export default function HeroSection() {
                         {/* Download CTA */}
                         <div className={`space-y-2 transition-all duration-700 delay-600 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
                             <p className='text-sm font-semibold uppercase tracking-wider text-cyan-300'>Download Free — No Credit Card Required</p>
-                            <div className='flex items-center gap-4'>
-                                <a
-                                    href={APP_LINKS.GOOGLE_PLAY}
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                    className='transition hover:scale-105'
-                                    onClick={() => {
-                                        posthog.capture('app_download_clicked', { platform: 'android', source: 'hero_section' });
-                                        (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
-                                    }}
-                                >
-                                    <img src='/images/download/googleplay.png' alt='Get it on Google Play' className='h-14' />
-                                </a>
-                                <a
-                                    href={APP_LINKS.APP_STORE}
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                    className='transition hover:scale-105'
-                                    onClick={() => {
-                                        posthog.capture('app_download_clicked', { platform: 'ios', source: 'hero_section' });
-                                        (window as any).gtag?.('event', 'click_app_store', { 'page_path': window.location.pathname });
-                                    }}
-                                >
-                                    <img src='/images/download/appstore.png' alt='Download on the App Store' className='h-14' />
-                                </a>
-                            </div>
+                            <AppDownloadButtons source='hero_section' imageClassName='h-14' />
                         </div>
 
                         {/* Social proof */}

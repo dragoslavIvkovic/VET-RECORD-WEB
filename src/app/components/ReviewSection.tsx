@@ -3,6 +3,7 @@
 import { usePostHog } from 'posthog-js/react';
 
 import { APP_LINKS } from '../config/links';
+import AppDownloadButtons from './AppDownloadButtons';
 
 interface Review {
     name: string;
@@ -94,38 +95,7 @@ export default function ReviewSection() {
                 {/* CTA */}
                 <div className='mt-12 text-center'>
                     <h3 className='mb-6 text-xl font-bold text-[#0C4C55]'>Safe, Secure, and Loved by Pet Parents</h3>
-                    <div className='flex flex-col items-center justify-center gap-4 sm:flex-row'>
-                        <a
-                            href={APP_LINKS.GOOGLE_PLAY}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='transition hover:scale-105 active:scale-95'
-                            onClick={() => {
-                                posthog.capture('app_download_clicked', { platform: 'android', source: 'review_section' });
-                                (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
-                            }}>
-                            <img
-                                src='/images/download/googleplay.png'
-                                alt='Get it on Google Play'
-                                className='h-12 w-auto'
-                            />
-                        </a>
-                        <a
-                            href={APP_LINKS.APP_STORE}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='transition hover:scale-105 active:scale-95'
-                            onClick={() => {
-                                posthog.capture('app_download_clicked', { platform: 'ios', source: 'review_section' });
-                                (window as any).gtag?.('event', 'click_app_store', { 'page_path': window.location.pathname });
-                            }}>
-                            <img
-                                src='/images/download/appstore.png'
-                                alt='Download on the App Store'
-                                className='h-12 w-auto'
-                            />
-                        </a>
-                    </div>
+                    <AppDownloadButtons source='review_section' />
                 </div>
             </div>
         </section>

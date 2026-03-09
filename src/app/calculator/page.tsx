@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Footer from '../components/Footer';
 import { APP_LINKS } from '../config/links';
 import { usePostHog } from 'posthog-js/react';
+import AppDownloadButtons from '../components/AppDownloadButtons';
 
 interface Breed {
     id: string;
@@ -366,36 +367,10 @@ export default function CalculatorPage() {
                                         Monitor your pet&apos;s exact weight, daily routines, and medical history
                                         instantly with the Vet Record App.
                                     </p>
-                                    <div className='flex flex-col items-center justify-center gap-4 sm:flex-row'>
-                                        <a
-                                            href={APP_LINKS.GOOGLE_PLAY}
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            className='transition hover:scale-105 active:scale-95'
-                                            onClick={() => {
-                                                (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
-                                            }}>
-                                            <img
-                                                src='/images/download/googleplay.png'
-                                                alt='Get it on Google Play'
-                                                className='h-12 w-auto'
-                                            />
-                                        </a>
-                                        <a
-                                            href={APP_LINKS.APP_STORE}
-                                            target='_blank'
-                                            rel='noopener noreferrer'
-                                            className='transition hover:scale-105 active:scale-95'
-                                            onClick={() => {
-                                                (window as any).gtag?.('event', 'click_app_store', { 'page_path': window.location.pathname });
-                                            }}>
-                                            <img
-                                                src='/images/download/appstore.png'
-                                                alt='Download on the App Store'
-                                                className='h-12 w-auto'
-                                            />
-                                        </a>
-                                    </div>
+                                    <AppDownloadButtons 
+                                        source='calculator_banner' 
+                                        containerClassName='flex flex-col items-center justify-center gap-4 sm:flex-row' 
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -408,36 +383,10 @@ export default function CalculatorPage() {
                     <p className='mx-auto mb-8 max-w-xl text-gray-600'>
                         Stop guessing. Monitor your pet&apos;s exact weight, daily routines, and medical history instantly with the Vet Record App.
                     </p>
-                    <div className='flex flex-col items-center justify-center gap-4 sm:flex-row'>
-                        <a
-                            href={APP_LINKS.GOOGLE_PLAY}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='transition hover:scale-105 active:scale-95'
-                            onClick={() => {
-                                (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
-                            }}>
-                            <img
-                                src='/images/download/googleplay.png'
-                                alt='Get it on Google Play'
-                                className='h-12 w-auto'
-                            />
-                        </a>
-                        <a
-                            href={APP_LINKS.APP_STORE}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='transition hover:scale-105 active:scale-95'
-                            onClick={() => {
-                                (window as any).gtag?.('event', 'click_app_store', { 'page_path': window.location.pathname });
-                            }}>
-                            <img
-                                src='/images/download/appstore.png'
-                                alt='Download on the App Store'
-                                className='h-12 w-auto'
-                            />
-                        </a>
-                    </div>
+                    <AppDownloadButtons 
+                        source='calculator_bottom' 
+                        containerClassName='flex flex-col items-center justify-center gap-4 sm:flex-row' 
+                    />
                 </div>
             </main>
             <Footer />

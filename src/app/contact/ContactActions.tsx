@@ -2,43 +2,17 @@
 
 import { APP_LINKS } from '../config/links';
 import { usePostHog } from 'posthog-js/react';
+import AppDownloadButtons from '../components/AppDownloadButtons';
 
 export function ContactDownloadButtons() {
     const posthog = usePostHog();
 
     return (
-        <div className='mt-auto flex flex-col items-center justify-center gap-4 sm:flex-row'>
-            <a
-                href={APP_LINKS.GOOGLE_PLAY}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='transition-transform hover:scale-105 active:scale-95'
-                onClick={() => {
-                    posthog.capture('app_download_clicked', { platform: 'android', source: 'contact_page' });
-                    (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
-                }}>
-                <img
-                    src='/images/download/googleplay.png'
-                    alt='Get Vet Record Pet Health Tracker on Google Play'
-                    className='mx-auto h-12 object-contain sm:h-14'
-                />
-            </a>
-            <a
-                href={APP_LINKS.APP_STORE}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='transition-transform hover:scale-105 active:scale-95'
-                onClick={() => {
-                    posthog.capture('app_download_clicked', { platform: 'ios', source: 'contact_page' });
-                    (window as any).gtag?.('event', 'click_app_store', { 'page_path': window.location.pathname });
-                }}>
-                <img
-                    src='/images/download/appstore.png'
-                    alt='Download Vet Record Pet Health Tracker on the App Store'
-                    className='mx-auto h-12 object-contain sm:h-14'
-                />
-            </a>
-        </div>
+        <AppDownloadButtons 
+            source='contact_page' 
+            containerClassName='mt-auto flex flex-col items-center justify-center gap-4 sm:flex-row' 
+            imageClassName='mx-auto h-12 object-contain sm:h-14'
+        />
     );
 }
 

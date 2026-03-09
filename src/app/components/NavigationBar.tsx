@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 import { APP_LINKS } from '../config/links';
 import { usePostHog } from 'posthog-js/react';
+import AppDownloadButtons from './AppDownloadButtons';
 
 export default function NavigationBar() {
     const posthog = usePostHog();
@@ -125,41 +126,7 @@ export default function NavigationBar() {
                         <div className='h-6 w-px bg-white/20' />
 
                         {/* Store badges */}
-                        <div className='flex shrink-0 items-center gap-3'>
-                            <a
-                                href={APP_LINKS.GOOGLE_PLAY}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                className='transition hover:scale-105'
-                                onClick={() => {
-                                    posthog.capture('app_download_clicked', {
-                                        platform: 'android',
-                                        source: 'navigation'
-                                    });
-                                    (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
-                                }}>
-                                <img
-                                    src='/images/download/googleplay.png'
-                                    alt='Get it on Google Play'
-                                    className='h-9'
-                                />
-                            </a>
-                            <a
-                                href={APP_LINKS.APP_STORE}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                className='transition hover:scale-105'
-                                onClick={() => {
-                                    posthog.capture('app_download_clicked', { platform: 'ios', source: 'navigation' });
-                                    (window as any).gtag?.('event', 'click_app_store', { 'page_path': window.location.pathname });
-                                }}>
-                                <img
-                                    src='/images/download/appstore.png'
-                                    alt='Download on the App Store'
-                                    className='h-9'
-                                />
-                            </a>
-                        </div>
+                        <AppDownloadButtons source='navigation' imageClassName='h-9' />
                     </div>
 
                     {/* ── Mobile hamburger (< lg) ────────────── */}
@@ -269,42 +236,11 @@ export default function NavigationBar() {
 
                             {/* Store badges */}
                             <div className='mx-4 my-2 border-t border-white/10' />
-                            <div className='flex items-center justify-center gap-3 px-4 py-3'>
-                                <a
-                                    href={APP_LINKS.GOOGLE_PLAY}
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                    onClick={() => {
-                                        posthog.capture('app_download_clicked', {
-                                            platform: 'android',
-                                            source: 'navigation_mobile'
-                                        });
-                                        (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
-                                    }}>
-                                    <img
-                                        src='/images/download/googleplay.png'
-                                        alt='Get it on Google Play'
-                                        className='h-10'
-                                    />
-                                </a>
-                                <a
-                                    href={APP_LINKS.APP_STORE}
-                                    target='_blank'
-                                    rel='noopener noreferrer'
-                                    onClick={() => {
-                                        posthog.capture('app_download_clicked', {
-                                            platform: 'ios',
-                                            source: 'navigation_mobile'
-                                        });
-                                        (window as any).gtag?.('event', 'click_app_store', { 'page_path': window.location.pathname });
-                                    }}>
-                                    <img
-                                        src='/images/download/appstore.png'
-                                        alt='Download on the App Store'
-                                        className='h-10'
-                                    />
-                                </a>
-                            </div>
+                            <AppDownloadButtons 
+                                source='navigation_mobile' 
+                                containerClassName='flex items-center justify-center gap-3 px-4 py-3' 
+                                imageClassName='h-10' 
+                            />
                         </div>
                     </div>
                 </div>

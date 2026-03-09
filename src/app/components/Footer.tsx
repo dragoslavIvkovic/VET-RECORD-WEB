@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import { APP_LINKS } from '../config/links';
 import { usePostHog } from 'posthog-js/react';
+import AppDownloadButtons from './AppDownloadButtons';
 
 export default function Footer() {
     const posthog = usePostHog();
@@ -37,30 +38,7 @@ export default function Footer() {
                     </div>
 
                     {/* Download Icons */}
-                    <div className='flex items-center gap-3'>
-                        <a
-                            href={APP_LINKS.GOOGLE_PLAY}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='transition hover:opacity-80'
-                            onClick={() => {
-                                posthog.capture('app_download_clicked', { platform: 'android', source: 'footer' });
-                                (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
-                            }}>
-                            <img src='/images/download/googleplay.png' alt='Get it on Google Play' className='h-11' />
-                        </a>
-                        <a
-                            href={APP_LINKS.APP_STORE}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='transition hover:opacity-80'
-                            onClick={() => {
-                                posthog.capture('app_download_clicked', { platform: 'ios', source: 'footer' });
-                                (window as any).gtag?.('event', 'click_app_store', { 'page_path': window.location.pathname });
-                            }}>
-                            <img src='/images/download/appstore.png' alt='Download on the App Store' className='h-11' />
-                        </a>
-                    </div>
+                    <AppDownloadButtons source='footer' imageClassName='h-11' containerClassName='flex items-center gap-3' />
 
                     {/* Pinterest Icon */}
                     <a

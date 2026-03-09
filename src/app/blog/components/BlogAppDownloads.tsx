@@ -2,6 +2,7 @@
 
 import { APP_LINKS } from '@/app/config/links';
 import { usePostHog } from 'posthog-js/react';
+import AppDownloadButtons from '@/app/components/AppDownloadButtons';
 
 export default function BlogAppDownloads() {
     const posthog = usePostHog();
@@ -15,29 +16,11 @@ export default function BlogAppDownloads() {
                 Download the Vet Record app to track medical records, set vaccination reminders, and log daily activities.
             </p>
             
-            <div className='mt-4 flex flex-wrap items-center justify-center gap-3'>
-                <a
-                    href={APP_LINKS.GOOGLE_PLAY}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='transition hover:opacity-80 hover:scale-105'
-                    onClick={() => {
-                        posthog.capture('app_download_clicked', { platform: 'android', source: 'blog_post' });
-                        (window as any).gtag?.('event', 'click_play_store', { 'page_path': window.location.pathname });
-                    }}>
-                    <img src='/images/download/googleplay.png' alt='Get it on Google Play' className='h-12' />
-                </a>
-                <a
-                    href={APP_LINKS.APP_STORE}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='transition hover:opacity-80 hover:scale-105'
-                    onClick={() => {
-                        posthog.capture('app_download_clicked', { platform: 'ios', source: 'blog_post' });
-                        (window as any).gtag?.('event', 'click_app_store', { 'page_path': window.location.pathname });
-                    }}>
-                    <img src='/images/download/appstore.png' alt='Download on the App Store' className='h-12' />
-                </a>
+            <div className='mt-4'>
+                <AppDownloadButtons 
+                    source='blog_post' 
+                    containerClassName='flex flex-wrap items-center justify-center gap-3' 
+                />
             </div>
         </div>
     );
