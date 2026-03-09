@@ -19,24 +19,37 @@ export type BlogPost = BlogPostMeta & {
     html: string;
 };
 
-const GHOST_URL = process.env.GHOST_URL;
-const GHOST_KEY = process.env.GHOST_CONTENT_API_KEY;
+function getGhostConfig() {
+    const url = process.env.GHOST_URL;
+    const key = process.env.GHOST_CONTENT_API_KEY;
+    
+    if (!url || !key) {
+        console.error('MISSING ENV VARS:', { 
+            hasUrl: !!url, 
+            hasKey: !!key,
+            nodeEnv: process.env.NODE_ENV 
+        });
+        return null;
+    }
+    return { url: url.replace(/\/$/, ''), key };
+}
 
 function getGhostApiUrl(endpoint: string) {
-    if (!GHOST_URL || !GHOST_KEY) {
+    const config = getGhostConfig();
+    if (!config) {
         throw new Error('GHOST_URL or GHOST_CONTENT_API_KEY environment variables are not set.');
     }
-    const cleanUrl = GHOST_URL.replace(/\/$/, '');
     const separator = endpoint.includes('?') ? '&' : '?';
-    return `${cleanUrl}/ghost/api/content${endpoint}${separator}key=${GHOST_KEY}`;
+    return `${config.url}/ghost/api/content${endpoint}${separator}key=${config.key}`;
 }
 
 /**
  * Fetch list of blog posts from Ghost
  */
 export async function getBlogPosts(): Promise<BlogPostMeta[]> {
-    if (!GHOST_URL || !GHOST_KEY) {
-        console.warn('Ghost variables not set, returning empty posts list.');
+    const config = getGhostConfig();
+    if (!config) {
+        console.warn('Ghost variables not set at runtime, returning empty posts list.');
         return [];
     }
 
@@ -77,7 +90,9 @@ export async function getBlogPosts(): Promise<BlogPostMeta[]> {
  * Fetch single blog post by slug
  */
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {
-    if (!GHOST_URL || !GHOST_KEY) {
+    const config = getGhostConfig();
+    if (!config) {
+        console.warn('Ghost variables not set at runtime (slug fetch), returning null.');
         return null;
     }
 
