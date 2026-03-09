@@ -43,7 +43,7 @@ export async function getBlogPosts(): Promise<BlogPostMeta[]> {
     // Ghost endpoint includes authors and tags for potential future use or displaying author name
     const url = getGhostApiUrl('/posts/?include=authors,tags');
 
-    const res = await fetch(url, { next: { revalidate: 3600 } });
+    const res = await fetch(url, { next: { revalidate: 60 } });
 
     if (!res.ok) {
         if (res.status === 404) return [];
@@ -82,7 +82,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
 
     const url = getGhostApiUrl(`/posts/slug/${slug}/?include=authors,tags`);
 
-    const res = await fetch(url, { next: { revalidate: 3600 } });
+    const res = await fetch(url, { next: { revalidate: 60 } });
     if (!res.ok) return null;
 
     const data = await res.json();
