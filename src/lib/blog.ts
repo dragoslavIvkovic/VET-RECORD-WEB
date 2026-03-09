@@ -46,6 +46,7 @@ export async function getBlogPosts(): Promise<BlogPostMeta[]> {
     const res = await fetch(url, { next: { revalidate: 60 } });
 
     if (!res.ok) {
+        console.error(`Ghost API error for ${url}: ${res.status} ${res.statusText}`);
         if (res.status === 404) return [];
         throw new Error(`Ghost API error: ${res.status} ${res.statusText}`);
     }
@@ -83,7 +84,10 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
     const url = getGhostApiUrl(`/posts/slug/${slug}/?include=authors,tags`);
 
     const res = await fetch(url, { next: { revalidate: 60 } });
-    if (!res.ok) return null;
+    if (!res.ok) {
+        console.error(`Ghost API error for ${url} (slug: ${slug}): ${res.status} ${res.statusText}`);
+        return null;
+    }
 
     const data = await res.json();
     const post = data.posts?.[0];
