@@ -43,6 +43,12 @@ function getGhostApiUrl(endpoint: string) {
     return `${config.url}/ghost/api/content${endpoint}${separator}key=${config.key}`;
 }
 
+function fixImageUrl(url?: string): string | undefined {
+    if (!url) return undefined;
+    // Proxies Ghost images through our server to fix Mixed Content/SSL issues
+    return url.replace(/.*\/content\/images\//, '/ghost-images/');
+}
+
 /**
  * Fetch list of blog posts from Ghost
  */
@@ -76,7 +82,7 @@ export async function getBlogPosts(): Promise<BlogPostMeta[]> {
             description: post.custom_excerpt || post.excerpt || '',
             date: post.published_at || post.created_at || '',
             updated_at: post.updated_at || post.published_at || '',
-            image: post.feature_image || undefined,
+            image: fixImageUrl(post.feature_image),
             author: primaryAuthor,
             meta_title: post.meta_title || post.title,
             meta_description: post.meta_description || post.custom_excerpt || post.excerpt || '',
@@ -117,9 +123,9 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
         description: post.custom_excerpt || post.excerpt || '',
         date: post.published_at || post.created_at || '',
         updated_at: post.updated_at || post.published_at || '',
-        image: post.feature_image || undefined,
+        image: fixImageUrl(post.feature_image),
         author: primaryAuthor,
-        html: post.html || '',
+        html: post.html ? post.html.replace(/https?:\/\/[\w.-]+\/content\/images\//g, '/ghost-images/') : '',
         meta_title: post.meta_title || post.title,
         meta_description: post.meta_description || post.custom_excerpt || post.excerpt || '',
     };

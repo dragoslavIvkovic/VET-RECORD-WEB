@@ -61,6 +61,10 @@ const nextConfig: NextConfig = {
     async rewrites() {
         return [
             {
+                source: '/ghost-images/:path*',
+                destination: 'http://n8n-ghost-310718-77-42-42-63.traefik.me/content/images/:path*'
+            },
+            {
                 source: '/ingest/static/:path*',
                 destination: 'https://eu-assets.i.posthog.com/static/:path*'
             },
