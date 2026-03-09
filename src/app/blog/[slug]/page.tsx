@@ -39,24 +39,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const post = await getBlogPost(slug);
     if (!post) return { title: 'Post Not Found' };
 
-    const description = post.description || post.tldr || `Read ${post.title} on Vet Record blog.`;
+    const title = post.meta_title || post.title;
+    const description = post.meta_description || post.description || `Read ${post.title} on Vet Record blog.`;
 
     return {
-        title: post.title,
+        title,
         description,
-        alternates: { canonical: `/blog/${slug}` },
+        alternates: { canonical: `https://vetrecord.app/blog/${slug}` },
         openGraph: {
-            title: `${post.title} | Vet Record Blog`,
+            title: `${title} | Vet Record Blog`,
             description,
-            url: `https://www.vetrecord.app/blog/${slug}`,
+            url: `https://vetrecord.app/blog/${slug}`,
             type: 'article',
             publishedTime: post.date,
+            modifiedTime: post.updated_at,
             authors: post.author ? [post.author] : undefined,
-            images: post.image ? [{ url: post.image, alt: post.title }] : undefined
+            images: post.image ? [{ url: post.image, alt: title }] : undefined
         },
         twitter: {
             card: 'summary_large_image',
-            title: `${post.title} | Vet Record Blog`,
+            title: `${title} | Vet Record Blog`,
             description
         }
     };
@@ -75,14 +77,14 @@ export default async function BlogPostPage({ params }: Props) {
     const { minutes, label: readTimeLabel } = estimateReadTime(textContent);
     const wordCount = textContent.trim().split(/\s+/).length;
 
-    // ── JSON-LD (BlogPosting — more specific than Article for AEO) ───────────
+    // ── JSON-LD (Article — requested for AEO) ───────────
     const jsonLd = {
         '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
+        '@type': 'Article',
         headline: post.title,
-        description: post.description || post.tldr || '',
+        description: post.meta_description || post.description || '',
         datePublished: post.date,
-        dateModified: post.date,
+        dateModified: post.updated_at || post.date,
         wordCount,
         timeRequired: `PT${minutes}M`,
         inLanguage: 'en-US',
@@ -92,14 +94,14 @@ export default async function BlogPostPage({ params }: Props) {
         publisher: {
             '@type': 'Organization',
             name: 'Vet Record',
-            logo: { '@type': 'ImageObject', url: 'https://www.vetrecord.app/logo.svg' }
+            logo: { '@type': 'ImageObject', url: 'https://vetrecord.app/logo.svg' }
         },
         image: post.image
             ? { '@type': 'ImageObject', url: post.image, caption: post.title }
             : undefined,
         mainEntityOfPage: {
             '@type': 'WebPage',
-            '@id': `https://www.vetrecord.app/blog/${slug}`
+            '@id': `https://vetrecord.app/blog/${slug}`
         }
     };
 
@@ -127,7 +129,7 @@ export default async function BlogPostPage({ params }: Props) {
                 </div>
             </nav>
 
-            <article itemScope itemType='https://schema.org/BlogPosting'>
+            <article itemScope itemType='https://schema.org/Article'>
                 {/* ── Header / Hero ───────────────────────────────────── */}
                 <header className='bg-[#0C4C55]'>
                     {/* Cover image */}

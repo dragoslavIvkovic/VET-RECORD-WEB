@@ -7,9 +7,12 @@ export type BlogPostMeta = {
     title: string;
     description: string;
     date: string;
+    updated_at?: string;
     image?: string;
     author?: string;
     tldr?: string;
+    meta_title?: string;
+    meta_description?: string;
 };
 
 export type BlogPost = BlogPostMeta & {
@@ -52,16 +55,17 @@ export async function getBlogPosts(): Promise<BlogPostMeta[]> {
 
     const resultPosts: BlogPostMeta[] = posts.map(post => {
         const primaryAuthor = post.primary_author?.name || undefined;
-        // Looking for a tag that acts as a tl;dr, or simply leaving it undefined for now
-        // If we want a specific custom field we can pull it from `post.custom_excerpt`
         
         return {
             slug: post.slug,
             title: post.title,
             description: post.custom_excerpt || post.excerpt || '',
             date: post.published_at || post.created_at || '',
+            updated_at: post.updated_at || post.published_at || '',
             image: post.feature_image || undefined,
             author: primaryAuthor,
+            meta_title: post.meta_title || post.title,
+            meta_description: post.meta_description || post.custom_excerpt || post.excerpt || '',
         };
     });
 
@@ -93,9 +97,12 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
         title: post.title,
         description: post.custom_excerpt || post.excerpt || '',
         date: post.published_at || post.created_at || '',
+        updated_at: post.updated_at || post.published_at || '',
         image: post.feature_image || undefined,
         author: primaryAuthor,
         html: post.html || '',
+        meta_title: post.meta_title || post.title,
+        meta_description: post.meta_description || post.custom_excerpt || post.excerpt || '',
     };
 }
 
