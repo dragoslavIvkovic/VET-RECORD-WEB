@@ -53,13 +53,20 @@ function fixImageUrl(url?: string): string | undefined {
  * Ensures Ghost anchor tags have target="_blank" and visible styling for external links.
  */
 function ensureAnchorAttrs(html: string): string {
-    return html.replace(
-        /<a\s+([^>]*href=["']https?:\/\/[^"']+["'][^>]*)>/gi,
-        (match) => {
-            if (/target\s*=/i.test(match)) return match;
-            return match.replace(/^<a\s/, '<a target="_blank" rel="noopener noreferrer" ');
+    return html.replace(/<a\s+([^>]*)>/gi, (match) => {
+        if (!/href\s*=/i.test(match)) return match;
+        const isExternal = /href\s*=\s*["']https?:\/\//i.test(match);
+        let out = match;
+        if (isExternal && !/target\s*=/i.test(out)) {
+            out = out.replace(/^<a\s/, '<a target="_blank" rel="noopener noreferrer" ');
         }
-    );
+        if (/class\s*=\s*["']([^"']*)["']/i.test(out)) {
+            out = out.replace(/class\s*=\s*["']([^"']*)["']/i, 'class="$1 blog-link"');
+        } else {
+            out = out.replace(/^<a\s/, '<a class="blog-link" ');
+        }
+        return out;
+    });
 }
 
 /**
@@ -73,7 +80,7 @@ function linkifyPlainUrls(html: string): string {
             const clean = url.replace(/[.,;:!?)\]}'"]+$/, '');
             const trailing = url.slice(clean.length);
             const escaped = clean.replace(/"/g, '&quot;');
-            return `<a href="${escaped}" target="_blank" rel="noopener noreferrer" class="text-[#0C4C55] !underline underline-offset-2 decoration-2 hover:text-[#08353B]">${clean}</a>${trailing}`;
+            return `<a href="${escaped}" target="_blank" rel="noopener noreferrer" class="blog-link">${clean}</a>${trailing}`;
         });
 
     const parts = html.split(/(<a\s[^>]*>|<\/a>)/gi);
