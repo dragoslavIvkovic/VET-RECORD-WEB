@@ -225,9 +225,9 @@ export default async function BlogPostPage({ params }: Props) {
                             </p>
                         )}
 
-                        {/* HTML article body */}
+                        {/* HTML article body – prose + prose-article for Ghost structure (p, h2, h3) and link styling */}
                         <div
-                            className='rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 sm:p-10 prose max-w-none'
+                            className='prose-article rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 sm:p-10 prose max-w-none'
                             itemProp='articleBody'
                             dangerouslySetInnerHTML={{ __html: post.html }}
                         />

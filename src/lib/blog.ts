@@ -50,6 +50,52 @@ function fixImageUrl(url?: string): string | undefined {
 }
 
 /**
+ * Ensures Ghost anchor tags have target="_blank" and visible styling for external links.
+ */
+function ensureAnchorAttrs(html: string): string {
+    return html.replace(
+        /<a\s+([^>]*href=["']https?:\/\/[^"']+["'][^>]*)>/gi,
+        (match) => {
+            if (/target\s*=/i.test(match)) return match;
+            return match.replace(/^<a\s/, '<a target="_blank" rel="noopener noreferrer" ');
+        }
+    );
+}
+
+/**
+ * Converts plain URLs in HTML text to clickable links.
+ * Skips URLs already inside <a href="..."> to avoid double-wrapping.
+ */
+function linkifyPlainUrls(html: string): string {
+    const urlRegex = /(https?:\/\/[^\s<>"]+)/g;
+    const linkify = (str: string) =>
+        str.replace(urlRegex, (url) => {
+            const clean = url.replace(/[.,;:!?)\]}'"]+$/, '');
+            const trailing = url.slice(clean.length);
+            const escaped = clean.replace(/"/g, '&quot;');
+            return `<a href="${escaped}" target="_blank" rel="noopener noreferrer" class="text-[#0C4C55] !underline underline-offset-2 decoration-2 hover:text-[#08353B]">${clean}</a>${trailing}`;
+        });
+
+    const parts = html.split(/(<a\s[^>]*>|<\/a>)/gi);
+    let result = '';
+    let insideAnchor = false;
+    for (const part of parts) {
+        if (/^<a\s/i.test(part)) {
+            insideAnchor = true;
+            result += part;
+        } else if (/^<\/a>$/i.test(part)) {
+            insideAnchor = false;
+            result += part;
+        } else if (!insideAnchor) {
+            result += linkify(part);
+        } else {
+            result += part;
+        }
+    }
+    return result;
+}
+
+/**
  * Fetch list of blog posts from Ghost
  */
 export async function getBlogPosts(): Promise<BlogPostMeta[]> {
@@ -125,7 +171,15 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
         updated_at: post.updated_at || post.published_at || '',
         image: fixImageUrl(post.feature_image),
         author: primaryAuthor,
-        html: post.html ? post.html.replace(/https?:\/\/[\w.-]+\/content\/images\//g, '/ghost-images/') : '',
+        html: post.html
+            ? ensureAnchorAttrs(
+                  linkifyPlainUrls(
+                      post.html
+                          .replace(/https?:\/\/[\w.-]+\/content\/images\//g, '/ghost-images/')
+                          .replace(new RegExp(`${config.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}/`, 'g'), '/blog/')
+                  )
+              )
+            : '',
         meta_title: post.meta_title || post.title,
         meta_description: post.meta_description || post.custom_excerpt || post.excerpt || '',
     };

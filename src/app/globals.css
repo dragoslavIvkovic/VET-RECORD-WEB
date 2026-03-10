@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
 /* Float animation for phone */
 @keyframes float {
@@ -17,4 +18,33 @@
 /* Delay utilities */
 .delay-1000 {
     animation-delay: 1000ms;
+}
+
+/* Blog article: Ghost CMS content – paragraphs, headings, links */
+.prose-article p {
+    margin-bottom: 1.25em;
+}
+.prose-article p:last-child {
+    margin-bottom: 0;
+}
+.prose-article h2 {
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+.prose-article h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-size: 1.25em;
+    font-weight: 600;
+}
+.prose-article a {
+    color: #0C4C55;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 2px;
+}
+.prose-article a:hover {
+    color: #08353B;
 }
