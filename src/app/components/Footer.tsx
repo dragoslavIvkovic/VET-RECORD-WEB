@@ -134,6 +134,15 @@ export default function Footer() {
                                 </Link>
                             </li>
                             <li>
+                                <button
+                                    type='button'
+                                    onClick={() => window.dispatchEvent(new Event('open-cookie-preferences'))}
+                                    className='cursor-pointer bg-transparent text-left text-gray-300 hover:text-white'
+                                >
+                                    Cookie preferences
+                                </button>
+                            </li>
+                            <li>
                                 <Link href='/contact' className='hover:text-white'>
                                     Contact
                                 </Link>

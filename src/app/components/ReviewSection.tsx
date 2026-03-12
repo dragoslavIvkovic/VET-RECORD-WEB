@@ -1,10 +1,5 @@
 'use client';
 
-import { usePostHog } from 'posthog-js/react';
-
-import { APP_LINKS } from '../config/links';
-import AppDownloadButtons from './AppDownloadButtons';
-
 interface Review {
     name: string;
     avatar: string;
@@ -13,7 +8,6 @@ interface Review {
 }
 
 export default function ReviewSection() {
-    const posthog = usePostHog();
     const reviews: Review[] = [
         {
             id: 'review1',
@@ -94,8 +88,7 @@ export default function ReviewSection() {
 
                 {/* CTA */}
                 <div className='mt-12 text-center'>
-                    <h3 className='mb-6 text-xl font-bold text-[#0C4C55]'>Safe, Secure, and Loved by Pet Parents</h3>
-                    <AppDownloadButtons source='review_section' />
+                    <h3 className='text-xl font-bold text-[#0C4C55]'>Safe, Secure, and Loved by Pet Parents</h3>
                 </div>
             </div>
         </section>

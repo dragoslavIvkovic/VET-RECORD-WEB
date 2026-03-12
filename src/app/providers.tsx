@@ -2,6 +2,7 @@
 
 import posthog from 'posthog-js';
 import { PostHogProvider as PHProvider } from 'posthog-js/react';
+import { getStoredConsent } from '@/lib/cookie-consent';
 
 if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
@@ -16,6 +17,10 @@ if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
         enable_heatmaps: false,
         persistence: 'localStorage+cookie',
     });
+    const consent = getStoredConsent();
+    if (!consent || !consent.analytics) {
+        posthog.opt_out_capturing();
+    }
 }
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {

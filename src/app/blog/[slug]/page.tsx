@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { getBlogPost, getBlogSlugs } from '@/lib/blog';
 import ScrollProgressBar from '../components/ScrollProgressBar';
 import BlogAppDownloads from '../components/BlogAppDownloads';
+import BlogDownloadPopup from '../components/BlogDownloadPopup';
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -264,6 +265,8 @@ export default async function BlogPostPage({ params }: Props) {
                 type='application/ld+json'
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
+
+            <BlogDownloadPopup />
         </main>
     );
 }

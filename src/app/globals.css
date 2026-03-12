@@ -20,6 +20,33 @@
     animation-delay: 1000ms;
 }
 
+/* Cookie consent banner animation */
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-slide-up {
+    animation: slide-up 0.4s ease-out forwards;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes zoom-in-95 {
+    from { transform: scale(0.95); }
+    to { transform: scale(1); }
+}
+.animate-in {
+    animation: fade-in 0.2s ease-out, zoom-in-95 0.2s ease-out;
+}
+
 /* Blog article: Ghost CMS content – paragraphs, headings, links (plain CSS for production) */
 .prose-article p {
     margin-bottom: 1.25em !important;

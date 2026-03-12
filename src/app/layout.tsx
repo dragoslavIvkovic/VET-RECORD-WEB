@@ -4,10 +4,14 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import '@/app/globals.css';
 
+import CookieConsent from './components/CookieConsent';
 import NavigationBar from './components/NavigationBar';
+import SmartAppBanner from './components/SmartAppBanner';
+import ExitIntentPopup from './components/ExitIntentPopup';
 import ScrollToTop from './components/ScrollToTop';
 import { PostHogProvider } from './providers';
 
@@ -129,7 +133,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                     <NavigationBar />
                     <div className='pt-16 lg:pt-[72px]'>{children}</div>
                     <ScrollToTop />
+                    <SmartAppBanner />
+                    <ExitIntentPopup />
+                    <CookieConsent />
                     <Analytics />
+                    <SpeedInsights />
                 </PostHogProvider>
             </body>
         </html>
