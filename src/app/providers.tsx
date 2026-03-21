@@ -17,6 +17,7 @@ if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
         enable_heatmaps: false,
         persistence: 'localStorage+cookie',
         opt_in_site_apps: false,
+        disable_surveys: true,
     });
     const consent = getStoredConsent();
     if (!consent || !consent.analytics) {

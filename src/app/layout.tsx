@@ -82,7 +82,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <link rel="preconnect" href="https://eu.posthog.com" />
                 <meta name="p:domain_verify" content="157b1f4deed124fa6508549e0e363960"/>
                 <Script strategy='lazyOnload' src={`https://www.googletagmanager.com/gtag/js?id=G-9PGSFLM2FM`} />
-                <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-940388544" strategy='lazyOnload' />
                 <Script id='google-analytics' strategy='lazyOnload'>
                     {`
                         window.dataLayer = window.dataLayer || [];

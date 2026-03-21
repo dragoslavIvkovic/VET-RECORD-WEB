@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { usePostHog } from 'posthog-js/react';
 
@@ -86,11 +87,12 @@ export default function Footer() {
                             rel='noopener noreferrer'
                             className='transition hover:opacity-80'
                             onClick={() => posthog.capture('product_hunt_clicked', { link_type: 'badge_ios' })}>
-                            <img
+                            <Image
                                 src='https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1061325&theme=light&t=1768317449825'
                                 alt='Vet Record – Pet Health Tracker (iOS) - Pets,Health,Mobile Apps | Product Hunt'
-                                width='250'
-                                height='54'
+                                width={250}
+                                height={54}
+                                unoptimized
                             />
                         </a>
 
@@ -99,10 +101,13 @@ export default function Footer() {
                             className='rounded-xl border border-gray-200 bg-white p-5 shadow-sm'
                             style={{ maxWidth: '500px' }}>
                             <div className='mb-3 flex items-center gap-3'>
-                                <img
+                                <Image
                                     alt='Vet Record'
                                     src='https://ph-files.imgix.net/16784a05-4461-48bd-9a78-222bb6425604.png?auto=format&fit=crop&w=80&h=80'
+                                    width={64}
+                                    height={64}
                                     className='h-16 w-16 flex-shrink-0 rounded-lg object-cover'
+                                    unoptimized
                                 />
                                 <div className='min-w-0 flex-1'>
                                     <h3 className='m-0 truncate text-lg leading-tight font-semibold text-gray-900'>

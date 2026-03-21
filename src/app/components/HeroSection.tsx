@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { usePostHog } from 'posthog-js/react';
 import { APP_LINKS } from '../config/links';
 import AppDownloadButtons from './AppDownloadButtons';
@@ -8,7 +9,6 @@ import AppDownloadButtons from './AppDownloadButtons';
 export default function HeroSection() {
     const posthog = usePostHog();
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [isLoaded, setIsLoaded] = useState(false);
     
     const slides = [
         { src: '/images/slider/slide-01.webp', alt: 'Vet Record app vaccination tracker screen for pets' },
@@ -24,7 +24,6 @@ export default function HeroSection() {
     ];
 
     useEffect(() => {
-        setIsLoaded(true);
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
         }, 3000);
@@ -43,35 +42,37 @@ export default function HeroSection() {
             <div className='container mx-auto px-4 relative z-10'>
                 <div className='grid gap-3 md:gap-4 md:grid-cols-2 md:items-center'>
                     {/* Left Column - Text Content */}
-                    <div className={`z-10 space-y-2 md:space-y-3 text-white transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-                        <h1 className='text-3xl leading-tight font-bold md:text-5xl lg:text-6xl'>
-                            <span className={`inline-block transition-all duration-700 delay-100 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+                    <div className='z-10 space-y-2 text-white md:space-y-3'>
+                        <h1 className='text-3xl font-bold leading-tight md:text-5xl lg:text-6xl'>
+                            <span className='inline-block'>
                                 Your Pet&apos;s Entire Medical History.
                             </span>
                             <br />
-                            <span className={`inline-block text-cyan-300 transition-all duration-700 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+                            <span className='inline-block text-cyan-300'>
                                 In One Secure App.
                             </span>
                         </h1>
-                        <p className={`text-base text-gray-300 transition-all duration-700 delay-500 md:text-lg ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+                        <p className='text-base text-gray-300 md:text-lg'>
                             Track vaccines, weight, medications, and daily care — without paper records or forgotten appointments.
                         </p>
 
                         {/* Download CTA */}
-                        <div className={`space-y-2 transition-all duration-700 delay-600 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-                            <p className='text-sm font-semibold uppercase tracking-wider text-cyan-300'>Download Free — No Credit Card Required</p>
+                        <div className='space-y-2'>
+                            <p className='text-sm font-semibold tracking-wider text-cyan-300 uppercase'>Download Free — No Credit Card Required</p>
                             <AppDownloadButtons source='hero_section' imageClassName='h-14' />
                         </div>
 
                         {/* Social proof */}
-                        <div className={`flex items-center gap-3 transition-all duration-700 delay-800 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+                        <div className='flex items-center gap-3'>
                             <div className='flex -space-x-3'>
                                 {[1, 2, 3, 4].map((num) => (
-                                    <img
+                                    <Image
                                         key={num}
                                         src={`/images/banavt${num}.png`}
                                         alt='Happy pet owner'
-                                        className='h-10 w-10 rounded-full border-2 border-white md:h-11 md:w-11'
+                                        width={44}
+                                        height={44}
+                                        className='h-10 w-10 rounded-full border-2 border-white object-cover md:h-11 md:w-11'
                                     />
                                 ))}
                             </div>
@@ -82,20 +83,19 @@ export default function HeroSection() {
                     </div>
 
                     {/* Right Column - App Screenshot */}
-                    <div className={`relative z-10 block transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+                    <div className='relative z-10 block'>
                         <div className='relative mx-auto w-full max-w-xs md:max-w-none'>
                             <div className='animate-float'>
                                 <div className='relative aspect-9/19 w-full max-h-[400px] md:max-h-200'>
                                     {slides.map((slide, index) => (
-                                        <img
+                                        <Image
                                             key={slide.src}
                                             src={slide.src}
                                             alt={slide.alt}
-                                            width={320}
-                                            height={640}
-                                            fetchPriority={index === 0 ? 'high' : 'auto'}
-                                            loading={index === 0 ? 'eager' : 'lazy'}
-                                            className={`absolute inset-0 z-10 h-full w-full object-contain transition-all duration-700 ${
+                                            fill
+                                            unoptimized
+                                            priority={index === 0}
+                                            className={`absolute inset-0 z-10 object-contain transition-all duration-700 ${
                                                 currentSlide === index 
                                                     ? 'opacity-100 scale-100' 
                                                     : 'opacity-0 scale-95'
@@ -103,24 +103,6 @@ export default function HeroSection() {
                                         />
                                     ))}
                                 </div>
-                            </div>
-                            {/* Slider Dots */}
-                            <div className='absolute -bottom-4 left-1/2 z-30 flex -translate-x-1/2 transform flex-wrap justify-center md:-bottom-8'>
-                                {slides.map((_, index) => (
-                                    <button
-                                        type='button'
-                                        key={`slide-${index + 1}`}
-                                        onClick={() => setCurrentSlide(index)}
-                                        className='flex min-h-[44px] min-w-[44px] items-center justify-center p-0 group'
-                                        aria-label={`Go to slide ${index + 1}`}
-                                    >
-                                        <span className={`block h-1.5 rounded-full transition-all duration-300 md:h-2 ${
-                                            currentSlide === index 
-                                                ? 'bg-white w-5 md:w-6' 
-                                                : 'bg-white/50 w-1.5 md:w-2 group-hover:bg-white/70'
-                                        }`} />
-                                    </button>
-                                ))}
                             </div>
                         </div>
                     </div>

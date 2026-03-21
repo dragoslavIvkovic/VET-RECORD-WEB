@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Image from 'next/image';
 import BlogPostLink from '../BlogPostLink';
 import type { BlogPostMeta } from '@/lib/blog';
 
@@ -103,10 +104,12 @@ export default function BlogFilterContainer({ posts }: Props) {
                         {/* Image area: full cover image */}
                         <div className='relative aspect-video w-full overflow-hidden bg-[#0C4C55]/5 sm:aspect-[2.5/1]'>
                             {featured.image ? (
-                                <img
+                                <Image
                                     src={featured.image}
                                     alt={featured.title}
-                                    className='absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]'
+                                    fill
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                    className='absolute inset-0 object-cover transition-transform duration-700 group-hover:scale-[1.05]'
                                 />
                             ) : (
                                 <div className='flex h-full w-full items-center justify-center bg-linear-to-b from-[#d6eef1] to-[#bde1e6]'>
@@ -192,10 +195,12 @@ export default function BlogFilterContainer({ posts }: Props) {
                                     {/* Image — cover */}
                                     <div className='relative aspect-4/3 w-full overflow-hidden bg-gray-50'>
                                         {post.image ? (
-                                            <img
+                                            <Image
                                                 src={post.image}
                                                 alt={post.title}
-                                                className='absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.05]'
+                                                fill
+                                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                                className='absolute inset-0 object-cover transition-transform duration-500 group-hover:scale-[1.05]'
                                             />
                                         ) : (
                                             <div className='flex h-full w-full items-center justify-center bg-linear-to-br from-[#d6eef1] to-[#bde1e6]'>

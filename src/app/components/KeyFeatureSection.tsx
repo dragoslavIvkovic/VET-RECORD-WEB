@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 interface Feature {
     icon: string;
@@ -116,7 +117,13 @@ export default function KeyFeatureSection() {
                                         </h3>
                                         <p className='mb-8 text-gray-600'>{feature.description}</p>
                                         <div className='mx-auto max-w-xs'>
-                                            <img src={feature.image} alt={feature.alt} className='h-auto w-full' />
+                                            <Image 
+                                                src={feature.image} 
+                                                alt={feature.alt} 
+                                                width={284} 
+                                                height={361} 
+                                                className='h-auto w-full' 
+                                            />
                                         </div>
                                     </div>
                                 </div>

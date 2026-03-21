@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getBlogPost, getBlogSlugs } from '@/lib/blog';
 import ScrollProgressBar from '../components/ScrollProgressBar';
 import BlogAppDownloads from '../components/BlogAppDownloads';
 import BlogDownloadPopup from '../components/BlogDownloadPopup';
+import BlogShareButtons from '../components/BlogShareButtons';
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -161,11 +163,12 @@ export default async function BlogPostPage({ params }: Props) {
                     {/* Cover image */}
                     {post.image && (
                         <div className='relative w-full aspect-video overflow-hidden bg-[#0C4C55]/5 sm:aspect-[2.5/1] lg:aspect-[3/1]'>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
+                            <Image
                                 src={post.image}
                                 alt={post.title}
-                                className='absolute inset-0 h-full w-full object-contain p-4'
+                                fill
+                                sizes="(max-width: 1024px) 100vw, 1024px"
+                                className='absolute inset-0 object-contain p-4'
                                 itemProp='image'
                             />
                         </div>
@@ -257,6 +260,14 @@ export default async function BlogPostPage({ params }: Props) {
                             itemProp='articleBody'
                             dangerouslySetInnerHTML={{ __html: post.html }}
                         />
+
+                        {/* Social Share Buttons */}
+                        <div className="mt-8 sm:mt-10">
+                            <BlogShareButtons 
+                                url={`https://www.vetrecord.app/blog/${slug}`}
+                                title={post.title}
+                            />
+                        </div>
 
                         {/* Medical Disclaimer */}
                         <div className='mt-8 rounded-xl border-l-4 border-red-400 bg-red-50 p-6 shadow-sm sm:mt-10'>

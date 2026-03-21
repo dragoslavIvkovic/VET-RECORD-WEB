@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 
 interface Review {
     name: string;
@@ -87,9 +88,11 @@ export default function ReviewSection() {
 
                             {/* Author */}
                             <div className='flex items-center gap-3'>
-                                <img
+                                <Image
                                     src={review.avatar}
                                     alt={`${review.name} - Vet Record App User Review`}
+                                    width={40}
+                                    height={40}
                                     className='h-10 w-10 rounded-full object-cover'
                                 />
                                 <span className='font-semibold text-gray-900'>{review.name}</span>

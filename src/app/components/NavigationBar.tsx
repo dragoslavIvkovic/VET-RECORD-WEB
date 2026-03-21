@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 import Link from 'next/link';
 
@@ -46,7 +47,7 @@ export default function NavigationBar() {
                 <div className='flex h-16 items-center justify-between gap-3 lg:h-[72px]'>
                     {/* ── Logo ────────────────────────────────── */}
                     <Link href='/' className='shrink-0'>
-                        <img src='/logo.svg' alt='Vet Record' className='h-9 w-auto lg:h-10' />
+                        <img src='/logo.svg' alt='Vet Record' className='w-auto h-9 lg:h-10' />
                     </Link>
 
                     {/* ── Desktop nav (lg+) ───────────────────── */}

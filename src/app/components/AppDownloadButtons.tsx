@@ -1,6 +1,7 @@
 'use client';
 
 import { usePostHog } from 'posthog-js/react';
+import Image from 'next/image';
 import { APP_LINKS } from '../config/links';
 
 interface AppDownloadButtonsProps {
@@ -29,26 +30,30 @@ export default function AppDownloadButtons({
                 href={APP_LINKS.GOOGLE_PLAY}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='transition hover:scale-105 active:scale-95'
+                className={`transition hover:scale-105 active:scale-95 relative block aspect-[3/1] ${imageClassName}`}
                 onClick={() => trackClick('android')}
             >
-                <img 
+                <Image 
                     src='/images/download/googleplay.png' 
                     alt='Get Vet Record Pet Health Tracker on Google Play' 
-                    className={imageClassName} 
+                    fill
+                    sizes="168px"
+                    className="object-contain"
                 />
             </a>
             <a
                 href={APP_LINKS.APP_STORE}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='transition hover:scale-105 active:scale-95'
+                className={`transition hover:scale-105 active:scale-95 relative block aspect-[3/1] ${imageClassName}`}
                 onClick={() => trackClick('ios')}
             >
-                <img 
+                <Image 
                     src='/images/download/appstore.png' 
                     alt='Download Vet Record Pet Health Tracker on the App Store' 
-                    className={imageClassName} 
+                    fill
+                    sizes="168px"
+                    className="object-contain"
                 />
             </a>
         </div>
