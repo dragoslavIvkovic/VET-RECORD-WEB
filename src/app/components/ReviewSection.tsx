@@ -10,22 +10,34 @@ interface Review {
 export default function ReviewSection() {
     const reviews: Review[] = [
         {
-            id: 'review1',
-            name: 'Aimin',
-            avatar: '/images/review1.png',
-            text: "This app has made managing my pet's care so much simpler. Thank you!"
+            id: 'review-alex',
+            name: 'AlexRisitic',
+            avatar: '/images/review_alex.png',
+            text: 'Excellent app. I no longer have to call my vet to remember my dog’s medical history.'
         },
         {
-            id: 'review2',
-            name: 'Ferwelo, Nikko D',
-            avatar: '/images/review2.png',
+            id: 'review-aimin',
+            name: 'Aimin',
+            avatar: '/images/review_aimin.png',
+            text: 'This app has made managing my pet\'s care so much simpler. Thank you'
+        },
+        {
+            id: 'review-ferwelo',
+            name: 'Ferwelo, Nikko D.',
+            avatar: '/images/review_ferwelo.png',
             text: 'My pet will like this'
         },
         {
-            id: 'review3',
-            name: 'Anonymous',
-            avatar: '/images/review3.png',
+            id: 'review-zhanarys',
+            name: 'Zhanarys Dakhiyev',
+            avatar: '/images/review_zhanarys.png',
             text: 'Simple, effective and working. Nice 👍'
+        },
+        {
+            id: 'review-fes',
+            name: 'fes62627',
+            avatar: '/images/review_fes.png',
+            text: 'Better than pen and paper'
         }
     ];
 
@@ -52,13 +64,13 @@ export default function ReviewSection() {
                                 <StarIcon key={`rating-${i}`} />
                             ))}
                         </div>
-                        <span className='font-semibold'>4.5/5.0</span>
+                        <span className='font-semibold'>5.0/5.0</span>
                         <span className='text-gray-500'>• 1399 reviews</span>
                     </div>
                 </div>
 
                 {/* Reviews Grid */}
-                <div className='grid gap-6 md:grid-cols-3'>
+                <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-5'>
                     {reviews.map((review) => (
                         <div
                             key={review.id}

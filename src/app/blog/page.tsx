@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { getBlogPosts } from '@/lib/blog';
 
-import BlogPostLink from './BlogPostLink';
+import BlogFilterContainer from './components/BlogFilterContainer';
 
 export const metadata: Metadata = {
     title: 'Blog',
@@ -22,18 +22,7 @@ export const metadata: Metadata = {
     keywords: ['pet health blog', 'dog care tips', 'cat health', 'vaccination guide', 'pet care advice']
 };
 
-function formatDate(dateStr: string): string {
-    if (!dateStr) return '';
-    const d = new Date(dateStr);
 
-    return isNaN(d.getTime()) ? '' : d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-}
-
-function readTime(text: string): string {
-    const mins = Math.max(1, Math.round(text.trim().split(/\s+/).length / 200));
-
-    return `${mins} min read`;
-}
 
 export default async function BlogPage() {
     let posts: Awaited<ReturnType<typeof getBlogPosts>> = [];
@@ -44,8 +33,6 @@ export default async function BlogPage() {
     } catch (e) {
         error = e instanceof Error ? e.message : 'Failed to load blog posts';
     }
-
-    const [featured, ...rest] = posts;
 
     return (
         <main className='min-h-screen bg-gray-50'>
@@ -83,153 +70,11 @@ export default async function BlogPage() {
                     </div>
                 )}
 
-                {/* ── FEATURED ──────────────────────────────────────── */}
-                {!error && featured && (
-                    <BlogPostLink
-                        href={`/blog/${featured.slug}`}
-                        slug={featured.slug}
-                        title={featured.title}
-                        className='group mb-10 block'>
-                        <article className='overflow-hidden rounded-3xl bg-white shadow ring-1 ring-gray-200 transition-shadow hover:shadow-lg'>
-                            {/* Image area: full cover image */}
-                            <div className='relative aspect-video w-full overflow-hidden bg-[#0C4C55]/5 sm:aspect-[2.5/1]'>
-                                {featured.image ? (
-                                    <img
-                                        src={featured.image}
-                                        alt={featured.title}
-                                        className='absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]'
-                                    />
-                                ) : (
-                                    <div className='flex h-full w-full items-center justify-center bg-linear-to-b from-[#d6eef1] to-[#bde1e6]'>
-                                        <span className='text-7xl opacity-20'>🐾</span>
-                                    </div>
-                                )}
-                            </div>
-
-                            {/* Text */}
-                            <div className='p-6 sm:p-8'>
-                                <div className='mb-3 flex flex-wrap items-center gap-2'>
-                                    <span className='rounded-full bg-[#0C4C55]/10 px-3 py-0.5 text-xs font-semibold tracking-wide text-[#0C4C55] uppercase'>
-                                        Featured
-                                    </span>
-                                    <span className='text-xs text-gray-400'>
-                                        {formatDate(featured.date)}
-                                        {featured.description ? ` · ${readTime(featured.description)}` : ''}
-                                    </span>
-                                </div>
-
-                                <h2 className='mb-3 text-2xl leading-snug font-bold text-gray-900 transition-colors group-hover:text-[#0C4C55] sm:text-3xl'>
-                                    {featured.title}
-                                </h2>
-
-                                {featured.description && (
-                                    <p className='mb-5 max-w-2xl text-base leading-relaxed text-gray-500'>
-                                        {featured.description}
-                                    </p>
-                                )}
-
-                                <div className='flex flex-wrap items-center justify-between gap-4 border-t border-gray-100 pt-5'>
-                                    {featured.author ? (
-                                        <div className='flex items-center gap-2'>
-                                            <div className='flex h-8 w-8 items-center justify-center rounded-full bg-[#0C4C55] text-sm font-bold text-white'>
-                                                {featured.author.charAt(0).toUpperCase()}
-                                            </div>
-                                            <span className='text-sm font-medium text-gray-600'>{featured.author}</span>
-                                        </div>
-                                    ) : (
-                                        <span />
-                                    )}
-
-                                    <span className='inline-flex items-center gap-1.5 text-sm font-semibold text-[#0C4C55]'>
-                                        Read article
-                                        <svg
-                                            className='h-4 w-4 transition-transform duration-200 group-hover:translate-x-1'
-                                            fill='none'
-                                            viewBox='0 0 24 24'
-                                            stroke='currentColor'>
-                                            <path
-                                                strokeLinecap='round'
-                                                strokeLinejoin='round'
-                                                strokeWidth={2}
-                                                d='M17 8l4 4m0 0l-4 4m4-4H3'
-                                            />
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                        </article>
-                    </BlogPostLink>
-                )}
-
-                {/* ── MORE ARTICLES GRID ────────────────────────────── */}
-                {!error && rest.length > 0 && (
-                    <>
-                        <h2 className='mb-6 text-xs font-semibold tracking-widest text-gray-400 uppercase'>
-                            More articles
-                        </h2>
-                        <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
-                            {rest.map((post) => (
-                                <BlogPostLink
-                                    key={post.slug}
-                                    href={`/blog/${post.slug}`}
-                                    slug={post.slug}
-                                    title={post.title}
-                                    className='group flex'
-                                    prefetch={false}>
-                                    <article className='flex w-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200 transition-all duration-200 hover:-translate-y-1 hover:shadow-md'>
-                                        {/* Image — cover */}
-                                        <div className='relative aspect-video w-full overflow-hidden bg-gray-100'>
-                                            {post.image ? (
-                                                <img
-                                                    src={post.image}
-                                                    alt={post.title}
-                                                    className='absolute inset-0 h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-[1.04]'
-                                                />
-                                            ) : (
-                                                <div className='flex h-full w-full items-center justify-center bg-linear-to-b from-[#d6eef1] to-[#bde1e6]'>
-                                                    <span className='text-5xl opacity-20'>🐾</span>
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        {/* Text */}
-                                        <div className='flex flex-1 flex-col p-5'>
-                                            <p className='mb-2 text-xs text-gray-400'>
-                                                {formatDate(post.date)}
-                                                {post.description ? ` · ${readTime(post.description)}` : ''}
-                                            </p>
-
-                                            <h3 className='mb-2 text-base leading-snug font-bold text-gray-900 transition-colors group-hover:text-[#0C4C55]'>
-                                                {post.title}
-                                            </h3>
-
-                                            {post.description && (
-                                                <p className='line-clamp-2 text-sm leading-relaxed text-gray-500'>
-                                                    {post.description}
-                                                </p>
-                                            )}
-
-                                            <div className='mt-auto flex items-center justify-between border-t border-gray-100 pt-4'>
-                                                {post.author ? (
-                                                    <div className='flex items-center gap-1.5'>
-                                                        <div className='flex h-6 w-6 items-center justify-center rounded-full bg-[#0C4C55] text-xs font-bold text-white'>
-                                                            {post.author.charAt(0).toUpperCase()}
-                                                        </div>
-                                                        <span className='text-xs text-gray-500'>{post.author}</span>
-                                                    </div>
-                                                ) : (
-                                                    <span />
-                                                )}
-                                                <span className='text-xs font-semibold text-[#0C4C55] transition-all group-hover:underline'>
-                                                    Read →
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </BlogPostLink>
-                            ))}
-                        </div>
-                    </>
+                {/* ── BLOG FILTER CONTAINER ─────────────────────────── */}
+                {!error && posts.length > 0 && (
+                    <div className='-mx-4 sm:mx-0'>
+                        <BlogFilterContainer posts={posts} />
+                    </div>
                 )}
             </div>
         </main>

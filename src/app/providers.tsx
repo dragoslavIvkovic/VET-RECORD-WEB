@@ -16,6 +16,7 @@ if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
         disable_session_recording: true,
         enable_heatmaps: false,
         persistence: 'localStorage+cookie',
+        opt_in_site_apps: false,
     });
     const consent = getStoredConsent();
     if (!consent || !consent.analytics) {

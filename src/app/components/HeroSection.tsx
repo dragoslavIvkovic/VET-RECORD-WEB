@@ -91,6 +91,10 @@ export default function HeroSection() {
                                             key={slide.src}
                                             src={slide.src}
                                             alt={slide.alt}
+                                            width={320}
+                                            height={640}
+                                            fetchPriority={index === 0 ? 'high' : 'auto'}
+                                            loading={index === 0 ? 'eager' : 'lazy'}
                                             className={`absolute inset-0 z-10 h-full w-full object-contain transition-all duration-700 ${
                                                 currentSlide === index 
                                                     ? 'opacity-100 scale-100' 
@@ -101,19 +105,21 @@ export default function HeroSection() {
                                 </div>
                             </div>
                             {/* Slider Dots */}
-                            <div className='absolute -bottom-4 left-1/2 z-30 flex -translate-x-1/2 transform space-x-1.5 md:-bottom-8 md:space-x-2'>
+                            <div className='absolute -bottom-4 left-1/2 z-30 flex -translate-x-1/2 transform flex-wrap justify-center md:-bottom-8'>
                                 {slides.map((_, index) => (
                                     <button
                                         type='button'
                                         key={`slide-${index + 1}`}
                                         onClick={() => setCurrentSlide(index)}
-                                        className={`h-1.5 rounded-full transition-all duration-300 md:h-2 ${
+                                        className='flex min-h-[44px] min-w-[44px] items-center justify-center p-0 group'
+                                        aria-label={`Go to slide ${index + 1}`}
+                                    >
+                                        <span className={`block h-1.5 rounded-full transition-all duration-300 md:h-2 ${
                                             currentSlide === index 
                                                 ? 'bg-white w-5 md:w-6' 
-                                                : 'bg-white/50 w-1.5 md:w-2 hover:bg-white/70'
-                                        }`}
-                                        aria-label={`Go to slide ${index + 1}`}
-                                    />
+                                                : 'bg-white/50 w-1.5 md:w-2 group-hover:bg-white/70'
+                                        }`} />
+                                    </button>
                                 ))}
                             </div>
                         </div>

@@ -78,10 +78,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang='en'>
             <head>
+                <link rel="preconnect" href="https://www.googletagmanager.com" />
+                <link rel="preconnect" href="https://eu.posthog.com" />
                 <meta name="p:domain_verify" content="157b1f4deed124fa6508549e0e363960"/>
-                <Script strategy='afterInteractive' src={`https://www.googletagmanager.com/gtag/js?id=G-9PGSFLM2FM`} />
-                <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-940388544" strategy='afterInteractive' />
-                <Script id='google-analytics' strategy='afterInteractive'>
+                <Script strategy='lazyOnload' src={`https://www.googletagmanager.com/gtag/js?id=G-9PGSFLM2FM`} />
+                <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-940388544" strategy='lazyOnload' />
+                <Script id='google-analytics' strategy='lazyOnload'>
                     {`
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
@@ -103,7 +105,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                             name: 'Vet Record',
                             description: 'Simplify your pet parenting journey. Track vaccines, medication reminders, and medical history for dogs and cats. Cloud sync for families.',
                             applicationCategory: 'HealthApplication',
-                            operatingSystem: 'Android',
+                            operatingSystem: 'Android, iOS',
                             aggregateRating: {
                                 '@type': 'AggregateRating',
                                 ratingValue: '4.5',
@@ -118,11 +120,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                             image: 'https://www.vetrecord.app/images/slider/slide-01.webp',
                             publisher: {
                                 '@type': 'Organization',
-                                name: 'VetRecord',
+                                name: 'Vet Record',
+                                url: 'https://www.vetrecord.app',
                                 logo: {
                                     '@type': 'ImageObject',
                                     url: 'https://www.vetrecord.app/logo.svg'
-                                }
+                                },
+                                sameAs: [
+                                    'https://www.instagram.com/vetrecordapp',
+                                    'https://www.facebook.com/vetrecordapp'
+                                ]
                             }
                         })
                     }}
@@ -130,7 +137,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </head>
             <body className={`min-h-screen bg-[#F3F5FF] ${poppins.className}`}>
                 <PostHogProvider>
-                    <NavigationBar />
+                    <header>
+                        <NavigationBar />
+                    </header>
                     <div className='pt-16 lg:pt-[72px]'>{children}</div>
                     <ScrollToTop />
                     <SmartAppBanner />

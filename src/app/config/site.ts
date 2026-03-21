@@ -30,7 +30,7 @@ export const SITE_CONFIG = {
         operatingSystem: 'Android, iOS',
         price: '0',
         priceCurrency: 'USD',
-        ratingValue: '4.5',
+        ratingValue: '5.0',
         reviewCount: '1399',
     },
     

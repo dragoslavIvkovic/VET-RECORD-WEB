@@ -71,7 +71,7 @@ export default function KeyFeatureSection() {
                 <div className='mb-12 text-center'>
                     <span className='rounded-full bg-[#0C4C55] px-4 py-1 text-sm text-white'>Key Feature</span>
                     <h2 className='mt-4 text-4xl font-bold'>
-                        Powerful <span className='text-[#FF5733]'>features</span>
+                        Powerful <span className='text-[#C43C1D]'>features</span>
                     </h2>
                     <p className='mx-auto mt-4 max-w-2xl'>
                         <strong>Introducing Vet Record: Your All-In-One Pet Health Management App!</strong>
@@ -88,6 +88,7 @@ export default function KeyFeatureSection() {
                     {/* Navigation Buttons */}
                     <button
                         onClick={prevSlide}
+                        aria-label="Previous feature"
                         className='absolute top-1/2 left-0 z-10 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg'>
                         <svg className='h-6 w-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                             <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M15 19l-7-7 7-7' />
@@ -95,6 +96,7 @@ export default function KeyFeatureSection() {
                     </button>
                     <button
                         onClick={nextSlide}
+                        aria-label="Next feature"
                         className='absolute top-1/2 right-0 z-10 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg'>
                         <svg className='h-6 w-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                             <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />

@@ -8,7 +8,7 @@ export default function VideoSection() {
                 <div className="text-center mb-12">
                     <span className="bg-[#0C4C55] text-white px-4 py-1 rounded-full text-sm">Watch Demo</span>
                     <h2 className="text-4xl font-bold mt-4">
-                        See How <span className="text-[#FF5733]">Vet Record</span> Works
+                        See How <span className="text-[#C43C1D]">Vet Record</span> Works
                     </h2>
                 </div>
 

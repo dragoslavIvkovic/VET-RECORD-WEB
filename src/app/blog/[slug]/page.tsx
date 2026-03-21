@@ -46,11 +46,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title,
         description,
-        alternates: { canonical: `https://vetrecord.app/blog/${slug}` },
+        alternates: { canonical: `https://www.vetrecord.app/blog/${slug}` },
         openGraph: {
             title: `${title} | Vet Record Blog`,
             description,
-            url: `https://vetrecord.app/blog/${slug}`,
+            url: `https://www.vetrecord.app/blog/${slug}`,
             type: 'article',
             publishedTime: post.date,
             modifiedTime: post.updated_at,
@@ -95,15 +95,40 @@ export default async function BlogPostPage({ params }: Props) {
         publisher: {
             '@type': 'Organization',
             name: 'Vet Record',
-            logo: { '@type': 'ImageObject', url: 'https://vetrecord.app/logo.svg' }
+            logo: { '@type': 'ImageObject', url: 'https://www.vetrecord.app/logo.svg' }
         },
         image: post.image
             ? { '@type': 'ImageObject', url: post.image, caption: post.title }
             : undefined,
         mainEntityOfPage: {
             '@type': 'WebPage',
-            '@id': `https://vetrecord.app/blog/${slug}`
+            '@id': `https://www.vetrecord.app/blog/${slug}`
         }
+    };
+
+    const breadcrumbJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://www.vetrecord.app'
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Blog',
+                item: 'https://www.vetrecord.app/blog'
+            },
+            {
+                '@type': 'ListItem',
+                position: 3,
+                name: post.title,
+                item: `https://www.vetrecord.app/blog/${slug}`
+            }
+        ]
     };
 
     return (
@@ -233,8 +258,25 @@ export default async function BlogPostPage({ params }: Props) {
                             dangerouslySetInnerHTML={{ __html: post.html }}
                         />
 
+                        {/* Medical Disclaimer */}
+                        <div className='mt-8 rounded-xl border-l-4 border-red-400 bg-red-50 p-6 shadow-sm sm:mt-10'>
+                            <div className='flex gap-3'>
+                                <svg className='h-5 w-5 shrink-0 text-red-500' fill='none' viewBox='0 0 24 24' stroke='currentColor' aria-hidden>
+                                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z' />
+                                </svg>
+                                <div>
+                                    <h3 className='text-sm font-bold uppercase tracking-wider text-red-800 sm:text-base'>
+                                        Medical Disclaimer
+                                    </h3>
+                                    <p className='mt-2 text-sm leading-relaxed text-red-700/90'>
+                                        This content is for informational purposes only and is <strong>NOT</strong> a substitute for professional veterinary advice, diagnosis, or treatment. Always seek the advice of your veterinarian or other qualified animal health provider with any questions you may have regarding a medical condition for your pet. Never disregard professional advice or delay in seeking it because of something you have read on this blog.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
                         {/* App Downloads CTA */}
-                        <div className='mt-12'>
+                        <div className='mt-8 sm:mt-12'>
                             <BlogAppDownloads />
                         </div>
 
@@ -260,10 +302,14 @@ export default async function BlogPostPage({ params }: Props) {
                 </div>
             </article>
 
-            {/* ── JSON-LD (BlogPosting schema) ────────────────────────── */}
+            {/* ── JSON-LD (BlogPosting & Breadcrumb schema) ────────────────────────── */}
             <script
                 type='application/ld+json'
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <script
+                type='application/ld+json'
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
             />
 
             <BlogDownloadPopup />

@@ -21,6 +21,7 @@ export default function NavigationBar() {
         const el = document.getElementById('reviews');
         if (el) {
             el.scrollIntoView({ behavior: 'smooth' });
+            el.focus({ preventScroll: true });
         } else {
             window.location.href = '/#reviews';
         }

@@ -37,7 +37,7 @@ export default function Home() {
             </LazySectionWrapper>
 
             {/* Review Section — lazy loaded on scroll */}
-            <div id='reviews'>
+            <div id='reviews' tabIndex={-1} className='outline-none'>
                 <LazySectionWrapper minHeight='500px' className='bg-linear-to-br from-[#F3F5FF] to-white'>
                     <ReviewSection />
                 </LazySectionWrapper>
