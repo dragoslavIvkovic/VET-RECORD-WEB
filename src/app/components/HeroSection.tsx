@@ -95,6 +95,8 @@ export default function HeroSection() {
                                             fill
                                             unoptimized
                                             priority={index === 0}
+                                            fetchPriority={index === 0 ? 'high' : 'auto'}
+                                            decoding={index === 0 ? 'sync' : 'async'}
                                             className={`absolute inset-0 z-10 object-contain transition-all duration-700 ${
                                                 currentSlide === index 
                                                     ? 'opacity-100 scale-100' 
