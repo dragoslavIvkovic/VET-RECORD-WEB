@@ -90,7 +90,7 @@ const nextConfig: NextConfig = {
     },
     skipTrailingSlashRedirect: true,
     // @ts-ignore - allowedDevOrigins is a new property in Next.js 16.1.1 not yet in types
-    allowedDevOrigins: ['http://localhost:3000', 'http://127.0.0.1:3000']
+    allowedDevOrigins: ['http://localhost:3000', 'http://127.0.0.1:3000', '192.168.1.3']
 };
 
 export default nextConfig;

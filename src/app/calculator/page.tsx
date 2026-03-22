@@ -61,6 +61,55 @@ export default function CalculatorPage() {
     };
 
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const resultRef = useRef<HTMLDivElement>(null);
+
+    const handleShare = async () => {
+        if (!resultRef.current) return;
+        
+        try {
+            const { toBlob } = await import('html-to-image');
+            // Temporarily hide the share button during capture
+            const shareBtn = document.getElementById('share-result-btn');
+            if (shareBtn) shareBtn.style.display = 'none';
+
+            const blob = await toBlob(resultRef.current, {
+                quality: 1,
+                backgroundColor: '#ffffff',
+                cacheBust: true,
+            });
+
+            if (shareBtn) shareBtn.style.display = '';
+            
+            if (!blob) return;
+                
+            const file = new File([blob], `pet-weight-result.png`, { type: 'image/png' });
+            
+            if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+                try {
+                    await navigator.share({
+                        title: 'My Pet Weight Result',
+                        text: `Check out my ${petType}'s weight assessment!`,
+                        files: [file],
+                    });
+                    posthog.capture('calculator_result_shared', { pet_type: petType });
+                } catch (error) {
+                    console.log('User cancelled share or share failed', error);
+                }
+            } else {
+                // Fallback to download if sharing files is not supported
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `pet-weight-result.png`;
+                a.click();
+                URL.revokeObjectURL(url);
+                posthog.capture('calculator_result_downloaded', { pet_type: petType });
+            }
+            
+        } catch (error) {
+            console.error('Error generating image', error);
+        }
+    };
 
     // Fetch breeds when petType changes
     useEffect(() => {
@@ -309,7 +358,8 @@ export default function CalculatorPage() {
                     {/* Results Section */}
                     {result && (
                         <div className='animate-in fade-in slide-in-from-bottom-4 mt-12 border-t border-gray-100 pt-8 duration-500'>
-                            <h2 className='mb-8 text-center text-2xl font-bold'>Assessment Result</h2>
+                            <div ref={resultRef} className='bg-white p-4 -m-4 sm:p-6 sm:-m-6 rounded-2xl'>
+                                <h2 className='mb-8 text-center text-2xl font-bold'>Assessment Result</h2>
 
                             <div className='mb-8 flex flex-col items-center justify-center'>
                                 <span className={`text-4xl font-extrabold tracking-tight ${result.colorClass} mb-2`}>
@@ -358,6 +408,20 @@ export default function CalculatorPage() {
                                 )}
                             </div>
 
+                                                        <div className='mb-8 flex justify-center'>
+                                <button
+                                    id='share-result-btn'
+                                    onClick={handleShare}
+                                    className='flex items-center gap-2 rounded-xl bg-[#0C4C55]/10 px-6 py-3 font-semibold text-[#0C4C55] transition-colors hover:bg-[#0C4C55]/20'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                        <polyline points="16 6 12 2 8 6"></polyline>
+                                        <line x1="12" y1="2" x2="12" y2="15"></line>
+                                    </svg>
+                                    Share as Image
+                                </button>
+                            </div>
+
                             {/* Marketing CTA Banner */}
                             <div className='relative mt-12 overflow-hidden rounded-3xl bg-linear-to-br from-[#0C4C55] to-[#08353B] p-8 text-center text-white shadow-xl'>
                                 <div className='absolute -top-24 -right-24 h-48 w-48 animate-pulse rounded-full bg-cyan-400/20 blur-3xl'></div>
@@ -373,20 +437,12 @@ export default function CalculatorPage() {
                                     />
                                 </div>
                             </div>
+                            
+                            </div> {/* End of resultRef div */}
+                            
+
                         </div>
                     )}
-                </div>
-
-                {/* Permanent Bottom Download Links */}
-                <div className='mt-16 text-center'>
-                    <h2 className='mb-6 text-2xl font-bold text-[#0C4C55]'>Monitor Their Health Instantly</h2>
-                    <p className='mx-auto mb-8 max-w-xl text-gray-600'>
-                        Stop guessing. Monitor your pet&apos;s exact weight, daily routines, and medical history instantly with the Vet Record App.
-                    </p>
-                    <AppDownloadButtons 
-                        source='calculator_bottom' 
-                        containerClassName='flex flex-col items-center justify-center gap-4 sm:flex-row' 
-                    />
                 </div>
             </main>
             <Footer />
