@@ -39,6 +39,8 @@ export default function CalculatorPage() {
         weightDisplay: string;
         percent: number;
     } | null>(null);
+    const [resultImageUrl, setResultImageUrl] = useState<string | null>(null);
+    const [isGeneratingImage, setIsGeneratingImage] = useState(false);
 
     const toKg = (value: number, unit: 'kg' | 'lbs' | 'oz'): number => {
         if (unit === 'lbs') return value * 0.453592;
@@ -64,15 +66,48 @@ export default function CalculatorPage() {
     const resultRef = useRef<HTMLDivElement>(null);
 
     const handleShare = async () => {
-        if (!resultRef.current) return;
+        if (!resultRef.current && !resultImageUrl) return;
         
         try {
+            if (resultImageUrl) {
+                // If we already have a generated image, just download/share it
+                // Convert data URI to blob manually to avoid CSP issues with fetch()
+                const base64Data = resultImageUrl.split(',')[1];
+                const binaryData = atob(base64Data);
+                const array = new Uint8Array(binaryData.length);
+                for (let i = 0; i < binaryData.length; i++) {
+                    array[i] = binaryData.charCodeAt(i);
+                }
+                const blob = new Blob([array], { type: 'image/png' });
+                const file = new File([blob], `pet-weight-result.png`, { type: 'image/png' });
+
+                if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+                    try {
+                        await navigator.share({
+                            title: 'My Pet Weight Result',
+                            text: `Check out my ${petType}'s weight assessment!`,
+                            files: [file],
+                        });
+                        posthog.capture('calculator_result_shared', { pet_type: petType });
+                    } catch (error) {
+                        console.log('User cancelled share or share failed', error);
+                    }
+                } else {
+                    const a = document.createElement('a');
+                    a.href = resultImageUrl;
+                    a.download = `pet-weight-result.png`;
+                    a.click();
+                    posthog.capture('calculator_result_downloaded', { pet_type: petType });
+                }
+                return;
+            }
+
+            // Fallback for mobile or if image not yet generated
             const { toBlob } = await import('html-to-image');
-            // Temporarily hide the share button during capture
             const shareBtn = document.getElementById('share-result-btn');
             if (shareBtn) shareBtn.style.display = 'none';
 
-            const blob = await toBlob(resultRef.current, {
+            const blob = await toBlob(resultRef.current!, {
                 quality: 1,
                 backgroundColor: '#ffffff',
                 cacheBust: true,
@@ -96,7 +131,6 @@ export default function CalculatorPage() {
                     console.log('User cancelled share or share failed', error);
                 }
             } else {
-                // Fallback to download if sharing files is not supported
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
@@ -105,11 +139,51 @@ export default function CalculatorPage() {
                 URL.revokeObjectURL(url);
                 posthog.capture('calculator_result_downloaded', { pet_type: petType });
             }
-            
         } catch (error) {
-            console.error('Error generating image', error);
+            console.error('Error generating/sharing image', error);
         }
     };
+
+    // Auto-generate image on desktop when result changes
+    useEffect(() => {
+        if (!result || !resultRef.current) {
+            setResultImageUrl(null);
+            return;
+        }
+
+        // Only auto-generate on desktop (lg breakpoint and up)
+        const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+        if (!isDesktop) return;
+
+        const generateImage = async () => {
+            setIsGeneratingImage(true);
+            try {
+                // Wait a bit for animations to settle
+                await new Promise(resolve => setTimeout(resolve, 600));
+                
+                const { toPng } = await import('html-to-image');
+                
+                // Temporarily hide the share button during capture
+                const shareBtn = document.getElementById('share-result-btn');
+                if (shareBtn) shareBtn.style.visibility = 'hidden';
+
+                const dataUrl = await toPng(resultRef.current!, {
+                    quality: 1,
+                    backgroundColor: '#ffffff',
+                    cacheBust: true,
+                });
+
+                if (shareBtn) shareBtn.style.visibility = '';
+                setResultImageUrl(dataUrl);
+            } catch (error) {
+                console.error('Error auto-generating image', error);
+            } finally {
+                setIsGeneratingImage(false);
+            }
+        };
+
+        generateImage();
+    }, [result]);
 
     // Fetch breeds when petType changes
     useEffect(() => {
@@ -244,6 +318,7 @@ export default function CalculatorPage() {
                             onClick={() => {
                                 setPetType('cat');
                                 setResult(null);
+                                setResultImageUrl(null);
                             }}
                             className={`z-10 flex-1 rounded-xl px-4 py-3 text-lg font-medium transition-all duration-300 ${petType === 'cat' ? 'bg-white text-[#0C4C55] shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>
                             🐱 Cat
@@ -278,6 +353,7 @@ export default function CalculatorPage() {
                                                     setSearchQuery(breed.name);
                                                     setIsDropdownOpen(false);
                                                     setResult(null);
+                                                    setResultImageUrl(null);
                                                     posthog.capture('calculator_breed_selected', {
                                                         pet_type: petType,
                                                         breed_name: breed.name
@@ -299,7 +375,11 @@ export default function CalculatorPage() {
                             <select
                                 className='w-full appearance-none rounded-xl border border-gray-200 bg-gray-50 px-4 py-4 text-gray-900 transition-all outline-none focus:border-[#0C4C55] focus:ring-2 focus:ring-[#0C4C55]/20'
                                 value={ageGroup}
-                                onChange={(e) => setAgeGroup(e.target.value as 'puppy' | 'adult' | 'senior')}>
+                                onChange={(e) => {
+                                    setAgeGroup(e.target.value as 'puppy' | 'adult' | 'senior');
+                                    setResult(null);
+                                    setResultImageUrl(null);
+                                }}>
                                 <option value='puppy'>{petType === 'dog' ? 'Puppy' : 'Kitten'} (&lt; 1 year)</option>
                                 <option value='adult'>Adult (1-8 years)</option>
                                 <option value='senior'>Senior (9+ years)</option>
@@ -318,6 +398,7 @@ export default function CalculatorPage() {
                                             onClick={() => {
                                                 setWeightUnit(unit);
                                                 setResult(null);
+                                                setResultImageUrl(null);
                                             }}
                                             className={`rounded-lg px-3 py-3 text-sm font-semibold transition-all ${
                                                 weightUnit === unit
@@ -341,7 +422,11 @@ export default function CalculatorPage() {
                                               : 'e.g. 112'
                                     }
                                     value={currentWeight}
-                                    onChange={(e) => setCurrentWeight(e.target.value)}
+                                    onChange={(e) => {
+                                        setCurrentWeight(e.target.value);
+                                        setResult(null);
+                                        setResultImageUrl(null);
+                                    }}
                                 />
                             </div>
                         </div>
@@ -358,8 +443,13 @@ export default function CalculatorPage() {
                     {/* Results Section */}
                     {result && (
                         <div className='animate-in fade-in slide-in-from-bottom-4 mt-12 border-t border-gray-100 pt-8 duration-500'>
-                            <div ref={resultRef} className='bg-white p-4 -m-4 sm:p-6 sm:-m-6 rounded-2xl'>
-                                <h2 className='mb-8 text-center text-2xl font-bold'>Assessment Result</h2>
+                            <div className='relative'>
+                                {/* Live HTML (Hidden on desktop when image is ready) */}
+                                <div 
+                                    ref={resultRef} 
+                                    className={`bg-white p-4 -m-4 sm:p-6 sm:-m-6 rounded-2xl transition-opacity duration-300 ${resultImageUrl ? 'lg:opacity-0 lg:absolute lg:inset-0 lg:pointer-events-none' : 'opacity-100'}`}
+                                >
+                                    <h2 className='mb-8 text-center text-2xl font-bold'>Assessment Result</h2>
 
                             <div className='mb-8 flex flex-col items-center justify-center'>
                                 <span className={`text-4xl font-extrabold tracking-tight ${result.colorClass} mb-2`}>
@@ -406,19 +496,42 @@ export default function CalculatorPage() {
                                         weights for their breed.
                                     </p>
                                 )}
+                                                        </div> {/* End of resultRef div */}
+
+                                {/* Generated Image (Shown on desktop) */}
+                                {resultImageUrl && (
+                                    <div className='hidden lg:block animate-in fade-in duration-500'>
+                                        <div className='overflow-hidden rounded-2xl border border-gray-100 shadow-sm'>
+                                            <img 
+                                                src={resultImageUrl} 
+                                                alt="Assessment Result" 
+                                                className='w-full h-auto'
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+
+                                {isGeneratingImage && (
+                                    <div className='hidden lg:flex absolute inset-0 items-center justify-center bg-white/80 rounded-2xl z-20'>
+                                        <div className='flex flex-col items-center gap-3'>
+                                            <div className='h-8 w-8 animate-spin rounded-full border-4 border-[#0C4C55] border-t-transparent'></div>
+                                            <p className='text-sm font-medium text-[#0C4C55]'>Generating image...</p>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
-                                                        <div className='mb-8 flex justify-center'>
+                            <div className='mt-8 flex justify-center'>
                                 <button
                                     id='share-result-btn'
                                     onClick={handleShare}
-                                    className='flex items-center gap-2 rounded-xl bg-[#0C4C55]/10 px-6 py-3 font-semibold text-[#0C4C55] transition-colors hover:bg-[#0C4C55]/20'>
+                                    className='flex items-center gap-2 rounded-xl bg-[#0C4C55] px-8 py-4 font-bold text-white transition-all hover:bg-[#0A3D44] hover:shadow-lg hover:-translate-y-0.5'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
                                         <polyline points="16 6 12 2 8 6"></polyline>
                                         <line x1="12" y1="2" x2="12" y2="15"></line>
                                     </svg>
-                                    Share as Image
+                                    Download Image and Share
                                 </button>
                             </div>
 

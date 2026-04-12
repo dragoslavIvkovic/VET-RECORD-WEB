@@ -266,6 +266,7 @@ export default async function BlogPostPage({ params }: Props) {
                             <BlogShareButtons 
                                 url={`https://www.vetrecord.app/blog/${slug}`}
                                 title={post.title}
+                                image={post.image}
                             />
                         </div>
 

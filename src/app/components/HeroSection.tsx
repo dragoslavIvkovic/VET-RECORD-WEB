@@ -6,10 +6,27 @@ import { usePostHog } from 'posthog-js/react';
 import { APP_LINKS } from '../config/links';
 import AppDownloadButtons from './AppDownloadButtons';
 
+// Navigator connection type augmentation for TypeScript
+interface NetworkInformation {
+    effectiveType?: string;
+    saveData?: boolean;
+}
+
+declare global {
+    interface Navigator {
+        connection?: NetworkInformation;
+        mozConnection?: NetworkInformation;
+        webkitConnection?: NetworkInformation;
+    }
+}
+
 export default function HeroSection() {
     const posthog = usePostHog();
     const [currentSlide, setCurrentSlide] = useState(0);
-    
+
+    // SSR-safe: default is always false so the "Default Hero" renders on server
+    const [showVideoHero, setShowVideoHero] = useState(false);
+
     const slides = [
         { src: '/images/slider/slide-01.webp', alt: 'Vet Record app vaccination tracker screen for pets' },
         { src: '/images/slider/slide-02.webp', alt: 'Vet Record medication reminder screen for dogs and cats' },
@@ -23,14 +40,71 @@ export default function HeroSection() {
         { src: '/images/slider/slide-10.webp', alt: 'Vet Record - The best pet health app for Android and iOS' }
     ];
 
+    // Slideshow timer — only runs in Default Hero state
     useEffect(() => {
+        if (showVideoHero) return;
+
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
         }, 3000);
 
         return () => clearInterval(timer);
+    }, [showVideoHero]);
+
+    // After mount, check network + screen conditions and switch to Video Hero if eligible
+    useEffect(() => {
+        const isDesktop = window.innerWidth >= 768;
+
+        const connection =
+            navigator.connection ??
+            navigator.mozConnection ??
+            navigator.webkitConnection;
+
+        const isFastConnection =
+            connection !== undefined &&
+            connection !== null &&
+            connection.effectiveType === '4g' &&
+            !connection.saveData;
+
+        if (isDesktop && isFastConnection) {
+            setShowVideoHero(true);
+        }
     }, []);
 
+    /* ─────────────────────────────────────────────
+       VIDEO HERO — desktop + fast connection only
+       Full video, no scrim/overlay — only the
+       App Store / Google Play buttons on top.
+    ───────────────────────────────────────────── */
+    if (showVideoHero) {
+        return (
+            <section className='relative overflow-hidden bg-black' aria-label='Hero'>
+                {/* Full-bleed video — no cropping, no scrim */}
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className='w-full h-full object-cover block'
+                >
+                    <source
+                        src='/video/hero.mp4'
+                        type='video/mp4'
+                    />
+                </video>
+
+                {/* Download buttons centred at the bottom over the video */}
+                <div className='absolute bottom-8 left-0 right-0 flex justify-center z-10'>
+                    <AppDownloadButtons source='hero_section' imageClassName='h-14' />
+                </div>
+            </section>
+        );
+    }
+
+    /* ─────────────────────────────────────────────
+       DEFAULT HERO — SSR initial render, mobile,
+       slow connection, or unsupported API
+    ───────────────────────────────────────────── */
     return (
         <section className='relative px-4 py-3 bg-[#0C4C55] overflow-hidden md:py-4'>
             {/* Animated background elements */}
@@ -82,7 +156,7 @@ export default function HeroSection() {
                         </div>
                     </div>
 
-                    {/* Right Column - App Screenshot */}
+                    {/* Right Column - App Screenshot Slideshow */}
                     <div className='relative z-10 block'>
                         <div className='relative mx-auto w-full max-w-xs md:max-w-none'>
                             <div className='animate-float'>
@@ -98,8 +172,8 @@ export default function HeroSection() {
                                             fetchPriority={index === 0 ? 'high' : 'auto'}
                                             decoding={index === 0 ? 'sync' : 'async'}
                                             className={`absolute inset-0 z-10 object-contain transition-all duration-700 ${
-                                                currentSlide === index 
-                                                    ? 'opacity-100 scale-100' 
+                                                currentSlide === index
+                                                    ? 'opacity-100 scale-100'
                                                     : 'opacity-0 scale-95'
                                             }`}
                                         />
@@ -114,9 +188,7 @@ export default function HeroSection() {
             {/* Bottom Wave */}
             <div
                 className='absolute right-0 bottom-0 left-0 h-16 bg-[#0C4C55]'
-                style={{
-                    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 0)'
-                }}
+                style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 0)' }}
             />
         </section>
     );
