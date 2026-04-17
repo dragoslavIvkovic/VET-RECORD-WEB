@@ -182,7 +182,8 @@ export default function HeroSection() {
                                                 fill
                                                 sizes={sliderSizes}
                                                 quality={index === 0 ? 85 : 80}
-                                                priority={index === 0}
+                                                priority={index <= 1}
+                                                loading={index <= 1 ? 'eager' : 'lazy'}
                                                 fetchPriority={index === 0 ? 'high' : 'auto'}
                                                 decoding={index === 0 ? 'sync' : 'async'}
                                                 className={`absolute inset-0 z-10 object-contain transition-all duration-700 ${
