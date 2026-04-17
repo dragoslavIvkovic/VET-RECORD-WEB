@@ -8,6 +8,7 @@ import ScrollProgressBar from '../components/ScrollProgressBar';
 import BlogAppDownloads from '../components/BlogAppDownloads';
 import BlogDownloadPopup from '../components/BlogDownloadPopup';
 import BlogShareButtons from '../components/BlogShareButtons';
+import styles from './blog-post.module.css';
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -264,7 +265,7 @@ export default async function BlogPostPage({ params }: Props) {
 
                         {/* HTML article body – prose + prose-article for Ghost structure (p, h2, h3) and link styling */}
                         <div
-                            className='prose-article rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 sm:p-10 prose max-w-none'
+                            className={`${styles.proseArticle} rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 sm:p-10 prose max-w-none`}
                             itemProp='articleBody'
                             dangerouslySetInnerHTML={{ __html: post.html }}
                         />

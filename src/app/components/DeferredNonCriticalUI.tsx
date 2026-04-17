@@ -8,6 +8,8 @@ const ExitIntentPopup = dynamic(() => import('./ExitIntentPopup'), { ssr: false 
 const SpeedInsights = dynamic(() => import('@vercel/speed-insights/next').then((m) => m.SpeedInsights), {
     ssr: false
 });
+const CookieConsent = dynamic(() => import('./CookieConsent'), { ssr: false });
+const SmartAppBanner = dynamic(() => import('./SmartAppBanner'), { ssr: false });
 
 /**
  * Mounts non-critical UI after idle to reduce main-thread work during TBT window
@@ -41,6 +43,8 @@ export default function DeferredNonCriticalUI() {
             <ScrollToTop />
             <ExitIntentPopup />
             <SpeedInsights />
+            <CookieConsent />
+            <SmartAppBanner />
         </>
     );
 }

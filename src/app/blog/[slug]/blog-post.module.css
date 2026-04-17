@@ -1,0 +1,32 @@
+/* Blog article: Ghost CMS content – paragraphs, headings, links */
+.proseArticle p {
+    margin-bottom: 1.25em !important;
+}
+.proseArticle p:last-child {
+    margin-bottom: 0 !important;
+}
+.proseArticle h2 {
+    margin-top: 2em !important;
+    margin-bottom: 0.75em !important;
+    font-size: 1.5em !important;
+    font-weight: 700 !important;
+}
+.proseArticle h3 {
+    margin-top: 1.5em !important;
+    margin-bottom: 0.5em !important;
+    font-size: 1.25em !important;
+    font-weight: 600 !important;
+}
+
+/* All blog links – Ghost anchors + linkified URLs */
+.blogLink,
+.proseArticle a {
+    color: #0C4C55 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 2px !important;
+    text-decoration-thickness: 2px !important;
+}
+.blogLink:hover,
+.proseArticle a:hover {
+    color: #08353B !important;
+}

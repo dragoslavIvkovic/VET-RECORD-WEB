@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import Script from 'next/script';
+import dynamic from 'next/dynamic';
 
 import ConsentAwareGtag from './components/ConsentAwareGtag';
 import { Analytics } from '@vercel/analytics/react';
@@ -11,10 +12,8 @@ import '@/app/globals.css';
 
 import { SITE_CONFIG } from '@/app/config/site';
 
-import CookieConsent from './components/CookieConsent';
 import DeferredNonCriticalUI from './components/DeferredNonCriticalUI';
 import NavigationBar from './components/NavigationBar';
-import SmartAppBanner from './components/SmartAppBanner';
 import { PostHogProvider } from './providers';
 
 const poppins = Poppins({
@@ -134,8 +133,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                     </header>
                     <div className='pt-16 lg:pt-[72px]'>{children}</div>
                     <DeferredNonCriticalUI />
-                    <SmartAppBanner />
-                    <CookieConsent />
                     <Analytics />
                 </PostHogProvider>
             </body>

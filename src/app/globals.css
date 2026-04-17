@@ -47,34 +47,3 @@
     animation: fade-in 0.2s ease-out, zoom-in-95 0.2s ease-out;
 }
 
-/* Blog article: Ghost CMS content – paragraphs, headings, links (plain CSS for production) */
-.prose-article p {
-    margin-bottom: 1.25em !important;
-}
-.prose-article p:last-child {
-    margin-bottom: 0 !important;
-}
-.prose-article h2 {
-    margin-top: 2em !important;
-    margin-bottom: 0.75em !important;
-    font-size: 1.5em !important;
-    font-weight: 700 !important;
-}
-.prose-article h3 {
-    margin-top: 1.5em !important;
-    margin-bottom: 0.5em !important;
-    font-size: 1.25em !important;
-    font-weight: 600 !important;
-}
-/* All blog links – Ghost anchors + linkified URLs (plain CSS so it works in production) */
-.blog-link,
-.prose-article a {
-    color: #0C4C55 !important;
-    text-decoration: underline !important;
-    text-underline-offset: 2px !important;
-    text-decoration-thickness: 2px !important;
-}
-.blog-link:hover,
-.prose-article a:hover {
-    color: #08353B !important;
-}
