@@ -27,6 +27,10 @@ export default function HeroSection() {
     // SSR-safe: default is always false so the "Default Hero" renders on server
     const [showVideoHero, setShowVideoHero] = useState(false);
 
+    /** Matches hero phone mockup: ~320px mobile, ~half container on md+ */
+    const sliderSizes =
+        '(max-width: 767px) min(90vw, 320px), (max-width: 1536px) min(46vw, 520px), 520px';
+
     const slides = [
         { src: '/images/slider/slide-01.webp', alt: 'Vet Record app vaccination tracker screen for pets' },
         { src: '/images/slider/slide-02.webp', alt: 'Vet Record medication reminder screen for dogs and cats' },
@@ -78,14 +82,16 @@ export default function HeroSection() {
     ───────────────────────────────────────────── */
     if (showVideoHero) {
         return (
-            <section className='relative overflow-hidden bg-black' aria-label='Hero'>
-                {/* Full-bleed video — no cropping, no scrim */}
+            <section
+                className='relative min-h-[50vh] overflow-hidden bg-black md:min-h-[min(85vh,920px)]'
+                aria-label='Hero'
+            >
                 <video
                     autoPlay
                     loop
                     muted
                     playsInline
-                    className='w-full h-full object-cover block'
+                    className='absolute inset-0 h-full w-full object-cover'
                 >
                     <source
                         src='/video/hero.mp4'
@@ -93,8 +99,7 @@ export default function HeroSection() {
                     />
                 </video>
 
-                {/* Download buttons centred at the bottom over the video */}
-                <div className='absolute bottom-8 left-0 right-0 flex justify-center z-10'>
+                <div className='absolute bottom-8 left-0 right-0 z-10 flex justify-center'>
                     <AppDownloadButtons source='hero_section' imageClassName='h-14' />
                 </div>
             </section>
@@ -160,24 +165,34 @@ export default function HeroSection() {
                     <div className='relative z-10 block'>
                         <div className='relative mx-auto w-full max-w-xs md:max-w-none'>
                             <div className='animate-float'>
-                                <div className='relative aspect-9/19 w-full max-h-[400px] md:max-h-200'>
-                                    {slides.map((slide, index) => (
-                                        <Image
-                                            key={slide.src}
-                                            src={slide.src}
-                                            alt={slide.alt}
-                                            fill
-                                            unoptimized
-                                            priority={index === 0}
-                                            fetchPriority={index === 0 ? 'high' : 'auto'}
-                                            decoding={index === 0 ? 'sync' : 'async'}
-                                            className={`absolute inset-0 z-10 object-contain transition-all duration-700 ${
-                                                currentSlide === index
-                                                    ? 'opacity-100 scale-100'
-                                                    : 'opacity-0 scale-95'
-                                            }`}
-                                        />
-                                    ))}
+                                <div className='relative aspect-[9/19] w-full max-h-[400px] md:max-h-[min(56vh,560px)] [contain:layout]'>
+                                    {slides.map((slide, index) => {
+                                        // Only render current slide ± 1 neighbor to avoid loading all 10 images at once (LCP fix)
+                                        const dist = Math.min(
+                                            Math.abs(currentSlide - index),
+                                            slides.length - Math.abs(currentSlide - index)
+                                        );
+                                        if (dist > 1 && index !== 0) return null;
+
+                                        return (
+                                            <Image
+                                                key={slide.src}
+                                                src={slide.src}
+                                                alt={slide.alt}
+                                                fill
+                                                sizes={sliderSizes}
+                                                quality={index === 0 ? 85 : 80}
+                                                priority={index === 0}
+                                                fetchPriority={index === 0 ? 'high' : 'auto'}
+                                                decoding={index === 0 ? 'sync' : 'async'}
+                                                className={`absolute inset-0 z-10 object-contain transition-all duration-700 ${
+                                                    currentSlide === index
+                                                        ? 'opacity-100 scale-100'
+                                                        : 'opacity-0 scale-95'
+                                                }`}
+                                            />
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>

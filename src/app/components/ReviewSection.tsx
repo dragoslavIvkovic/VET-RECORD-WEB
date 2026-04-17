@@ -93,6 +93,8 @@ export default function ReviewSection() {
                                     alt={`${review.name} - Vet Record App User Review`}
                                     width={40}
                                     height={40}
+                                    sizes="40px"
+                                    quality={75}
                                     className='h-10 w-10 rounded-full object-cover'
                                 />
                                 <span className='font-semibold text-gray-900'>{review.name}</span>

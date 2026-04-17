@@ -3,23 +3,26 @@ import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import Script from 'next/script';
+
+import ConsentAwareGtag from './components/ConsentAwareGtag';
 import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import '@/app/globals.css';
 
 import { SITE_CONFIG } from '@/app/config/site';
 
 import CookieConsent from './components/CookieConsent';
+import DeferredNonCriticalUI from './components/DeferredNonCriticalUI';
 import NavigationBar from './components/NavigationBar';
 import SmartAppBanner from './components/SmartAppBanner';
-import ExitIntentPopup from './components/ExitIntentPopup';
-import ScrollToTop from './components/ScrollToTop';
 import { PostHogProvider } from './providers';
 
-const poppins = Poppins({ 
+const poppins = Poppins({
     subsets: ['latin'],
-    weight: ['400', '500', '600', '700']
+    weight: ['400', '500', '600', '700'],
+    display: 'swap',
+    adjustFontFallback: true,
+    preload: true
 });
 
 const site = SITE_CONFIG.url;
@@ -82,22 +85,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang='en'>
             <head>
-                <link rel="preconnect" href="https://www.googletagmanager.com" />
-                <link rel="preconnect" href="https://eu.posthog.com" />
                 <meta name="p:domain_verify" content="157b1f4deed124fa6508549e0e363960"/>
-                <Script strategy='lazyOnload' src={`https://www.googletagmanager.com/gtag/js?id=G-9PGSFLM2FM`} />
-                <Script id='google-analytics' strategy='lazyOnload'>
-                    {`
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', 'G-9PGSFLM2FM', {
-                            send_page_view: false,
-                            transport_type: 'beacon',
-                        });
-                        gtag('config', 'AW-940388544');
-                    `}
-                </Script>
                 <Script
                     id='structured-data'
                     type='application/ld+json'
@@ -139,17 +127,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 />
             </head>
             <body className={`min-h-screen bg-[#F3F5FF] ${poppins.className}`}>
+                <ConsentAwareGtag />
                 <PostHogProvider>
                     <header>
                         <NavigationBar />
                     </header>
                     <div className='pt-16 lg:pt-[72px]'>{children}</div>
-                    <ScrollToTop />
+                    <DeferredNonCriticalUI />
                     <SmartAppBanner />
-                    <ExitIntentPopup />
                     <CookieConsent />
                     <Analytics />
-                    <SpeedInsights />
                 </PostHogProvider>
             </body>
         </html>

@@ -24,8 +24,10 @@ export default function LazySectionWrapper({
         rootMargin
     });
 
+    // Always reserve minHeight so removing the placeholder when `inView` flips does not
+    // collapse the section and shift content below (major CLS source on mobile).
     return (
-        <div ref={ref} className={className} style={{ minHeight: inView ? undefined : minHeight }}>
+        <div ref={ref} className={className} style={{ minHeight }}>
             {inView ? children : null}
         </div>
     );

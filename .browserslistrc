@@ -1,0 +1,7 @@
+# Evergreen targets (ES2022+ Baseline). Tighter than "defaults" so SWC injects
+# fewer polyfills (Array.at, Object.hasOwn, flat, etc.) — see Lighthouse polyfill audit.
+Chrome >= 120
+Edge >= 120
+Firefox >= 121
+Safari >= 17.4
+iOS >= 17.4

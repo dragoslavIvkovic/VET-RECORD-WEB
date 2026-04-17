@@ -122,6 +122,8 @@ export default function KeyFeatureSection() {
                                                 alt={feature.alt} 
                                                 width={284} 
                                                 height={361} 
+                                                sizes="(max-width: 768px) 256px, 284px"
+                                                quality={80}
                                                 className='h-auto w-full' 
                                             />
                                         </div>

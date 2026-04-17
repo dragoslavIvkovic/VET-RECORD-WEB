@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
     output: 'standalone',
     transpilePackages: ['next-mdx-remote'],
     images: {
-        qualities: [50, 75, 85, 90, 100],
+        qualities: [50, 75, 80, 85, 90, 100],
         remotePatterns: [
             {
                 protocol: 'https',
@@ -44,6 +44,14 @@ const nextConfig: NextConfig = {
                     {
                         key: 'X-DNS-Prefetch-Control',
                         value: 'on'
+                    },
+                    {
+                        key: 'Strict-Transport-Security',
+                        value: 'max-age=63072000; includeSubDomains; preload'
+                    },
+                    {
+                        key: 'Cross-Origin-Opener-Policy',
+                        value: 'same-origin'
                     },
                     {
                         key: 'Content-Security-Policy',

@@ -47,7 +47,7 @@ export default function NavigationBar() {
                 <div className='flex h-16 items-center justify-between gap-3 lg:h-[72px]'>
                     {/* ── Logo ────────────────────────────────── */}
                     <Link href='/' className='shrink-0'>
-                        <img src='/logo.svg' alt='Vet Record' className='w-auto h-9 lg:h-10' />
+                        <Image src='/logo.svg' alt='Vet Record' width={120} height={40} style={{ width: 'auto', height: 'auto' }} className='h-9 lg:h-10' priority />
                     </Link>
 
                     {/* ── Desktop nav (lg+) ───────────────────── */}
