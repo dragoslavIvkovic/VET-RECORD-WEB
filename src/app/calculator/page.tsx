@@ -4,10 +4,10 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 import Link from 'next/link';
 
+import AppDownloadButtons from '../components/AppDownloadButtons';
 import Footer from '../components/Footer';
 import { APP_LINKS } from '../config/links';
 import { usePostHog } from 'posthog-js/react';
-import AppDownloadButtons from '../components/AppDownloadButtons';
 
 interface Breed {
     id: string;
@@ -67,7 +67,7 @@ export default function CalculatorPage() {
 
     const handleShare = async () => {
         if (!resultRef.current && !resultImageUrl) return;
-        
+
         try {
             if (resultImageUrl) {
                 // If we already have a generated image, just download/share it
@@ -86,7 +86,7 @@ export default function CalculatorPage() {
                         await navigator.share({
                             title: 'My Pet Weight Result',
                             text: `Check out my ${petType}'s weight assessment!`,
-                            files: [file],
+                            files: [file]
                         });
                         posthog.capture('calculator_result_shared', { pet_type: petType });
                     } catch (error) {
@@ -110,21 +110,21 @@ export default function CalculatorPage() {
             const blob = await toBlob(resultRef.current!, {
                 quality: 1,
                 backgroundColor: '#ffffff',
-                cacheBust: true,
+                cacheBust: true
             });
 
             if (shareBtn) shareBtn.style.display = '';
-            
+
             if (!blob) return;
-                
+
             const file = new File([blob], `pet-weight-result.png`, { type: 'image/png' });
-            
+
             if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
                 try {
                     await navigator.share({
                         title: 'My Pet Weight Result',
                         text: `Check out my ${petType}'s weight assessment!`,
-                        files: [file],
+                        files: [file]
                     });
                     posthog.capture('calculator_result_shared', { pet_type: petType });
                 } catch (error) {
@@ -159,10 +159,10 @@ export default function CalculatorPage() {
             setIsGeneratingImage(true);
             try {
                 // Wait a bit for animations to settle
-                await new Promise(resolve => setTimeout(resolve, 600));
-                
+                await new Promise((resolve) => setTimeout(resolve, 600));
+
                 const { toPng } = await import('html-to-image');
-                
+
                 // Temporarily hide the share button during capture
                 const shareBtn = document.getElementById('share-result-btn');
                 if (shareBtn) shareBtn.style.visibility = 'hidden';
@@ -170,7 +170,7 @@ export default function CalculatorPage() {
                 const dataUrl = await toPng(resultRef.current!, {
                     quality: 1,
                     backgroundColor: '#ffffff',
-                    cacheBust: true,
+                    cacheBust: true
                 });
 
                 if (shareBtn) shareBtn.style.visibility = '';
@@ -288,7 +288,7 @@ export default function CalculatorPage() {
             weight_status: status
         });
         (window as any).gtag?.('event', 'use_calculator', {
-            'page_path': window.location.pathname
+            page_path: window.location.pathname
         });
     };
 
@@ -389,7 +389,7 @@ export default function CalculatorPage() {
                         {/* Weight Unit + Current Weight */}
                         <div>
                             <label className='mb-2 block text-sm font-semibold text-gray-700'>Current Weight</label>
-                            <div className='flex flex-col sm:flex-row gap-3 sm:gap-2'>
+                            <div className='flex flex-col gap-3 sm:flex-row sm:gap-2'>
                                 <div className='flex shrink-0 rounded-xl bg-gray-100 p-1'>
                                     {(['lbs', 'kg', 'oz'] as const).map((unit) => (
                                         <button
@@ -445,115 +445,121 @@ export default function CalculatorPage() {
                         <div className='animate-in fade-in slide-in-from-bottom-4 mt-12 border-t border-gray-100 pt-8 duration-500'>
                             <div className='relative'>
                                 {/* Live HTML (Hidden on desktop when image is ready) */}
-                                <div 
-                                    ref={resultRef} 
-                                    className={`bg-white p-4 -m-4 sm:p-6 sm:-m-6 rounded-2xl transition-opacity duration-300 ${resultImageUrl ? 'lg:opacity-0 lg:absolute lg:inset-0 lg:pointer-events-none' : 'opacity-100'}`}
-                                >
+                                <div
+                                    ref={resultRef}
+                                    className={`-m-4 rounded-2xl bg-white p-4 transition-opacity duration-300 sm:-m-6 sm:p-6 ${resultImageUrl ? 'lg:pointer-events-none lg:absolute lg:inset-0 lg:opacity-0' : 'opacity-100'}`}>
                                     <h2 className='mb-8 text-center text-2xl font-bold'>Assessment Result</h2>
+                                    <div className='mb-8 flex flex-col items-center justify-center'>
+                                        <span
+                                            className={`text-4xl font-extrabold tracking-tight ${result.colorClass} mb-2`}>
+                                            {result.status}
+                                        </span>
+                                        <p className='mx-auto max-w-md text-center text-gray-600'>
+                                            {result.weightDisplay} (Target adult range:{' '}
+                                            {formatWeight(result.min, weightUnit)} –{' '}
+                                            {formatWeight(result.max, weightUnit)})
+                                        </p>
+                                    </div>
+                                    {/* Visual Gauge Chart */}
+                                    <div className='relative mx-auto w-full max-w-xl pt-6 pb-12'>
+                                        <div
+                                            className='h-4 w-full rounded-full shadow-inner'
+                                            style={{
+                                                background:
+                                                    'linear-gradient(to right, #ef4444 10%, #f59e0b 30%, #10b981 50%, #f59e0b 70%, #ef4444 90%)'
+                                            }}></div>
 
-                            <div className='mb-8 flex flex-col items-center justify-center'>
-                                <span className={`text-4xl font-extrabold tracking-tight ${result.colorClass} mb-2`}>
-                                    {result.status}
-                                </span>
-                                <p className='mx-auto max-w-md text-center text-gray-600'>
-                                    {result.weightDisplay} (Target adult range: {formatWeight(result.min, weightUnit)} –{' '}
-                                    {formatWeight(result.max, weightUnit)})
-                                </p>
-                            </div>
+                                        {/* Marker */}
+                                        <div
+                                            className='absolute top-2 h-6 w-6 -translate-x-1/2 transform rounded-full border-4 border-gray-900 bg-white shadow-md transition-all duration-1000 ease-out'
+                                            style={{ left: `${result.percent}%` }}>
+                                            {/* Arrow pointing down */}
+                                            <div className='absolute -top-4 left-1/2 h-0 w-0 -translate-x-1/2 transform border-t-4 border-r-4 border-l-4 border-transparent border-t-gray-900'></div>
+                                        </div>
 
-                            {/* Visual Gauge Chart */}
-                            <div className='relative mx-auto w-full max-w-xl pt-6 pb-12'>
-                                <div
-                                    className='h-4 w-full rounded-full shadow-inner'
-                                    style={{
-                                        background:
-                                            'linear-gradient(to right, #ef4444 10%, #f59e0b 30%, #10b981 50%, #f59e0b 70%, #ef4444 90%)'
-                                    }}></div>
-
-                                {/* Marker */}
-                                <div
-                                    className='absolute top-2 h-6 w-6 -translate-x-1/2 transform rounded-full border-4 border-gray-900 bg-white shadow-md transition-all duration-1000 ease-out'
-                                    style={{ left: `${result.percent}%` }}>
-                                    {/* Arrow pointing down */}
-                                    <div className='absolute -top-4 left-1/2 h-0 w-0 -translate-x-1/2 transform border-t-4 border-r-4 border-l-4 border-transparent border-t-gray-900'></div>
-                                </div>
-
-                                {/* Labels */}
-                                <div className='absolute mt-3 flex w-full justify-between px-1 text-xs font-medium text-gray-400'>
-                                    <span>Under</span>
-                                    <span>Ideal</span>
-                                    <span>Over</span>
-                                </div>
-                            </div>
-
-                            <div className='mx-auto mb-8 max-w-xl rounded-2xl border border-gray-100 bg-gray-50 p-6 text-center shadow-sm'>
-                                <p className='text-lg text-gray-800'>{result.message}</p>
-                                {ageGroup === 'puppy' && (
-                                    <p className='mt-4 rounded-lg border border-yellow-100 bg-yellow-50 p-3 text-sm text-yellow-700'>
-                                        <strong>Note:</strong> Since your {petType} is still a{' '}
-                                        {petType === 'dog' ? 'puppy' : 'kitten'}, they are still growing! This
-                                        calculator compares their current weight to the <strong>adult</strong> target
-                                        weights for their breed.
-                                    </p>
-                                )}
-                                                        </div> {/* End of resultRef div */}
-
-                                {/* Generated Image (Shown on desktop) */}
-                                {resultImageUrl && (
-                                    <div className='hidden lg:block animate-in fade-in duration-500'>
-                                        <div className='overflow-hidden rounded-2xl border border-gray-100 shadow-sm'>
-                                            <img 
-                                                src={resultImageUrl} 
-                                                alt="Assessment Result" 
-                                                className='w-full h-auto'
-                                            />
+                                        {/* Labels */}
+                                        <div className='absolute mt-3 flex w-full justify-between px-1 text-xs font-medium text-gray-400'>
+                                            <span>Under</span>
+                                            <span>Ideal</span>
+                                            <span>Over</span>
                                         </div>
                                     </div>
-                                )}
-
-                                {isGeneratingImage && (
-                                    <div className='hidden lg:flex absolute inset-0 items-center justify-center bg-white/80 rounded-2xl z-20'>
-                                        <div className='flex flex-col items-center gap-3'>
-                                            <div className='h-8 w-8 animate-spin rounded-full border-4 border-[#0C4C55] border-t-transparent'></div>
-                                            <p className='text-sm font-medium text-[#0C4C55]'>Generating image...</p>
+                                    <div className='mx-auto mb-8 max-w-xl rounded-2xl border border-gray-100 bg-gray-50 p-6 text-center shadow-sm'>
+                                        <p className='text-lg text-gray-800'>{result.message}</p>
+                                        {ageGroup === 'puppy' && (
+                                            <p className='mt-4 rounded-lg border border-yellow-100 bg-yellow-50 p-3 text-sm text-yellow-700'>
+                                                <strong>Note:</strong> Since your {petType} is still a{' '}
+                                                {petType === 'dog' ? 'puppy' : 'kitten'}, they are still growing! This
+                                                calculator compares their current weight to the <strong>adult</strong>{' '}
+                                                target weights for their breed.
+                                            </p>
+                                        )}
+                                    </div>{' '}
+                                    {/* End of resultRef div */}
+                                    {/* Generated Image (Shown on desktop) */}
+                                    {resultImageUrl && (
+                                        <div className='animate-in fade-in hidden duration-500 lg:block'>
+                                            <div className='overflow-hidden rounded-2xl border border-gray-100 shadow-sm'>
+                                                <img
+                                                    src={resultImageUrl}
+                                                    alt='Assessment Result'
+                                                    className='h-auto w-full'
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className='mt-8 flex justify-center'>
-                                <button
-                                    id='share-result-btn'
-                                    onClick={handleShare}
-                                    className='flex items-center gap-2 rounded-xl bg-[#0C4C55] px-8 py-4 font-bold text-white transition-all hover:bg-[#0A3D44] hover:shadow-lg hover:-translate-y-0.5'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-                                        <polyline points="16 6 12 2 8 6"></polyline>
-                                        <line x1="12" y1="2" x2="12" y2="15"></line>
-                                    </svg>
-                                    Download Image and Share
-                                </button>
-                            </div>
-
-                            {/* Marketing CTA Banner */}
-                            <div className='relative mt-12 overflow-hidden rounded-3xl bg-linear-to-br from-[#0C4C55] to-[#08353B] p-8 text-center text-white shadow-xl'>
-                                <div className='absolute -top-24 -right-24 h-48 w-48 animate-pulse rounded-full bg-cyan-400/20 blur-3xl'></div>
-                                <div className='relative z-10'>
-                                    <h3 className='mb-3 text-2xl font-bold'>Stop guessing. Track their health.</h3>
-                                    <p className='mx-auto mb-8 max-w-md text-gray-200'>
-                                        Monitor your pet&apos;s exact weight, daily routines, and medical history
-                                        instantly with the Vet Record App.
-                                    </p>
-                                    <AppDownloadButtons 
-                                        source='calculator_banner' 
-                                        containerClassName='flex flex-col items-center justify-center gap-4 sm:flex-row' 
-                                    />
+                                    )}
+                                    {isGeneratingImage && (
+                                        <div className='absolute inset-0 z-20 hidden items-center justify-center rounded-2xl bg-white/80 lg:flex'>
+                                            <div className='flex flex-col items-center gap-3'>
+                                                <div className='h-8 w-8 animate-spin rounded-full border-4 border-[#0C4C55] border-t-transparent'></div>
+                                                <p className='text-sm font-medium text-[#0C4C55]'>
+                                                    Generating image...
+                                                </p>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
-                            </div>
-                            
-                            </div> {/* End of resultRef div */}
-                            
 
+                                <div className='mt-8 flex justify-center'>
+                                    <button
+                                        id='share-result-btn'
+                                        onClick={handleShare}
+                                        className='flex items-center gap-2 rounded-xl bg-[#0C4C55] px-8 py-4 font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-[#0A3D44] hover:shadow-lg'>
+                                        <svg
+                                            xmlns='http://www.w3.org/2000/svg'
+                                            width='20'
+                                            height='20'
+                                            viewBox='0 0 24 24'
+                                            fill='none'
+                                            stroke='currentColor'
+                                            strokeWidth='2'
+                                            strokeLinecap='round'
+                                            strokeLinejoin='round'>
+                                            <path d='M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8'></path>
+                                            <polyline points='16 6 12 2 8 6'></polyline>
+                                            <line x1='12' y1='2' x2='12' y2='15'></line>
+                                        </svg>
+                                        Download Image and Share
+                                    </button>
+                                </div>
+
+                                {/* Marketing CTA Banner */}
+                                <div className='relative mt-12 overflow-hidden rounded-3xl bg-linear-to-br from-[#0C4C55] to-[#08353B] p-8 text-center text-white shadow-xl'>
+                                    <div className='absolute -top-24 -right-24 h-48 w-48 animate-pulse rounded-full bg-cyan-400/20 blur-3xl'></div>
+                                    <div className='relative z-10'>
+                                        <h3 className='mb-3 text-2xl font-bold'>Stop guessing. Track their health.</h3>
+                                        <p className='mx-auto mb-8 max-w-md text-gray-200'>
+                                            Monitor your pet&apos;s exact weight, daily routines, and medical history
+                                            instantly with the Vet Record App.
+                                        </p>
+                                        <AppDownloadButtons
+                                            source='calculator_banner'
+                                            containerClassName='flex flex-col items-center justify-center gap-4 sm:flex-row'
+                                        />
+                                    </div>
+                                </div>
+                            </div>{' '}
+                            {/* End of resultRef div */}
                         </div>
                     )}
                 </div>

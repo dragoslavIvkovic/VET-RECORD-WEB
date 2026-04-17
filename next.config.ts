@@ -65,6 +65,11 @@ const nextConfig: NextConfig = {
     async redirects() {
         return [
             {
+                source: '/index.html',
+                destination: '/',
+                permanent: true
+            },
+            {
                 source: '/:path*',
                 has: [{ type: 'host', value: 'www.vetrecord.app' }],
                 destination: 'https://vetrecord.app/:path*',

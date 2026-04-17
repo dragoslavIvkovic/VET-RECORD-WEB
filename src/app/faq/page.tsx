@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+
+import { SITE_CONFIG } from '@/app/config/site';
 import Footer from '../components/Footer';
 import { APP_LINKS } from '../config/links';
 import AppDownloadButtons from '../components/AppDownloadButtons';
@@ -16,7 +18,7 @@ export const metadata: Metadata = {
         title: 'FAQ | Vet Record – Pet Health Organizer',
         description:
             'Answers to the most common questions about pet health records, vaccine tracking, medication reminders, and cloud storage with Vet Record.',
-        url: 'https://www.vetrecord.app/faq',
+        url: `${SITE_CONFIG.url}/faq`,
         type: 'website',
     },
     twitter: {

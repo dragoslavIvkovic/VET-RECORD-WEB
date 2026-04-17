@@ -8,6 +8,8 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import '@/app/globals.css';
 
+import { SITE_CONFIG } from '@/app/config/site';
+
 import CookieConsent from './components/CookieConsent';
 import NavigationBar from './components/NavigationBar';
 import SmartAppBanner from './components/SmartAppBanner';
@@ -20,8 +22,10 @@ const poppins = Poppins({
     weight: ['400', '500', '600', '700']
 });
 
+const site = SITE_CONFIG.url;
+
 export const metadata: Metadata = {
-    metadataBase: new URL('https://www.vetrecord.app'),
+    metadataBase: new URL(site),
     title: {
         default: 'Vet Record | The #1 Pet Medical Records App',
         template: '%s | Vet Record'
@@ -32,11 +36,11 @@ export const metadata: Metadata = {
         title: 'Vet Record | The #1 Pet Medical Records App',
         description:
             "Simplify your pet's healthcare with Vet Record. The easiest pet medical record app to safely store, track, and manage vet records for your dogs and cats.",
-        url: 'https://www.vetrecord.app',
+        url: site,
         siteName: 'Vet Record',
         images: [
             {
-                url: 'https://www.vetrecord.app/images/slider/slide-01.webp',
+                url: `${site}${SITE_CONFIG.ogImage}`,
                 width: 800,
                 height: 600
             }
@@ -49,10 +53,10 @@ export const metadata: Metadata = {
         title: 'Vet Record | The #1 Pet Medical Records App',
         description:
             "Simplify your pet's healthcare with Vet Record. The easiest pet medical record app to safely store, track, and manage vet records for your dogs and cats.",
-        images: ['https://www.vetrecord.app/images/slider/slide-01.webp']
+        images: [`${site}${SITE_CONFIG.ogImage}`]
     },
     alternates: {
-        canonical: 'https://www.vetrecord.app'
+        canonical: site
     },
     keywords: [
         'pet health app',
@@ -115,15 +119,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                                 price: '0',
                                 priceCurrency: 'USD'
                             },
-                            url: 'https://www.vetrecord.app',
-                            image: 'https://www.vetrecord.app/images/slider/slide-01.webp',
+                            url: site,
+                            image: `${site}${SITE_CONFIG.ogImage}`,
                             publisher: {
                                 '@type': 'Organization',
                                 name: 'Vet Record',
-                                url: 'https://www.vetrecord.app',
+                                url: site,
                                 logo: {
                                     '@type': 'ImageObject',
-                                    url: 'https://www.vetrecord.app/logo.svg'
+                                    url: `${site}${SITE_CONFIG.logo}`
                                 },
                                 sameAs: [
                                     'https://www.instagram.com/vetrecordapp',

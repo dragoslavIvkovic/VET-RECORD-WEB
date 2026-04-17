@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { SITE_CONFIG } from "@/app/config/site";
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = "https://www.vetrecord.app";
+  const siteUrl = SITE_CONFIG.url;
 
   return {
     rules: [

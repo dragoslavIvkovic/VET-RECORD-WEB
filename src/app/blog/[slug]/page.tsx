@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { SITE_CONFIG } from '@/app/config/site';
 import { getBlogPost, getBlogSlugs } from '@/lib/blog';
 import ScrollProgressBar from '../components/ScrollProgressBar';
 import BlogAppDownloads from '../components/BlogAppDownloads';
@@ -15,6 +16,7 @@ type Props = {
 export async function generateStaticParams() {
     try {
         const slugs = await getBlogSlugs();
+
         return slugs.map((slug) => ({ slug }));
     } catch {
         return [];
@@ -22,8 +24,11 @@ export async function generateStaticParams() {
 }
 
 function formatDate(dateStr: string): string {
-    if (!dateStr) return '';
+    if (!dateStr) {
+        return '';
+    }
     const d = new Date(dateStr);
+
     return isNaN(d.getTime())
         ? ''
         : d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -32,6 +37,7 @@ function formatDate(dateStr: string): string {
 function estimateReadTime(text: string): { minutes: number; label: string } {
     const words = text.trim().split(/\s+/).length;
     const minutes = Math.max(1, Math.round(words / 200));
+
     return { minutes, label: `${minutes} min read` };
 }
 
@@ -45,14 +51,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const title = post.meta_title || post.title;
     const description = post.meta_description || post.description || `Read ${post.title} on Vet Record blog.`;
 
+    const postUrl = `${SITE_CONFIG.url}/blog/${slug}`;
+
     return {
         title,
         description,
-        alternates: { canonical: `https://www.vetrecord.app/blog/${slug}` },
+        alternates: { canonical: postUrl },
         openGraph: {
             title: `${title} | Vet Record Blog`,
             description,
-            url: `https://www.vetrecord.app/blog/${slug}`,
+            url: postUrl,
             type: 'article',
             publishedTime: post.date,
             modifiedTime: post.updated_at,
@@ -97,14 +105,14 @@ export default async function BlogPostPage({ params }: Props) {
         publisher: {
             '@type': 'Organization',
             name: 'Vet Record',
-            logo: { '@type': 'ImageObject', url: 'https://www.vetrecord.app/logo.svg' }
+            logo: { '@type': 'ImageObject', url: `${SITE_CONFIG.url}${SITE_CONFIG.logo}` }
         },
         image: post.image
             ? { '@type': 'ImageObject', url: post.image, caption: post.title }
             : undefined,
         mainEntityOfPage: {
             '@type': 'WebPage',
-            '@id': `https://www.vetrecord.app/blog/${slug}`
+            '@id': `${SITE_CONFIG.url}/blog/${slug}`
         }
     };
 
@@ -116,19 +124,19 @@ export default async function BlogPostPage({ params }: Props) {
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Home',
-                item: 'https://www.vetrecord.app'
+                item: SITE_CONFIG.url
             },
             {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Blog',
-                item: 'https://www.vetrecord.app/blog'
+                item: `${SITE_CONFIG.url}/blog`
             },
             {
                 '@type': 'ListItem',
                 position: 3,
                 name: post.title,
-                item: `https://www.vetrecord.app/blog/${slug}`
+                item: `${SITE_CONFIG.url}/blog/${slug}`
             }
         ]
     };
@@ -264,7 +272,7 @@ export default async function BlogPostPage({ params }: Props) {
                         {/* Social Share Buttons */}
                         <div className="mt-8 sm:mt-10">
                             <BlogShareButtons 
-                                url={`https://www.vetrecord.app/blog/${slug}`}
+                                url={`${SITE_CONFIG.url}/blog/${slug}`}
                                 title={post.title}
                                 image={post.image}
                             />

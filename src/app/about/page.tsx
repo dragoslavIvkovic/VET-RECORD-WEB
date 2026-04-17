@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { SITE_CONFIG } from '@/app/config/site';
+
 import { APP_LINKS } from '../config/links';
 import AppDownloadButtons from '../components/AppDownloadButtons';
 
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'About Us | Vet Record – Pet Health Organizer for Dogs & Cats',
         description: 'Simplify your pet parenting journey. Track vaccines, medication reminders, and medical history. Organized records, vaccination tracker, cloud sync for families.',
-        url: 'https://www.vetrecord.app/about',
+        url: `${SITE_CONFIG.url}/about`,
         type: 'website'
     },
     twitter: {

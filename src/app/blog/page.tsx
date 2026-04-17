@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { SITE_CONFIG } from '@/app/config/site';
 import { getBlogPosts } from '@/lib/blog';
 
 import BlogFilterContainer from './components/BlogFilterContainer';
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Blog | Vet Record – Pet Health Tips & Guides',
         description: 'Pet health tips, vaccination guides, and care advice.',
-        url: 'https://www.vetrecord.app/blog',
+        url: `${SITE_CONFIG.url}/blog`,
         type: 'website'
     },
     twitter: {

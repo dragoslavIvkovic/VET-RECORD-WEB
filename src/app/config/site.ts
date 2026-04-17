@@ -12,6 +12,7 @@ export const SITE_CONFIG = {
     description: "Simplify your pet parenting journey with Vet Record. Track vaccines, set medication reminders, and log medical history effortlessly. Cloud sync for families.",
     
     // ===== URLs =====
+    /** Canonical origin (non-www). Single source of truth for SEO, sitemap, JSON-LD. */
     url: 'https://vetrecord.app',
     ogImage: '/images/slider/slide-01.webp',
     logo: '/logo.svg',

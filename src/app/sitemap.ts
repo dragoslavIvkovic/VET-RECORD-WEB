@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
+import { SITE_CONFIG } from "@/app/config/site";
 import { getBlogPosts } from "@/lib/blog";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteUrl = "https://www.vetrecord.app";
+  const siteUrl = SITE_CONFIG.url;
 
   const staticRoutes = [
     { path: "", priority: 1 },
