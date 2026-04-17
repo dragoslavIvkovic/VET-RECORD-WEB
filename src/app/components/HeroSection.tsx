@@ -100,7 +100,7 @@ export default function HeroSection() {
                 </video>
 
                 <div className='absolute bottom-8 left-0 right-0 z-10 flex justify-center'>
-                    <AppDownloadButtons source='hero_section' imageClassName='h-14' />
+                    <AppDownloadButtons source='hero_section' imageClassName='h-14' priority />
                 </div>
             </section>
         );
@@ -138,7 +138,7 @@ export default function HeroSection() {
                         {/* Download CTA */}
                         <div className='space-y-2'>
                             <p className='text-sm font-semibold tracking-wider text-cyan-300 uppercase'>Download Free — No Credit Card Required</p>
-                            <AppDownloadButtons source='hero_section' imageClassName='h-14' />
+                            <AppDownloadButtons source='hero_section' imageClassName='h-14' priority />
                         </div>
 
                         {/* Social proof */}

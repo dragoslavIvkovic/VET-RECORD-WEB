@@ -128,7 +128,7 @@ export default function NavigationBar() {
                         <div className='h-6 w-px bg-white/20' />
 
                         {/* Store badges */}
-                        <AppDownloadButtons source='navigation' imageClassName='h-9' />
+                        <AppDownloadButtons source='navigation' imageClassName='h-9' priority />
                     </div>
 
                     {/* ── Mobile hamburger (< lg) ────────────── */}

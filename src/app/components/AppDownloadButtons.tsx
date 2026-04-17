@@ -8,12 +8,15 @@ interface AppDownloadButtonsProps {
     source: string;
     containerClassName?: string;
     imageClassName?: string;
+    /** Set true when the badges are above the fold (hero / navbar) to avoid LCP warning */
+    priority?: boolean;
 }
 
 export default function AppDownloadButtons({ 
     source, 
     containerClassName = 'flex items-center gap-4',
-    imageClassName = 'h-12'
+    imageClassName = 'h-12',
+    priority = false
 }: AppDownloadButtonsProps) {
     const posthog = usePostHog();
 
@@ -38,6 +41,8 @@ export default function AppDownloadButtons({
                     alt='Get Vet Record Pet Health Tracker on Google Play' 
                     fill
                     sizes="168px"
+                    priority={priority}
+                    loading={priority ? 'eager' : 'lazy'}
                     className="object-contain"
                 />
             </a>
@@ -53,6 +58,8 @@ export default function AppDownloadButtons({
                     alt='Download Vet Record Pet Health Tracker on the App Store' 
                     fill
                     sizes="168px"
+                    priority={priority}
+                    loading={priority ? 'eager' : 'lazy'}
                     className="object-contain"
                 />
             </a>
