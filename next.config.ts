@@ -55,7 +55,15 @@ const nextConfig: NextConfig = {
                     },
                     {
                         key: 'Content-Security-Policy',
-                        value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://eu.i.posthog.com https://eu-assets.i.posthog.com https://*.google.com https://va.vercel-scripts.com https://googleads.g.doubleclick.net https://vercel.live; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://eu.i.posthog.com https://raw.githubusercontent.com https://*.google.com https://va.vercel-scripts.com https://googleads.g.doubleclick.net https://vercel.live wss://*.pusher.com https://*.pusher.com; img-src 'self' data: blob: https://raw.githubusercontent.com https://vetrecord.app https://play.google.com https://tools.applemediaservices.com https://api.producthunt.com https://ph-files.imgix.net https://eu-assets.i.posthog.com http://n8n-ghost-310718-77-42-42-63.traefik.me https://googleads.g.doubleclick.net https://static.ghost.org https://images.unsplash.com https://*.google.com https://*.google.rs https://www.google.com https://www.google.rs https://vercel.com; style-src 'self' 'unsafe-inline'; font-src 'self' data: https://vercel.live; frame-src 'self' https://www.youtube.com https://api.producthunt.com https://vercel.live;"
+                        value: [
+                            "default-src 'self'",
+                            "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://eu.i.posthog.com https://eu-assets.i.posthog.com https://*.google.com https://va.vercel-scripts.com https://googleads.g.doubleclick.net https://vercel.live https://www.gstatic.com",
+                            "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://eu.i.posthog.com https://raw.githubusercontent.com https://*.google.com https://www.google.com https://va.vercel-scripts.com https://vitals.vercel-insights.com https://googleads.g.doubleclick.net https://vercel.live wss://*.pusher.com https://*.pusher.com",
+                            "img-src 'self' data: blob: https://raw.githubusercontent.com https://vetrecord.app https://play.google.com https://tools.applemediaservices.com https://api.producthunt.com https://ph-files.imgix.net https://eu-assets.i.posthog.com http://n8n-ghost-310718-77-42-42-63.traefik.me https://googleads.g.doubleclick.net https://static.ghost.org https://images.unsplash.com https://*.google.com https://*.google.rs https://www.google.com https://www.google.rs https://vercel.com https://vercel.live https://www.gstatic.com",
+                            "style-src 'self' 'unsafe-inline'",
+                            "font-src 'self' data: https://vercel.live",
+                            "frame-src 'self' https://www.youtube.com https://api.producthunt.com https://vercel.live",
+                        ].join('; ')
                     }
                 ]
             },

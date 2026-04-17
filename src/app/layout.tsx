@@ -3,7 +3,6 @@ import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import Script from 'next/script';
-import dynamic from 'next/dynamic';
 
 import ConsentAwareGtag from './components/ConsentAwareGtag';
 import { Analytics } from '@vercel/analytics/react';
