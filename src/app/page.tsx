@@ -14,6 +14,10 @@ const ReviewSection = dynamic(() => import('./components/ReviewSection'), {
     loading: () => <div className='min-h-[500px] animate-pulse bg-[#F3F5FF]' />
 });
 
+const FeaturedBlogSection = dynamic(() => import('./components/FeaturedBlogSection'), {
+    loading: () => <div className='min-h-[500px] animate-pulse bg-white' />
+});
+
 const Footer = dynamic(() => import('./components/Footer'), {
     loading: () => <div className='min-h-[300px] animate-pulse bg-[#0C4C55]' />
 });
@@ -34,6 +38,11 @@ export default function Home() {
             {/* Video Section — lazy loaded on scroll */}
             <LazySectionWrapper minHeight='400px' className='bg-white'>
                 <VideoSection />
+            </LazySectionWrapper>
+
+            {/* Featured Blog Posts — before reviews */}
+            <LazySectionWrapper minHeight='500px' className='bg-white'>
+                <FeaturedBlogSection />
             </LazySectionWrapper>
 
             {/* Review Section — lazy loaded on scroll */}
